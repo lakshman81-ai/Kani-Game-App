@@ -10,8 +10,8 @@
   <meta http-equiv="Expires" content="0">
   <meta name="version" content="2.0">
   <title>Learning Galaxy - Grade 3-4 Games v2.0</title>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -223,6 +223,9 @@
     const DEFAULT_SETTINGS = {
       mathSheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQr3nlml1JTPMR4ROfCKarFSayMFxYyOwZO-v_A0INlG1oMloM5wm0wltURipcy0A/pub?output=csv',
       englishSheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRses_Y74IwZ6nFvmwMygKruq0HgQZZmOEYSdf3sE0pInXXByyU0uSf8KPY8Z6Giw/pub?output=csv',
+      topicSheetUrl: '',
+      selectedTopics: '',
+      selectedSubtopics: '',
       selectedMathWorksheet: '1',
       selectedEnglishWorksheet: '1',
       defaultDifficulty: 'None',
@@ -559,6 +562,23 @@
       { game_type: 'inference-investigator', text1: 'The cookies were gone and there were crumbs leading to the dog\'s bed.', text2: 'What happened to the cookies?', answer: 'The dog ate them', option1: 'The dog ate them', option2: 'Mom ate them', option3: 'They disappeared', option4: 'They were never there', difficulty: 'Hard', know_more: 'Crumbs are evidence!' },
       { game_type: 'inference-investigator', text1: 'Alex smiled when she saw the envelope but frowned after reading the letter inside.', text2: 'What can you infer about the letter?', answer: 'It contained bad news', option1: 'It contained bad news', option2: 'It was funny', option3: 'It was blank', option4: 'It was from grandma', difficulty: 'Hard', know_more: 'Reaction changed = unexpected news!' },
       { game_type: 'inference-investigator', text1: 'The plants near the window were green and healthy, but the ones in the corner were yellow and wilting.', text2: 'Why are the corner plants struggling?', answer: 'Not enough light', option1: 'Not enough light', option2: 'Too much water', option3: 'Too cold', option4: 'Wrong soil', difficulty: 'Hard', know_more: 'Window = light, corner = dark!' },
+
+      // The Why Why Girl - Story Nebula
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'Moyna is a curious ten-year-old girl from a tribal village in India. She is called the why-why girl by the postmaster because she asks endless questions about everything around her. Despite her keen intellect, Moyna cannot attend school because she must tend to goats, collect firewood, and fetch water for her family.', answer: 'Why is Moyna called the why-why girl?', option1: 'She asks many questions', option2: 'She cries a lot', option3: 'She runs very fast', option4: 'She sings songs', difficulty: 'Easy', topic: 'The Why Why Girl', subtopic: 'Character Traits', know_more: 'Nicknames often tell us about a persons personality!' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'Moyna is a curious ten-year-old girl from a tribal village in India. She is called the why-why girl by the postmaster because she asks endless questions about everything around her. Despite her keen intellect, Moyna cannot attend school because she must tend to goats, collect firewood, and fetch water for her family.', answer: 'What does Moyna do instead of going to school?', option1: 'Tends goats and collects firewood', option2: 'Plays with friends', option3: 'Watches television', option4: 'Sleeps all day', difficulty: 'Easy', topic: 'The Why Why Girl', subtopic: 'Story Details', know_more: 'Many children around the world work to help their families.' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'Moyna is a curious ten-year-old girl from a tribal village in India. She is called the why-why girl by the postmaster because she asks endless questions about everything around her. Despite her keen intellect, Moyna cannot attend school because she must tend to goats, collect firewood, and fetch water for her family.', answer: 'How old is Moyna?', option1: 'Ten years old', option2: 'Eight years old', option3: 'Twelve years old', option4: 'Five years old', difficulty: 'Easy', topic: 'The Why Why Girl', subtopic: 'Story Details', know_more: 'Pay attention to numbers and ages when reading!' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'The author Mahasweta Devi works closely with tribal communities. When she meets Moyna, she recognizes the girls sharp mind. Instead of dismissing Moynas questions, the author helps her find answers. She introduces Moyna to the world of books, explaining that they hold the solutions to her whys.', answer: 'Who helps Moyna find answers to her questions?', option1: 'The author Mahasweta Devi', option2: 'The postmaster', option3: 'Her mother', option4: 'Her teacher', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Character Relationships', know_more: 'Authors sometimes appear as characters in their own stories!' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'The author Mahasweta Devi works closely with tribal communities. When she meets Moyna, she recognizes the girls sharp mind. Instead of dismissing Moynas questions, the author helps her find answers. She introduces Moyna to the world of books, explaining that they hold the solutions to her whys.', answer: 'What does the author say holds the answers to Moynas questions?', option1: 'Books', option2: 'The sky', option3: 'Her grandmother', option4: 'The postmaster', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Main Ideas', know_more: 'Books are wonderful sources of knowledge and answers!' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'Through her interactions with the author, Moyna learns to read and eventually finds the answers she seeks. Moynas thirst for knowledge leads her to overcome obstacles. Ultimately, Moyna becomes a teacher in her village, inspiring other children to ask questions and pursue learning.', answer: 'What does Moyna become at the end of the story?', option1: 'A teacher', option2: 'A doctor', option3: 'A farmer', option4: 'A postmaster', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Story Ending', know_more: 'Education can change your life and help you change others lives too!' },
+      { game_type: 'story-nebula', text1: 'The Why Why Girl', text2: 'Through her interactions with the author, Moyna learns to read and eventually finds the answers she seeks. Moynas thirst for knowledge leads her to overcome obstacles. Ultimately, Moyna becomes a teacher in her village, inspiring other children to ask questions and pursue learning.', answer: 'What does Moyna inspire other children to do?', option1: 'Ask questions and learn', option2: 'Play games', option3: 'Collect firewood', option4: 'Tend goats', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Theme', know_more: 'Asking questions is the first step to learning!' },
+
+      // The Why Why Girl - Inference Investigator
+      { game_type: 'inference-investigator', text1: 'Moyna asked the postmaster why the sky is blue, why birds can fly, and why the river flows. The postmaster just shook his head and walked away.', text2: 'What can you infer about Moynas personality?', answer: 'She is very curious', option1: 'She is very curious', option2: 'She is lazy', option3: 'She is scared', option4: 'She is angry', difficulty: 'Easy', topic: 'The Why Why Girl', subtopic: 'Character Traits', know_more: 'When someone asks many questions it shows they want to learn!' },
+      { game_type: 'inference-investigator', text1: 'Despite being very smart, Moyna couldnt go to school. Every morning she woke up early to tend goats, collect firewood, and fetch water.', text2: 'Why couldnt Moyna go to school?', answer: 'She had to work to help her family', option1: 'She had to work to help her family', option2: 'She didnt like school', option3: 'School was too far away', option4: 'She was too young', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Cause and Effect', know_more: 'Some children have responsibilities that prevent them from going to school.' },
+      { game_type: 'inference-investigator', text1: 'When the author gave Moyna a book, Moynas eyes lit up. She held the book carefully as if it was made of gold.', text2: 'How did Moyna feel about the book?', answer: 'Excited and grateful', option1: 'Excited and grateful', option2: 'Bored and tired', option3: 'Scared and worried', option4: 'Angry and upset', difficulty: 'Easy', topic: 'The Why Why Girl', subtopic: 'Emotions', know_more: 'Eyes lighting up usually means someone is happy or excited!' },
+      { game_type: 'inference-investigator', text1: 'Years later, children in Moynas village could read and write. They asked questions freely and loved to learn.', text2: 'What can you infer about Moynas work as a teacher?', answer: 'She was a good teacher', option1: 'She was a good teacher', option2: 'She was strict and mean', option3: 'She didnt teach well', option4: 'She left the village', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Drawing Conclusions', know_more: 'If students are learning well it usually means they have a good teacher!' },
+      { game_type: 'inference-investigator', text1: 'The postmaster dismissed Moynas questions, but the author listened carefully and helped her find answers.', text2: 'How was the author different from the postmaster?', answer: 'The author valued Moynas curiosity', option1: 'The author valued Moynas curiosity', option2: 'The author ignored Moyna', option3: 'The author was scared of questions', option4: 'The author couldnt read', difficulty: 'Hard', topic: 'The Why Why Girl', subtopic: 'Compare and Contrast', know_more: 'Good mentors encourage questions instead of dismissing them.' },
+      { game_type: 'inference-investigator', text1: 'Moyna walked five miles every day to fetch water, yet she never stopped asking questions about the world around her.', text2: 'What does this tell us about Moyna?', answer: 'She was determined and curious', option1: 'She was determined and curious', option2: 'She was lazy', option3: 'She gave up easily', option4: 'She didnt like walking', difficulty: 'Medium', topic: 'The Why Why Girl', subtopic: 'Character Traits', know_more: 'Determination means not giving up despite difficulties.' },
     ];
 
     // ============ DATA FETCHING HOOK WITH FALLBACK ============
@@ -629,9 +649,9 @@
     );
 
     const Header = ({ timer, streak, stars, onBack, formatTime, difficulty }) => (
-      <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
+      <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20" role="banner">
         <div className="flex items-center gap-4">
-          <button onClick={onBack} className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer">←</button>
+          <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back" className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer">←</button>
           <div className="flex items-center bg-gray-900/80 rounded-lg p-2 backdrop-blur">
             <div>
               <div className="text-xl font-bold text-white">{formatTime(timer)}</div>
@@ -728,12 +748,30 @@
       const [shuffledOptions, setShuffledOptions] = useState([]);
       const usedIndicesRef = React.useRef(new Set());
 
-      // Filter questions by difficulty (case-insensitive)
+      // Filter questions by difficulty and topics/subtopics
       const questions = allQuestions.filter(q => {
-        if (!q.difficulty) return true;
-        const qDiff = q.difficulty.toLowerCase().trim();
-        const targetDiff = difficulty.toLowerCase().trim();
-        return qDiff === targetDiff || targetDiff === 'all';
+        // Difficulty filter
+        if (q.difficulty) {
+          const qDiff = q.difficulty.toLowerCase().trim();
+          const targetDiff = difficulty.toLowerCase().trim();
+          if (qDiff !== targetDiff && targetDiff !== 'all') return false;
+        }
+
+        // Topic filter
+        if (settings.selectedTopics && settings.selectedTopics.trim()) {
+          const allowedTopics = settings.selectedTopics.split(',').map(t => t.trim().toLowerCase());
+          const qTopic = (q.topic || '').toLowerCase().trim();
+          if (qTopic && !allowedTopics.includes(qTopic) && !allowedTopics.some(t => qTopic.includes(t))) return false;
+        }
+
+        // Subtopic filter
+        if (settings.selectedSubtopics && settings.selectedSubtopics.trim()) {
+          const allowedSubtopics = settings.selectedSubtopics.split(',').map(s => s.trim().toLowerCase());
+          const qSubtopic = (q.subtopic || '').toLowerCase().trim();
+          if (qSubtopic && !allowedSubtopics.includes(qSubtopic) && !allowedSubtopics.some(s => qSubtopic.includes(s))) return false;
+        }
+
+        return true;
       });
 
       const getNextQuestion = useCallback(() => {
@@ -1310,7 +1348,7 @@
         return (
           <SpaceBackground>
             <div className="flex flex-col items-center justify-center h-full px-4">
-              <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+              <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
               <div className="text-6xl mb-4">🔒</div>
               <h1 className="text-3xl font-bold text-white mb-2">Settings Locked</h1>
               <p className="text-purple-300 mb-6 text-sm">Enter password to access settings</p>
@@ -1336,7 +1374,7 @@
       return (
         <SpaceBackground>
           <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
-            <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+            <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
             <h1 className="text-4xl font-bold text-white mb-8 pt-8">⚙️ Settings</h1>
             <div className="w-full max-w-lg space-y-6 relative z-20">
               <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
@@ -1374,14 +1412,34 @@
                   className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none" />
                 <p className="text-gray-400 text-xs mt-2">💡 When configured, all settings changes will be saved to your Google Sheet</p>
               </div>
+              <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
+                <h2 className="text-xl font-bold text-white mb-4">📝 Topics & Subtopics</h2>
+                <p className="text-gray-400 text-sm mb-4">Filter questions by topic. Link to a Google Sheet containing topics or enter them manually.</p>
+                <div className="mb-4">
+                  <label className="text-white text-sm font-medium block mb-2">Topics Sheet URL (optional)</label>
+                  <input type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv" value={localSettings.topicSheetUrl || ''} onChange={(e) => setLocalSettings({ ...localSettings, topicSheetUrl: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none text-xs font-mono" />
+                </div>
+                <div className="mb-4">
+                  <label className="text-white text-sm font-medium block mb-2">Topics (comma-separated)</label>
+                  <input type="text" placeholder="e.g., Addition, Subtraction, Fractions" value={localSettings.selectedTopics || ''} onChange={(e) => setLocalSettings({ ...localSettings, selectedTopics: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none" />
+                  <p className="text-gray-400 text-xs mt-1">Leave empty to show all topics</p>
+                </div>
+                <div>
+                  <label className="text-white text-sm font-medium block mb-2">Subtopics (comma-separated)</label>
+                  <input type="text" placeholder="e.g., Single Digit, Double Digit, Word Problems" value={localSettings.selectedSubtopics || ''} onChange={(e) => setLocalSettings({ ...localSettings, selectedSubtopics: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none" />
+                  <p className="text-gray-400 text-xs mt-1">Leave empty to show all subtopics</p>
+                </div>
+              </div>
               <div className="flex gap-3">
-                <button onClick={handleReset} className="flex-1 bg-gray-600 text-white px-6 py-4 rounded-full text-lg font-bold hover:bg-gray-500 transition-colors cursor-pointer">🔄 Reset</button>
-                <button onClick={handleSave} disabled={!isValid}
+                <button onClick={handleReset} aria-label="Reset settings to defaults" className="flex-1 bg-gray-600 text-white px-6 py-4 rounded-full text-lg font-bold hover:bg-gray-500 transition-colors cursor-pointer">🔄 Reset</button>
+                <button onClick={handleSave} disabled={!isValid} aria-label="Save settings"
                   className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
-                  💾 Save
+                  💾 Save Settings
                 </button>
               </div>
-              <button onClick={handleSave} className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer">💾 Save Settings</button>
             </div>
           </div>
         </SpaceBackground>
@@ -1396,7 +1454,7 @@
       return (
         <SpaceBackground variant="math">
           <div className="flex flex-col items-center justify-center h-full px-4">
-            <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+            <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to game selection" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
             <div className="text-6xl mb-4">{gameInfo?.icon}</div>
             <h1 className="text-4xl font-bold text-white mb-4">{gameInfo?.title}</h1>
             {lockedDifficulty && <p className="text-purple-300 mb-4 text-sm">Difficulty locked to {lockedDifficulty} in settings</p>}
@@ -1423,11 +1481,11 @@
     const GameTilesPage = ({ title, icon, games, onSelectGame, onBack, totalStars, variant }) => (
       <SpaceBackground variant={variant}>
         <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
-          <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+          <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to previous screen" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
           <div className="text-center mb-8 pt-8">
             <h1 className="text-4xl font-bold text-white mb-2">{icon} {title}</h1>
-            <div className="flex items-center justify-center gap-2 mt-4 bg-gray-900/60 px-4 py-2 rounded-full">
-              <StarIcon className="w-5 h-5 text-yellow-400" />
+            <div className="flex items-center justify-center gap-2 mt-4 bg-gray-900/60 px-4 py-2 rounded-full" aria-live="polite">
+              <StarIcon className="w-5 h-5 text-yellow-400" aria-hidden="true" />
               <span className="text-yellow-400 font-bold">{totalStars} Stars</span>
             </div>
           </div>
@@ -1449,9 +1507,9 @@
     const EnglishLandingPage = ({ onSelectCategory, onBack, totalStars }) => (
       <SpaceBackground variant="english">
         <div className="flex flex-col items-center justify-center h-full px-4">
-          <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+          <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to home" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
           <h1 className="text-5xl font-bold text-white mb-8">📚 English Galaxy</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl w-full relative z-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl w-full relative z-20" role="navigation" aria-label="English categories">
             {[
               { id: 'grammar', icon: '✏️', title: 'Grammar', color: 'from-purple-600 to-indigo-700', count: GRAMMAR_GAMES.length },
               { id: 'vocabulary', icon: '📖', title: 'Vocabulary', color: 'from-green-600 to-emerald-700', count: VOCABULARY_GAMES.length },
@@ -1590,11 +1648,11 @@
       return (
         <SpaceBackground>
           <div className="flex flex-col items-center h-full pt-8 px-4 overflow-y-auto">
-            <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+            <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to home" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
             <h1 className="text-4xl font-bold text-white mb-6">🏆 Leaderboard</h1>
-            <div className="flex gap-2 mb-6 relative z-20">
+            <div className="flex gap-2 mb-6 relative z-20" role="tablist" aria-label="Filter by subject">
               {['all', 'math', 'english'].map(f => (
-                <button key={f} onClick={() => setFilter(f)} className={`px-4 py-2 rounded-full font-bold capitalize cursor-pointer ${filter === f ? 'bg-yellow-500 text-white' : 'bg-gray-700 text-gray-300'}`}>{f}</button>
+                <button key={f} onClick={() => setFilter(f)} role="tab" aria-selected={filter === f} aria-label={`Filter by ${f}`} className={`px-4 py-2 rounded-full font-bold capitalize cursor-pointer ${filter === f ? 'bg-yellow-500 text-white' : 'bg-gray-700 text-gray-300'}`}>{f}</button>
               ))}
             </div>
             <div className="w-full max-w-md bg-gray-900/80 rounded-2xl p-4 backdrop-blur relative z-20">
@@ -1657,7 +1715,7 @@
       return (
         <SpaceBackground variant="default">
           <div className="flex flex-col items-center h-full pt-8 px-4 overflow-y-auto pb-8">
-            <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+            <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to home" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
             <h1 className="text-4xl font-bold text-white mb-6">📊 QA Analytics</h1>
 
             {totalGames === 0 ? (
