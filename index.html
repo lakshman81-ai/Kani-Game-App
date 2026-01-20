@@ -34,6 +34,41 @@
       -webkit-overflow-scrolling: touch;
       overflow-y: auto;
       position: relative;
+      font-size: 16px;
+    }
+
+    /* Mobile font size improvements */
+    @media (max-width: 640px) {
+      html {
+        font-size: 16px;
+      }
+
+      /* Ensure minimum readable font sizes on mobile */
+      .text-xs {
+        font-size: 0.875rem !important;
+        /* 14px instead of 12px */
+        line-height: 1.4 !important;
+      }
+
+      .text-sm {
+        font-size: 1rem !important;
+        /* 16px instead of 14px */
+        line-height: 1.5 !important;
+      }
+
+      /* Game buttons and options should be tappable */
+      button {
+        min-height: 44px;
+        font-size: 1rem;
+      }
+
+      /* Input fields readable on mobile */
+      input,
+      textarea,
+      select {
+        font-size: 16px !important;
+        /* Prevents iOS zoom on focus */
+      }
     }
 
     button,
@@ -229,6 +264,7 @@
       selectedMathWorksheet: '1',
       selectedEnglishWorksheet: '1',
       defaultDifficulty: 'None',
+      difficultyFilterEnabled: false,
       soundEnabled: true,
       leaderboardUrl: '',
       settingsSheetUrl: ''
@@ -750,8 +786,8 @@
 
       // Filter questions by difficulty and topics/subtopics
       const questions = allQuestions.filter(q => {
-        // Difficulty filter
-        if (q.difficulty) {
+        // Difficulty filter - only apply if difficultyFilterEnabled is true
+        if (settings.difficultyFilterEnabled && q.difficulty) {
           const qDiff = q.difficulty.toLowerCase().trim();
           const targetDiff = difficulty.toLowerCase().trim();
           if (qDiff !== targetDiff && targetDiff !== 'all') return false;
@@ -1388,16 +1424,33 @@
                   className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none text-xs font-mono resize-none" rows={3} />
               </div>
               <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
-                <h2 className="text-xl font-bold text-white mb-4">🎯 Default Difficulty</h2>
-                <p className="text-gray-400 text-sm mb-4">Choose "None" to let kids pick difficulty each game</p>
-                <select value={localSettings.defaultDifficulty} onChange={(e) => setLocalSettings({ ...localSettings, defaultDifficulty: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 cursor-pointer">
-                  <option value="None">None (Choose per game)</option>
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
-                </select>
-                <p className="text-gray-400 text-xs mt-2">When "None" is selected, you can choose difficulty before each game. Otherwise, only the selected difficulty will be available.</p>
+                <h2 className="text-xl font-bold text-white mb-4">🎯 Difficulty Settings</h2>
+                <div className="flex items-center justify-between mb-4 p-3 bg-gray-800/50 rounded-lg">
+                  <div>
+                    <p className="text-white font-medium">Enable Difficulty Filter</p>
+                    <p className="text-gray-400 text-xs">When OFF, all questions load regardless of difficulty</p>
+                  </div>
+                  <button
+                    onClick={() => setLocalSettings({ ...localSettings, difficultyFilterEnabled: !localSettings.difficultyFilterEnabled })}
+                    className={`relative w-14 h-8 rounded-full transition-colors cursor-pointer ${localSettings.difficultyFilterEnabled ? 'bg-green-500' : 'bg-gray-600'}`}
+                    aria-label="Toggle difficulty filter"
+                  >
+                    <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-transform ${localSettings.difficultyFilterEnabled ? 'translate-x-7' : 'translate-x-1'}`} />
+                  </button>
+                </div>
+                {localSettings.difficultyFilterEnabled && (
+                  <>
+                    <p className="text-gray-400 text-sm mb-4">Choose "None" to let kids pick difficulty each game</p>
+                    <select value={localSettings.defaultDifficulty} onChange={(e) => setLocalSettings({ ...localSettings, defaultDifficulty: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 cursor-pointer text-base">
+                      <option value="None">None (Choose per game)</option>
+                      <option value="Easy">Easy</option>
+                      <option value="Medium">Medium</option>
+                      <option value="Hard">Hard</option>
+                    </select>
+                    <p className="text-gray-400 text-xs mt-2">When "None" is selected, you can choose difficulty before each game.</p>
+                  </>
+                )}
               </div>
               <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
                 <h2 className="text-xl font-bold text-white mb-4">📊 Leaderboard Integration</h2>
