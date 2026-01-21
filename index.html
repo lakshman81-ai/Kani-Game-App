@@ -267,7 +267,10 @@
       difficultyFilterEnabled: false,
       soundEnabled: true,
       leaderboardUrl: '',
-      settingsSheetUrl: ''
+      settingsSheetUrl: '',
+      enabledGames: {},
+      generatorGrade: 'Grade 3',
+      generatorDifficulty: 'Easy'
     };
 
     // ============ CSV PARSER ============
@@ -1305,6 +1308,81 @@
       const [password, setPassword] = useState('');
       const [isUnlocked, setIsUnlocked] = useState(false);
       const [error, setError] = useState('');
+      const [showGenerator, setShowGenerator] = useState(false);
+      const [generatedQuestions, setGeneratedQuestions] = useState([]);
+      const [editingQuestion, setEditingQuestion] = useState(null);
+
+      // Generate questions based on topic, subtopic, grade, difficulty
+      const generateQuestions = () => {
+        const topic = localSettings.selectedTopics || 'General';
+        const subtopic = localSettings.selectedSubtopics || '';
+        const grade = localSettings.generatorGrade || 'Grade 3';
+        const difficulty = localSettings.generatorDifficulty || 'Easy';
+
+        // Generate sample questions based on parameters
+        const questions = [
+          {
+            id: Date.now() + 1,
+            game_type: 'story-nebula',
+            text1: topic,
+            text2: `This is a ${difficulty.toLowerCase()} question about ${topic}${subtopic ? ' - ' + subtopic : ''} for ${grade} students.`,
+            answer: 'Sample answer',
+            option1: 'Sample answer',
+            option2: 'Wrong option 1',
+            option3: 'Wrong option 2',
+            option4: 'Wrong option 3',
+            difficulty: difficulty,
+            topic: topic,
+            subtopic: subtopic
+          },
+          {
+            id: Date.now() + 2,
+            game_type: 'inference-investigator',
+            text1: `Based on the ${topic} topic, what can you infer?`,
+            text2: 'What is the main idea?',
+            answer: 'Main inference',
+            option1: 'Main inference',
+            option2: 'Wrong inference 1',
+            option3: 'Wrong inference 2',
+            option4: 'Wrong inference 3',
+            difficulty: difficulty,
+            topic: topic,
+            subtopic: subtopic
+          }
+        ];
+
+        setGeneratedQuestions(questions);
+        setShowGenerator(true);
+      };
+
+      const addQuestion = () => {
+        const newQ = {
+          id: Date.now(),
+          game_type: 'story-nebula',
+          text1: '',
+          text2: '',
+          answer: '',
+          option1: '',
+          option2: '',
+          option3: '',
+          option4: '',
+          difficulty: localSettings.generatorDifficulty || 'Easy',
+          topic: localSettings.selectedTopics || '',
+          subtopic: localSettings.selectedSubtopics || ''
+        };
+        setGeneratedQuestions([...generatedQuestions, newQ]);
+        setEditingQuestion(newQ.id);
+      };
+
+      const deleteQuestion = (id) => {
+        setGeneratedQuestions(generatedQuestions.filter(q => q.id !== id));
+      };
+
+      const updateQuestion = (id, field, value) => {
+        setGeneratedQuestions(generatedQuestions.map(q =>
+          q.id === id ? { ...q, [field]: value } : q
+        ));
+      };
 
       const SETTINGS_PASSWORD = 'Superdad';
 
@@ -1479,13 +1557,90 @@
                     className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none" />
                   <p className="text-gray-400 text-xs mt-1">Leave empty to show all topics</p>
                 </div>
-                <div>
+                <div className="mb-4">
                   <label className="text-white text-sm font-medium block mb-2">Subtopics (comma-separated)</label>
                   <input type="text" placeholder="e.g., Single Digit, Double Digit, Word Problems" value={localSettings.selectedSubtopics || ''} onChange={(e) => setLocalSettings({ ...localSettings, selectedSubtopics: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none" />
                   <p className="text-gray-400 text-xs mt-1">Leave empty to show all subtopics</p>
                 </div>
+
+                {/* Question Generator */}
+                <div className="mt-6 pt-4 border-t border-gray-700">
+                  <h3 className="text-lg font-bold text-white mb-3">🤖 Question Generator</h3>
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                      <label className="text-white text-xs font-medium block mb-1">Grade</label>
+                      <select value={localSettings.generatorGrade || 'Grade 3'} onChange={(e) => setLocalSettings({ ...localSettings, generatorGrade: e.target.value })}
+                        className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 cursor-pointer text-sm">
+                        <option value="Grade 3">Grade 3</option>
+                        <option value="Grade 4">Grade 4</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-white text-xs font-medium block mb-1">Difficulty</label>
+                      <select value={localSettings.generatorDifficulty || 'Easy'} onChange={(e) => setLocalSettings({ ...localSettings, generatorDifficulty: e.target.value })}
+                        className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 cursor-pointer text-sm">
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button
+                    onClick={generateQuestions}
+                    className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-3 rounded-lg font-bold hover:scale-105 transition-transform cursor-pointer text-sm">
+                    ✨ Generate Questions Now
+                  </button>
+                </div>
               </div>
+
+              {/* Game Toggles Section */}
+              <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
+                <h2 className="text-xl font-bold text-white mb-4">🎮 Game Toggles</h2>
+                <p className="text-gray-400 text-sm mb-4">Enable or disable games. Disabled games won't appear in the game selection.</p>
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {ALL_GAMES.map(game => {
+                    const isEnabled = localSettings.enabledGames?.[game.id] !== false;
+                    return (
+                      <div key={game.id} className="flex items-center justify-between p-2 bg-gray-800/50 rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{game.icon}</span>
+                          <span className="text-white text-sm">{game.title}</span>
+                        </div>
+                        <button
+                          onClick={() => setLocalSettings({
+                            ...localSettings,
+                            enabledGames: {
+                              ...localSettings.enabledGames,
+                              [game.id]: !isEnabled
+                            }
+                          })}
+                          className={`relative w-12 h-6 rounded-full transition-colors cursor-pointer ${isEnabled ? 'bg-green-500' : 'bg-gray-600'}`}
+                        >
+                          <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${isEnabled ? 'translate-x-6' : 'translate-x-0.5'}`} />
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Linked Sheets Summary */}
+              <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
+                <h2 className="text-xl font-bold text-white mb-4">🔗 Linked Sheets</h2>
+                <div className="bg-gray-800/50 rounded-lg p-3 font-mono text-xs text-gray-300 whitespace-pre-wrap break-all">
+                  {`Math: ${localSettings.mathSheetUrl || 'Not set'}
+
+English: ${localSettings.englishSheetUrl || 'Not set'}
+
+Topics: ${localSettings.topicSheetUrl || 'Not set'}
+
+Settings: ${localSettings.settingsSheetUrl || 'Not set'}
+
+Leaderboard: ${localSettings.leaderboardUrl || 'Not set'}`}
+                </div>
+              </div>
+
               <div className="flex gap-3">
                 <button onClick={handleReset} aria-label="Reset settings to defaults" className="flex-1 bg-gray-600 text-white px-6 py-4 rounded-full text-lg font-bold hover:bg-gray-500 transition-colors cursor-pointer">🔄 Reset</button>
                 <button onClick={handleSave} disabled={!isValid} aria-label="Save settings"
@@ -1495,6 +1650,101 @@
               </div>
             </div>
           </div>
+
+          {/* Question Generator Popup */}
+          {showGenerator && (
+            <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
+              <div className="bg-gray-900 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col">
+                <div className="p-4 border-b border-gray-700 flex justify-between items-center">
+                  <h2 className="text-xl font-bold text-white">🤖 Generated Questions</h2>
+                  <button onClick={() => setShowGenerator(false)} className="text-gray-400 hover:text-white text-2xl cursor-pointer">×</button>
+                </div>
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                  {generatedQuestions.length === 0 ? (
+                    <p className="text-gray-400 text-center py-8">No questions generated yet</p>
+                  ) : (
+                    generatedQuestions.map((q, i) => (
+                      <div key={q.id} className="bg-gray-800 rounded-lg p-4">
+                        <div className="flex justify-between items-start mb-3">
+                          <span className="text-purple-400 text-sm font-bold">Question {i + 1}</span>
+                          <div className="flex gap-2">
+                            <button onClick={() => setEditingQuestion(editingQuestion === q.id ? null : q.id)}
+                              className="text-blue-400 hover:text-blue-300 text-sm cursor-pointer">
+                              {editingQuestion === q.id ? '✓ Done' : '✏️ Edit'}
+                            </button>
+                            <button onClick={() => deleteQuestion(q.id)} className="text-red-400 hover:text-red-300 text-sm cursor-pointer">🗑️</button>
+                          </div>
+                        </div>
+
+                        {editingQuestion === q.id ? (
+                          <div className="space-y-3">
+                            <div>
+                              <label className="text-gray-400 text-xs">Game Type</label>
+                              <select value={q.game_type} onChange={(e) => updateQuestion(q.id, 'game_type', e.target.value)}
+                                className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600">
+                                {ALL_GAMES.map(g => (
+                                  <option key={g.id} value={g.id}>{g.icon} {g.title}</option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label className="text-gray-400 text-xs">Question/Title</label>
+                              <input value={q.text1} onChange={(e) => updateQuestion(q.id, 'text1', e.target.value)}
+                                className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600" />
+                            </div>
+                            <div>
+                              <label className="text-gray-400 text-xs">Content/Passage</label>
+                              <textarea value={q.text2} onChange={(e) => updateQuestion(q.id, 'text2', e.target.value)} rows={2}
+                                className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600 resize-none" />
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <label className="text-gray-400 text-xs">Correct Answer</label>
+                                <input value={q.answer} onChange={(e) => {
+                                  updateQuestion(q.id, 'answer', e.target.value);
+                                  updateQuestion(q.id, 'option1', e.target.value);
+                                }} className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-green-600" />
+                              </div>
+                              <div>
+                                <label className="text-gray-400 text-xs">Option 2</label>
+                                <input value={q.option2} onChange={(e) => updateQuestion(q.id, 'option2', e.target.value)}
+                                  className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600" />
+                              </div>
+                              <div>
+                                <label className="text-gray-400 text-xs">Option 3</label>
+                                <input value={q.option3} onChange={(e) => updateQuestion(q.id, 'option3', e.target.value)}
+                                  className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600" />
+                              </div>
+                              <div>
+                                <label className="text-gray-400 text-xs">Option 4</label>
+                                <input value={q.option4} onChange={(e) => updateQuestion(q.id, 'option4', e.target.value)}
+                                  className="w-full px-3 py-2 rounded bg-gray-700 text-white text-sm border border-gray-600" />
+                              </div>
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <p className="text-white text-sm mb-1"><strong>{q.text1}</strong></p>
+                            <p className="text-gray-400 text-xs mb-2">{q.text2?.substring(0, 100)}...</p>
+                            <p className="text-green-400 text-xs">Answer: {q.answer}</p>
+                            <p className="text-gray-500 text-xs">Game: {ALL_GAMES.find(g => g.id === q.game_type)?.title || q.game_type}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+                <div className="p-4 border-t border-gray-700 flex gap-3">
+                  <button onClick={addQuestion} className="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-500 cursor-pointer">
+                    ➕ Add Question
+                  </button>
+                  <button onClick={() => setShowGenerator(false)} className="flex-1 bg-gray-600 text-white py-2 rounded-lg font-bold hover:bg-gray-500 cursor-pointer">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </SpaceBackground>
       );
     };
@@ -1531,31 +1781,40 @@
       );
     };
 
-    const GameTilesPage = ({ title, icon, games, onSelectGame, onBack, totalStars, variant }) => (
-      <SpaceBackground variant={variant}>
-        <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
-          <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to previous screen" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
-          <div className="text-center mb-8 pt-8">
-            <h1 className="text-4xl font-bold text-white mb-2">{icon} {title}</h1>
-            <div className="flex items-center justify-center gap-2 mt-4 bg-gray-900/60 px-4 py-2 rounded-full" aria-live="polite">
-              <StarIcon className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-              <span className="text-yellow-400 font-bold">{totalStars} Stars</span>
+    const GameTilesPage = ({ title, icon, games, onSelectGame, onBack, totalStars, variant, settings }) => {
+      // Filter games based on enabledGames settings
+      const filteredGames = games.filter(game => settings?.enabledGames?.[game.id] !== false);
+
+      return (
+        <SpaceBackground variant={variant}>
+          <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
+            <button onClick={onBack} onKeyDown={(e) => e.key === 'Enter' && onBack()} aria-label="Go back to previous screen" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+            <div className="text-center mb-8 pt-8">
+              <h1 className="text-4xl font-bold text-white mb-2">{icon} {title}</h1>
+              <div className="flex items-center justify-center gap-2 mt-4 bg-gray-900/60 px-4 py-2 rounded-full" aria-live="polite">
+                <StarIcon className="w-5 h-5 text-yellow-400" aria-hidden="true" />
+                <span className="text-yellow-400 font-bold">{totalStars} Stars</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full pb-8 relative z-20">
+              {filteredGames.length === 0 ? (
+                <div className="col-span-full text-center text-gray-400 py-8">No games enabled. Enable games in Settings.</div>
+              ) : (
+                filteredGames.map((game, i) => (
+                  <button key={game.id} onClick={() => onSelectGame(game.id)}
+                    className={`bg-gradient-to-br ${game.color} p-4 rounded-2xl shadow-xl text-left transition-all hover:scale-105 cursor-pointer`}
+                    style={{ animation: `slideIn 0.3s ease-out ${i * 0.05}s both` }}>
+                    <div className="text-3xl mb-2">{game.icon}</div>
+                    <h3 className="text-sm font-bold text-white mb-1">{game.title}</h3>
+                    <p className="text-white/80 text-xs">{game.description}</p>
+                  </button>
+                ))
+              )}
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl w-full pb-8 relative z-20">
-            {games.map((game, i) => (
-              <button key={game.id} onClick={() => onSelectGame(game.id)}
-                className={`bg-gradient-to-br ${game.color} p-4 rounded-2xl shadow-xl text-left transition-all hover:scale-105 cursor-pointer`}
-                style={{ animation: `slideIn 0.3s ease-out ${i * 0.05}s both` }}>
-                <div className="text-3xl mb-2">{game.icon}</div>
-                <h3 className="text-sm font-bold text-white mb-1">{game.title}</h3>
-                <p className="text-white/80 text-xs">{game.description}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      </SpaceBackground>
-    );
+        </SpaceBackground>
+      );
+    };
 
     const EnglishLandingPage = ({ onSelectCategory, onBack, totalStars }) => (
       <SpaceBackground variant="english">
@@ -1932,20 +2191,28 @@
         return <SheetBasedGame onBack={handleBackToHome} difficulty={selectedDifficulty} onGameEnd={handleGameEnd} settings={settings} gameId={currentGame} title={gameInfo?.title} icon={gameInfo?.icon} color={gameInfo?.color} variant={variant} />;
       }
 
-      if (currentGame) return <DifficultySelector game={currentGame} onSelect={setSelectedDifficulty} onBack={() => setCurrentGame(null)} settings={settings} />;
+      if (currentGame) {
+        // Skip difficulty screen if difficultyFilterEnabled is OFF
+        if (!settings.difficultyFilterEnabled) {
+          const gameInfo = ALL_GAMES.find(g => g.id === currentGame);
+          const variant = MATH_GAMES.find(g => g.id === currentGame) ? 'math' : GRAMMAR_GAMES.find(g => g.id === currentGame) ? 'grammar' : VOCABULARY_GAMES.find(g => g.id === currentGame) ? 'vocabulary' : 'comprehension';
+          return <SheetBasedGame onBack={handleBackToHome} difficulty="all" onGameEnd={handleGameEnd} settings={settings} gameId={currentGame} title={gameInfo?.title} icon={gameInfo?.icon} color={gameInfo?.color} variant={variant} />;
+        }
+        return <DifficultySelector game={currentGame} onSelect={setSelectedDifficulty} onBack={() => setCurrentGame(null)} settings={settings} />;
+      }
       const handleGameSelect = (gameId) => {
         setCurrentGame(gameId);
-        if (settings.defaultDifficulty && settings.defaultDifficulty !== 'None') {
+        if (settings.difficultyFilterEnabled && settings.defaultDifficulty && settings.defaultDifficulty !== 'None') {
           setSelectedDifficulty(settings.defaultDifficulty);
         }
       };
 
       if (currentSubject === 'english' && englishCategory) {
         const games = englishCategory === 'grammar' ? GRAMMAR_GAMES : englishCategory === 'vocabulary' ? VOCABULARY_GAMES : COMPREHENSION_GAMES;
-        return <GameTilesPage title={englishCategory.charAt(0).toUpperCase() + englishCategory.slice(1)} icon={englishCategory === 'grammar' ? '✏️' : englishCategory === 'vocabulary' ? '📖' : '🔍'} games={games} onSelectGame={handleGameSelect} onBack={() => setEnglishCategory(null)} totalStars={totalStars} variant={englishCategory} />;
+        return <GameTilesPage title={englishCategory.charAt(0).toUpperCase() + englishCategory.slice(1)} icon={englishCategory === 'grammar' ? '✏️' : englishCategory === 'vocabulary' ? '📖' : '🔍'} games={games} onSelectGame={handleGameSelect} onBack={() => setEnglishCategory(null)} totalStars={totalStars} variant={englishCategory} settings={settings} />;
       }
       if (currentSubject === 'english') return <EnglishLandingPage onSelectCategory={setEnglishCategory} onBack={handleBackToHome} totalStars={totalStars} />;
-      if (currentSubject === 'math') return <GameTilesPage title="Math Galaxy" icon="🔢" games={MATH_GAMES} onSelectGame={handleGameSelect} onBack={handleBackToHome} totalStars={totalStars} variant="math" />;
+      if (currentSubject === 'math') return <GameTilesPage title="Math Galaxy" icon="🔢" games={MATH_GAMES} onSelectGame={handleGameSelect} onBack={handleBackToHome} totalStars={totalStars} variant="math" settings={settings} />;
 
       return <MainLandingPage onSelectSubject={setCurrentSubject} totalStars={totalStars} onOpenLeaderboard={() => setShowLeaderboard(true)} onOpenQA={() => setShowQA(true)} onOpenSettings={() => setShowSettings(true)} leaderboard={leaderboard} />;
     };
