@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { GAME_THEMES, ICONS } from './src/themes/themeConfig.js';
+import { StoryNebulaRenderer, InferenceInvestigatorRenderer } from './src/renderers/ComprehensionRenderer.jsx';
+import { EnhancedQAPage } from './src/components/pages/EnhancedQAPage.jsx';
 
 // ============ MOBILE-COMPATIBLE STORAGE ============
 const storage = {
@@ -423,52 +426,29 @@ const SheetBasedGame = ({ onBack, difficulty, onGameEnd, settings, gameId, title
       );
     }
 
-    // Story comprehension
+    // Story comprehension - Enhanced with new renderer
     if (gameId === 'story-nebula') {
-      // New format: text1=title, text2=story, answer=question, option1=correct answer
-      const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+      const gameTheme = GAME_THEMES['story-nebula'] || GAME_THEMES['space-math'];
       return (
-        <div className="w-full max-w-2xl">
-          <div className="bg-gray-900/80 rounded-2xl p-4 backdrop-blur mb-4 max-h-40 overflow-y-auto">
-            <h3 className="text-yellow-400 font-bold mb-2">📖 {currentQ.text1}</h3>
-            <p className="text-white text-sm leading-relaxed">{currentQ.text2}</p>
-          </div>
-          <div className="bg-teal-900/60 rounded-2xl p-4 mb-4">
-            <div className="text-white text-lg font-medium">❓ {currentQ.answer}</div>
-          </div>
-          <div className="grid grid-cols-1 gap-2 relative z-20">
-            {options.map((opt, i) => (
-              <button key={i} onClick={() => handleAnswer(opt, currentQ.option1)}
-                className={`p-3 rounded-xl text-left font-medium transition-all cursor-pointer ${feedback ? (opt === currentQ.option1 ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                  : 'bg-teal-600 text-white hover:bg-teal-500'
-                  }`}>{opt}</button>
-            ))}
-          </div>
-        </div>
+        <StoryNebulaRenderer
+          currentQ={currentQ}
+          handleAnswer={handleAnswer}
+          feedback={feedback}
+          gameTheme={gameTheme}
+        />
       );
     }
 
-    // Inference
+    // Inference - Enhanced with new renderer
     if (gameId === 'inference-investigator') {
-      const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+      const gameTheme = GAME_THEMES['inference-investigator'] || GAME_THEMES['space-math'];
       return (
-        <div className="w-full max-w-lg">
-          <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-4">
-            <div className="text-3xl mb-3 text-center">🔍</div>
-            <div className="text-white text-lg leading-relaxed text-center italic">"{currentQ.text1}"</div>
-          </div>
-          <div className="bg-violet-900/60 rounded-2xl p-4 mb-4">
-            <div className="text-white text-lg font-medium text-center">{currentQ.text2}</div>
-          </div>
-          <div className="grid grid-cols-1 gap-2 relative z-20">
-            {options.map((opt, i) => (
-              <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                className={`p-3 rounded-xl text-left font-medium transition-all cursor-pointer ${feedback ? (opt === currentQ.answer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                  : 'bg-violet-600 text-white hover:bg-violet-500'
-                  }`}>{opt}</button>
-            ))}
-          </div>
-        </div>
+        <InferenceInvestigatorRenderer
+          currentQ={currentQ}
+          handleAnswer={handleAnswer}
+          feedback={feedback}
+          gameTheme={gameTheme}
+        />
       );
     }
 
@@ -1231,7 +1211,7 @@ const LearningGalaxy = () => {
 
   if (showSettings) return <SettingsPage settings={settings} setSettings={setSettings} onBack={() => setShowSettings(false)} />;
   if (showLeaderboard) return <Leaderboard onBack={() => setShowLeaderboard(false)} leaderboard={leaderboard} />;
-  if (showQA) return <QAPage onBack={() => setShowQA(false)} leaderboard={leaderboard} />;
+  if (showQA) return <EnhancedQAPage onBack={() => setShowQA(false)} leaderboard={leaderboard} />;
 
   if (currentGame && selectedDifficulty) {
     const gameInfo = ALL_GAMES.find(g => g.id === currentGame);
