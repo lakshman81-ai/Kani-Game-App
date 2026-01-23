@@ -26,11 +26,13 @@ export interface Question {
     topic?: string;
     subtopic?: string;
     know_more?: string;
+    explanation?: string; // Mapped from know_more
 }
 
 export interface Feedback {
     correct: boolean;
     answer?: string;
+    explanation?: string;
 }
 
 export interface Settings {

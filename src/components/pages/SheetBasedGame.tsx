@@ -22,6 +22,21 @@ interface SheetBasedGameProps {
     questionType?: string;
 }
 
+const shuffleArray = <T,>(array: T[]): T[] => {
+    const newArr = [...array];
+    for (let i = newArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
+};
+
+const SHAPES: Record<string, string> = {
+    triangle: '△', square: '□', circle: '○',
+    rectangle: '▭', pentagon: '⬠', hexagon: '⬡',
+    octagon: '⬢', star: '⭐', rhombus: '♢', trapezoid: '⏢'
+};
+
 export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficulty, settings, gameId, title, icon, color, variant, questionType }) => {
     const { addLeaderboardEntry } = useAppContext();
 
@@ -35,6 +50,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         actions: { startGame, handleAnswer, handleSaveScore },
         data: { loading, error, questionsCount }
     } = useGameLogic(gameId, difficulty, settings, handleGameEnd);
+
+    const showCelebration = streak > 0 && streak % 5 === 0 && feedback?.correct;
 
     // Render question based on game type
     const renderQuestion = () => {
@@ -55,10 +72,16 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         {options.map((opt, i) => (
                             <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
                                 className={`p-4 rounded-xl text-2xl font-bold transition-all cursor-pointer ${feedback ? (opt === currentQ.answer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : `bg-gradient-to-r ${color} text-white hover:scale-105`
+                                    : `${GAME_THEMES[gameId]?.buttonBg || 'bg-blue-600'} text-white hover:scale-105`
                                     }`}>{opt}</button>
                         ))}
                     </div>
+                    {feedback?.explanation && (
+                        <div className="mt-6 bg-white/10 rounded-xl p-4 backdrop-blur animate-slideIn">
+                            <h3 className="text-yellow-400 font-bold mb-1">💡 Know More</h3>
+                            <p className="text-white text-sm">{feedback.explanation}</p>
+                        </div>
+                    )}
                 </div>
             );
         }
@@ -187,7 +210,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Synonyms & Antonyms
         if (gameId === 'synonym-stars' || gameId === 'antonym-asteroids') {
-            const options = [currentQ.answer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean).sort(() => Math.random() - 0.5);
+            const options = shuffleArray([currentQ.answer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
             const isSynonym = gameId === 'synonym-stars';
             return (
                 <div className="w-full max-w-lg">
@@ -319,7 +342,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 <div className="w-full max-w-lg">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-pink-400 text-sm mb-2">{currentQ.operation}</div>
-                        {currentQ.operation === 'identify' && <div className="text-8xl mb-4">{currentQ.text1 === 'triangle' ? '△' : currentQ.text1 === 'square' ? '□' : currentQ.text1 === 'circle' ? '○' : currentQ.text1 === 'rectangle' ? '▭' : currentQ.text1 === 'pentagon' ? '⬠' : '⬡'}</div>}
+                        {currentQ.operation === 'identify' && <div className="text-8xl mb-4">{SHAPES[currentQ.text1?.toLowerCase()] || '?'}</div>}
                         {currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
                         {(currentQ.operation === 'perimeter' || currentQ.operation === 'area') && (
                             <>
@@ -356,7 +379,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         <DifficultyBadge difficulty={difficulty} />
                         <p className="text-gray-300 my-4">{questionsCount} questions loaded from Google Sheets</p>
                         <button onClick={startGame} disabled={questionsCount === 0}
-                            className={`bg-gradient-to-r ${color} text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer disabled:opacity-50`}>
+                            className={`${GAME_THEMES[gameId]?.buttonBg || 'bg-blue-600'} text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer disabled:opacity-50`}>
                             {questionsCount > 0 ? 'START GAME' : 'No Questions Available'}
                         </button>
                     </div>
