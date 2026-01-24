@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { Settings, LeaderboardEntry } from '../types';
 
 // Default settings
@@ -87,14 +87,16 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         await storage.set('learning-galaxy-leaderboard', JSON.stringify(updated));
     };
 
+    const value = useMemo(() => ({
+        settings,
+        updateSettings,
+        leaderboard,
+        addLeaderboardEntry,
+        loading
+    }), [settings, leaderboard, loading]);
+
     return (
-        <AppContext.Provider value={{
-            settings,
-            updateSettings,
-            leaderboard,
-            addLeaderboardEntry,
-            loading
-        }}>
+        <AppContext.Provider value={value}>
             {children}
         </AppContext.Provider>
     );

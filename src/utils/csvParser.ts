@@ -17,9 +17,16 @@ export const parseCSV = (csv: string): Question[] => {
         const values: string[] = [];
         let current = '';
         let inQuotes = false;
+        let i = 0;
 
-        for (const char of line) {
+        while (i < line.length) {
+            const char = line[i];
             if (char === '"') {
+                if (i + 1 < line.length && line[i + 1] === '"') {
+                    current += '"';
+                    i += 2;
+                    continue;
+                }
                 inQuotes = !inQuotes;
             } else if (char === ',' && !inQuotes) {
                 values.push(current.trim());
@@ -27,6 +34,7 @@ export const parseCSV = (csv: string): Question[] => {
             } else {
                 current += char;
             }
+            i++;
         }
         values.push(current.trim());
 

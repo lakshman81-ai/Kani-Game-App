@@ -15,7 +15,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, formatTime, difficulty }) => (
   <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
     <div className="flex items-center gap-4">
-      <button onClick={onBack} className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer">←</button>
+      <button onClick={onBack} aria-label="Back" className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white">←</button>
       <div className="flex items-center bg-gray-900/80 rounded-lg p-2 backdrop-blur">
         <div>
           <div className="text-xl font-bold text-white">{formatTime(timer)}</div>
@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, fo
       </div>
     </div>
     <div className="flex items-center gap-2">
-      <div className="bg-yellow-500 text-white px-3 py-1 rounded-l-full font-bold flex items-center gap-1"><StarIcon className="w-4 h-4" /></div>
+      <div className="bg-yellow-500 text-yellow-900 px-3 py-1 rounded-l-full font-bold flex items-center gap-1"><StarIcon className="w-4 h-4" /></div>
       <div className="bg-gray-200 text-gray-800 px-4 py-1 rounded-r-full font-bold min-w-16 text-center">{stars}</div>
     </div>
   </div>

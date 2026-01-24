@@ -15,7 +15,9 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
     const [isUnlocked, setIsUnlocked] = useState(false);
     const [error, setError] = useState('');
 
-    const SETTINGS_PASSWORD = 'Superdad';
+    const [saving, setSaving] = useState(false);
+
+    const SETTINGS_PASSWORD = import.meta.env.VITE_SETTINGS_PASSWORD || 'Superdad';
 
     const handleUnlock = () => {
         if (password === SETTINGS_PASSWORD) {
@@ -29,7 +31,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
 
     const validateGoogleSheetUrl = (url: string) => {
         if (!url || !url.trim()) return 'URL is required';
-        const googleSheetsPattern = /^https:\/\/docs\.google\.com\/spreadsheets\/d\/(e\/)?[\w-]+\/pub\?output=csv/;
+        // Allow more flexible Google Sheets URLs, including those with query parameters
+        const googleSheetsPattern = /^https:\/\/(docs|m)\.google\.com\/spreadsheets\/d\/(e\/)?[\w-]+(\/pub)?\?.*output=csv/;
         if (!googleSheetsPattern.test(url)) {
             return 'Invalid Google Sheets URL. Must be a published CSV link (File → Share → Publish to web → CSV)';
         }
@@ -37,6 +40,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
     };
 
     const handleSave = async () => {
+        if (saving) return;
+        setSaving(true);
         setSettings(localSettings);
 
         // Save to Google Sheet if URL is provided
@@ -63,7 +68,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                 console.error('Failed to save settings to Google Sheet:', e);
             }
         }
-
+        setSaving(false);
         onBack();
     };
 
@@ -103,7 +108,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
     return (
         <SpaceBackground>
             <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
-                <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>
+                <button onClick={onBack} aria-label="Back" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white">←</button>
                 <h1 className="text-4xl font-bold text-white mb-8 pt-8">⚙️ Settings</h1>
                 <div className="w-full max-w-lg space-y-6 relative z-20">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur">
@@ -143,12 +148,11 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                     </div>
                     <div className="flex gap-3">
                         <button onClick={handleReset} className="flex-1 bg-gray-600 text-white px-6 py-4 rounded-full text-lg font-bold hover:bg-gray-500 transition-colors cursor-pointer">🔄 Reset</button>
-                        <button onClick={handleSave} disabled={!isValid}
+                        <button onClick={handleSave} disabled={!isValid || saving}
                             className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
-                            💾 Save
+                            {saving ? 'Saving...' : '💾 Save'}
                         </button>
                     </div>
-                    <button onClick={handleSave} className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer">💾 Save Settings</button>
                 </div>
             </div>
         </SpaceBackground>

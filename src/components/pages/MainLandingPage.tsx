@@ -32,7 +32,7 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
     return (
         <SpaceBackground>
             {/* Settings button - top right */}
-            <button onClick={onOpenSettings} className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gray-900/80 flex items-center justify-center text-2xl hover:bg-gray-700 z-30 cursor-pointer transition-all hover:scale-110">
+            <button onClick={onOpenSettings} aria-label="Settings" className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gray-900/80 flex items-center justify-center text-2xl hover:bg-gray-700 z-30 cursor-pointer transition-all hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-400">
                 ⚙️
             </button>
 
@@ -85,7 +85,7 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                 {/* Subject Cards - Responsive grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-md sm:max-w-2xl relative z-20 mb-6">
                     <button onClick={() => onSelectSubject('math')}
-                        className="bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-purple-400/30 group">
+                        className="bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-purple-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-400">
                         <div className="flex items-center justify-between">
                             <div>
                                 <div className="text-5xl sm:text-6xl mb-2 group-hover:scale-110 transition-transform">🔢</div>
@@ -96,7 +96,7 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                         </div>
                     </button>
                     <button onClick={() => onSelectSubject('english')}
-                        className="bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-blue-400/30 group">
+                        className="bg-gradient-to-br from-blue-500 via-blue-600 to-cyan-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-blue-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400">
                         <div className="flex items-center justify-between">
                             <div>
                                 <div className="text-5xl sm:text-6xl mb-2 group-hover:scale-110 transition-transform">📚</div>
@@ -111,12 +111,12 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 relative z-20">
                     <button onClick={onOpenLeaderboard}
-                        className="flex items-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer">
+                        className="flex items-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400">
                         <span className="text-2xl">🏆</span>
                         <span>View Leaderboard</span>
                     </button>
                     <button onClick={onOpenQA}
-                        className="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer">
+                        className="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400">
                         <span className="text-2xl">📊</span>
                         <span>QA Analytics</span>
                     </button>
