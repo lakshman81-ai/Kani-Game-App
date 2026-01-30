@@ -1,0 +1,33 @@
+game_type,difficulty,text1,text2,answer,option1,option2,option3,option4,hint
+pattern-forge,Easy,2 4 6 8 ?,Add 2 each time,10,10,12,9,14,Count by 2s
+pattern-forge,Easy,🔴 🔵 🔴 🔵 ?,Alternating colors,🔴,🔴,🔵,🟢,🟡,Colors alternate
+pattern-forge,Easy,1 2 3 4 ?,Simple counting,5,5,6,4,7,Count up by 1
+pattern-forge,Medium,3 6 9 12 ?,Multiply by 3,15,15,14,16,18,Count by 3s
+pattern-forge,Medium,2 4 8 16 ?,Each number doubles,32,32,24,20,64,Double each time
+pattern-forge,Medium,🌟 🌙 🌟 🌙 🌟 ?,Star and moon pattern,🌙,🌙,🌟,☀️,⭐,Alternating pattern
+pattern-forge,Hard,1 1 2 3 5 ?,Add previous two,8,8,6,7,10,Fibonacci sequence
+pattern-forge,Hard,1 4 9 16 ?,Square numbers,25,25,20,24,36,1²=1 2²=4 3²=9...
+logic-lab,Easy,"All dogs have tails. Max is a dog.",Does Max have a tail?,Yes,Yes,No,Maybe,Sometimes,Think about what we know about dogs
+logic-lab,Easy,"Red is bigger than Blue. Green is smaller than Blue.",Which is biggest?,Red,Red,Blue,Green,Same size,Compare step by step
+logic-lab,Medium,"Amy is taller than Ben. Ben is taller than Carl.",Who is shortest?,Carl,Amy,Ben,Carl,All same,Order from tall to short
+logic-lab,Medium,"All birds have feathers. A penguin is a bird.",Does a penguin have feathers?,Yes,Yes,No,Maybe,Only some,Penguins are birds
+logic-lab,Hard,"Tom has more apples than Sue. Sue has more than Pat. Pat has 3 apples.",Tom has at least how many?,5,5,4,3,6,Work backwards
+logic-lab,Hard,"In a race: A is not first. B beats C. C beats A.",Who wins the race?,B,A,B,C,Tie,Think about order
+odd-wizard,Easy,"Which one is NOT a fruit?",Find the odd one,Car,Apple,Car,Banana,Orange,Three are fruits
+odd-wizard,Easy,"Which doesn't belong?",Find the odd one,Triangle,Dog,Cat,Bird,Triangle,Three are animals
+odd-wizard,Medium,"Which number doesn't fit?",Find the odd one,7,2,4,6,7,Look at odd vs even
+odd-wizard,Medium,"Which doesn't belong?",Find the odd one,Whale,Lion,Elephant,Whale,Tiger,One lives in water
+odd-wizard,Hard,"15 20 25 33 35",Not divisible by 5,33,15,20,25,33,Check divisibility
+odd-wizard,Hard,"Mercury Venus Earth Mars",Which is not a planet?,Moon,Mercury,Venus,Moon,Mars,Planets vs moons
+sorting-station,Easy,"Order from smallest to largest: 5 2 8 3",Which is first?,2,5,2,8,3,Find the smallest
+sorting-station,Easy,"What comes first in the alphabet?",Which letter starts earliest,A,D,A,C,B,ABC order
+sorting-station,Medium,"Order morning to evening: Lunch Breakfast Dinner",What's first?,Breakfast,Lunch,Breakfast,Dinner,Snack,Think about your day
+sorting-station,Medium,"Order by size: Elephant Mouse Horse",Smallest first?,Mouse,Elephant,Mouse,Horse,All same,Compare sizes
+sorting-station,Hard,"Order: Plant seed → ? → Water → Harvest",What's step 2?,Dig hole,Dig hole,Harvest,Plant seed,Wait,Growing process
+sorting-station,Hard,"Caterpillar → ? → Butterfly",What's in between?,Cocoon,Cocoon,Egg,Caterpillar,Moth,Life cycle
+code-breaker,Easy,3-1-20,A=1 B=2 C=3...,CAT,CAT,DOG,BAT,RAT,C=3 A=1 T=20
+code-breaker,Easy,4-15-7,A=1 B=2 C=3...,DOG,DOG,CAT,LOG,FOG,D=4 O=15 G=7
+code-breaker,Medium,8-1-20,A=1 B=2 C=3...,HAT,HAT,BAT,CAT,RAT,H=8 A=1 T=20
+code-breaker,Medium,19-21-14,A=1 B=2 C=3...,SUN,SUN,FUN,RUN,GUN,S=19 U=21 N=14
+code-breaker,Hard,13-15-15-14,A=1 B=2 C=3...,MOON,MOON,NOON,SOON,BOON,M=13 O=15 N=14
+code-breaker,Hard,2-15-15-11,A=1 B=2 C=3...,BOOK,BOOK,COOK,LOOK,TOOK,B=2 O=15 K=11
