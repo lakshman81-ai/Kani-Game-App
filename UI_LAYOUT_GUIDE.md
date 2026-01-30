@@ -1,3 +1,7 @@
+---
+render_with_liquid: false
+---
+
 # UI & Layout Patterns Guide
 
 **Learning Galaxy App - Visual Design Reference**
