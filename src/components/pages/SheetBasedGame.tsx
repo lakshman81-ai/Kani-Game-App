@@ -36,6 +36,151 @@ const SHAPES: Record<string, string> = {
     octagon: '⬢', star: '⭐', rhombus: '♢', trapezoid: '⏢'
 };
 
+// Dynamic Image Renderer Component
+const DynamicImageRenderer = ({ url }: { url: string }) => {
+    if (!url || !url.startsWith('dynamic:')) return null;
+    const parts = url.split(':');
+    const type = parts[1];
+
+    const renderPie = (num: number, den: number, size = 100) => {
+        const center = size / 2;
+        const radius = size * 0.45;
+        let paths = [];
+
+        // Background circle
+        paths.push(<circle cx={center} cy={center} r={radius} fill="#374151" stroke="white" strokeWidth="2" key="bg" />);
+
+        if (den === 0) return paths;
+
+        // Slices
+        const anglePerSlice = 360 / den;
+        for (let i = 0; i < num; i++) {
+            const startAngle = i * anglePerSlice - 90;
+            const endAngle = (i + 1) * anglePerSlice - 90;
+
+            const x1 = center + radius * Math.cos(startAngle * Math.PI / 180);
+            const y1 = center + radius * Math.sin(startAngle * Math.PI / 180);
+            const x2 = center + radius * Math.cos(endAngle * Math.PI / 180);
+            const y2 = center + radius * Math.sin(endAngle * Math.PI / 180);
+
+            const largeArcFlag = anglePerSlice > 180 ? 1 : 0;
+
+            // For a full circle (1/1), SVG arc path gets tricky, so we handle it simply
+            if (den === 1 && num === 1) {
+                paths.push(<circle cx={center} cy={center} r={radius} fill="#60A5FA" key={`slice-${i}`} />);
+            } else {
+                paths.push(
+                    <path
+                        d={`M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`}
+                        fill="#60A5FA"
+                        stroke="white"
+                        strokeWidth="1"
+                        key={`slice-${i}`}
+                    />
+                );
+            }
+        }
+        return <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>{paths}</svg>;
+    };
+
+    if (type === 'fraction') {
+        const num = parseInt(parts[2]);
+        const den = parseInt(parts[3]);
+        return <div className="mb-4">{renderPie(num, den, 120)}</div>;
+    }
+
+    if (type === 'compare') {
+        const n1 = parseInt(parts[2]);
+        const d1 = parseInt(parts[3]);
+        const n2 = parseInt(parts[4]);
+        const d2 = parseInt(parts[5]);
+        return (
+            <div className="flex items-center gap-8 mb-4">
+                <div className="flex flex-col items-center">
+                    {renderPie(n1, d1, 100)}
+                    <span className="text-white mt-2 font-bold">{n1}/{d1}</span>
+                </div>
+                <div className="text-4xl text-yellow-400 font-bold">VS</div>
+                <div className="flex flex-col items-center">
+                    {renderPie(n2, d2, 100)}
+                    <span className="text-white mt-2 font-bold">{n2}/{d2}</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (type === 'add') {
+        const n1 = parseInt(parts[2]);
+        const d1 = parseInt(parts[3]);
+        const n2 = parseInt(parts[4]);
+        const d2 = parseInt(parts[5]);
+        return (
+            <div className="flex items-center gap-4 mb-4">
+                <div className="flex flex-col items-center">
+                    {renderPie(n1, d1, 80)}
+                </div>
+                <div className="text-4xl text-white font-bold">+</div>
+                <div className="flex flex-col items-center">
+                    {renderPie(n2, d2, 80)}
+                </div>
+                <div className="text-4xl text-white font-bold">=</div>
+                <div className="text-4xl text-yellow-400 font-bold">?</div>
+            </div>
+        );
+    }
+
+    if (type === 'shape') {
+        const shape = parts[2];
+        const size = 120;
+        const color = "#EC4899"; // Pink
+
+        let path = null;
+        if (shape === 'square') path = <rect x="20" y="20" width="80" height="80" fill={color} />;
+        if (shape === 'circle') path = <circle cx="60" cy="60" r="45" fill={color} />;
+        if (shape === 'triangle') path = <polygon points="60,15 105,95 15,95" fill={color} />;
+        if (shape === 'rectangle') path = <rect x="10" y="35" width="100" height="50" fill={color} />;
+        if (shape === 'pentagon') path = <polygon points="60,10 108,45 90,100 30,100 12,45" fill={color} />;
+        if (shape === 'hexagon') path = <polygon points="60,10 105,35 105,85 60,110 15,85 15,35" fill={color} />;
+        if (shape === 'octagon') path = <polygon points="41,10 79,10 106,37 106,75 79,102 41,102 14,75 14,37" fill={color} />;
+        if (shape === 'star') path = <polygon points="60,10 75,45 115,45 85,70 95,110 60,85 25,110 35,70 5,45 45,45" fill={color} />;
+        if (shape === 'rhombus') path = <polygon points="60,10 100,60 60,110 20,60" fill={color} />;
+        if (shape === 'trapezoid') path = <polygon points="30,20 90,20 110,100 10,100" fill={color} />;
+        if (shape === 'oval') path = <ellipse cx="60" cy="60" rx="50" ry="30" fill={color} />;
+        if (shape === 'heart') path = <path d="M60,100 L20,60 A20,20 0 0 1 60,30 A20,20 0 0 1 100,60 Z" fill={color} transform="translate(0, -10) scale(1.0)" />; // Simplified heart
+        if (shape === 'arrow') path = <polygon points="20,40 80,40 80,20 110,60 80,100 80,80 20,80" fill={color} />;
+        if (shape === 'cross') path = <path d="M40,10 L80,10 L80,40 L110,40 L110,80 L80,80 L80,110 L40,110 L40,80 L10,80 L10,40 L40,40 Z" fill={color} />;
+        if (shape === 'semicircle') path = <path d="M10,60 A50,50 0 0 1 110,60 Z" fill={color} />;
+        if (shape === 'cube') {
+             // Simple 3D cube projection
+             return (
+                 <svg width={size} height={size} viewBox="0 0 120 120" stroke="white" strokeWidth="2" fill="none">
+                     <rect x="30" y="30" width="60" height="60" fill={color} opacity="0.8" />
+                     <path d="M30,30 L50,10 L110,10 L90,30" fill={color} opacity="0.6" />
+                     <path d="M90,30 L110,10 L110,70 L90,90" fill={color} opacity="0.5" />
+                 </svg>
+             );
+        }
+        if (shape === 'sphere') {
+            return (
+                <svg width={size} height={size} viewBox="0 0 120 120">
+                    <defs>
+                        <radialGradient id="sphereGrad" cx="30%" cy="30%" r="70%">
+                            <stop offset="0%" stopColor="#fff" stopOpacity="0.5" />
+                            <stop offset="100%" stopColor={color} />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="60" cy="60" r="45" fill={color} />
+                    <circle cx="60" cy="60" r="45" fill="url(#sphereGrad)" />
+                </svg>
+            );
+        }
+
+        return <svg width={size} height={size} viewBox="0 0 120 120">{path}</svg>;
+    }
+
+    return null;
+};
+
 export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficulty, settings, gameId, title, icon, variant }) => {
     const { addLeaderboardEntry } = useAppContext();
 
@@ -44,7 +189,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
     };
 
     const {
-        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved },
+        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved, currentIndex, totalQuestions },
         setters: { setPlayerName },
         actions: { startGame, handleAnswer, handleSaveScore },
         data: { loading, error, questionsCount }
@@ -65,16 +210,30 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
     const renderQuestion = () => {
         if (!currentQ) return <p className="text-white">No questions available</p>;
 
+        const commonImage = currentQ.image_url ? <DynamicImageRenderer url={currentQ.image_url} /> : null;
+
         // Math equations (space-math, alien-invasion, bubble-pop)
-        if (['space-math', 'alien-invasion', 'bubble-pop'].includes(gameId)) {
+        if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
-                        <div className="text-white text-4xl font-bold mb-2">
-                            {currentQ.num1} {currentQ.operation} {currentQ.num2} = ?
-                        </div>
-                        {safeHint && <p className="text-gray-400 text-sm">{safeHint}</p>}
+                <div className="w-full max-w-lg relative">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center">
+                        {commonImage}
+                        {!commonImage && (
+                            <>
+                                {gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>}
+                                {gameId !== 'geometry-galaxy' && (
+                                    <div className="text-white text-4xl font-bold mb-2">
+                                        {currentQ.num1} {currentQ.operation} {currentQ.num2} {currentQ.operation && '= ?'}
+                                        {gameId === 'fraction-frenzy' && currentQ.operation === 'identify' && currentQ.num1 && !currentQ.num2 && <span>{currentQ.num1}</span>}
+                                    </div>
+                                )}
+                            </>
+                        )}
+                        {/* Specific text fallbacks if no image */}
+                        {gameId === 'geometry-galaxy' && currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
+
+                        {safeHint && <p className="text-gray-400 text-sm mt-2">{safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -99,7 +258,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const seqParts = currentQ.num1 ? currentQ.num1.split(' ') : [];
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="flex justify-center gap-2 mb-6 flex-wrap">
                         {seqParts.map((part, i) => (
                             <div key={i} className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-white shadow-lg border-4 border-white/30 ${part === '?' ? 'bg-gray-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'
@@ -126,7 +285,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'grammar-galaxy') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
                         <div className="text-xs text-purple-400 mb-2">{currentQ.text2}</div>
                         <div className="text-white text-2xl font-medium text-center">"{currentQ.text1}"</div>
@@ -150,7 +309,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const icons_map = { noun: '📦', verb: '🏃', adjective: '🎨', adverb: '⚡' };
             const colors_map: Record<string, string> = { noun: 'from-red-500 to-orange-500', verb: 'from-green-500 to-emerald-500', adjective: 'from-blue-500 to-purple-500', adverb: 'from-yellow-500 to-amber-500' };
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur mb-8 text-center">
                         <div className="text-4xl font-bold text-white" style={{ animation: 'float 2s ease-in-out infinite' }}>{currentQ.text1}</div>
                     </div>
@@ -172,7 +331,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'punctuation-pop') {
             const marks = ['.', '?', '!', ','];
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
                         <div className="text-white text-2xl font-medium text-center">
                             {currentQ.text1}<span className="text-yellow-400 text-3xl animate-pulse">_</span>
@@ -195,7 +354,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const tenseColors: Record<string, string> = { past: 'from-amber-600 to-orange-700', present: 'from-green-500 to-emerald-600', future: 'from-blue-500 to-indigo-600' };
             const tenseIcons: Record<string, string> = { past: '⏪', present: '▶️', future: '⏩' };
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className={`bg-gradient-to-r ${tenseColors[currentQ.text2 || ''] || 'from-gray-500 to-gray-600'} rounded-2xl p-4 mb-4 text-center`}>
                         <div className="text-3xl mb-1">{tenseIcons[currentQ.text2 || ''] || '🕐'}</div>
                         <div className="text-white text-xl font-bold">{(currentQ.text2 || 'TENSE').toUpperCase()}</div>
@@ -221,7 +380,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
             const isSynonym = gameId === 'synonym-stars';
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-green-300 text-sm mb-2">Find {isSynonym ? 'a word that means the same as' : 'the OPPOSITE of'}:</div>
                         <div className="text-white text-4xl font-bold">{currentQ.text1}</div>
@@ -242,12 +401,14 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'story-nebula') {
             const gameTheme = GAME_THEMES['story-nebula'] || GAME_THEMES['space-math'];
             return (
+                <>
                 <StoryNebulaRenderer
                     currentQ={currentQ}
                     handleAnswer={handleAnswer}
                     feedback={feedback}
                     gameTheme={gameTheme}
                 />
+                </>
             );
         }
 
@@ -255,34 +416,14 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'inference-investigator') {
             const gameTheme = GAME_THEMES['inference-investigator'] || GAME_THEMES['space-math'];
             return (
+                <>
                 <InferenceInvestigatorRenderer
                     currentQ={currentQ}
                     handleAnswer={handleAnswer}
                     feedback={feedback}
                     gameTheme={gameTheme}
                 />
-            );
-        }
-
-        // Fractions
-        if (gameId === 'fraction-frenzy') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
-            return (
-                <div className="w-full max-w-lg">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
-                        <div className="text-yellow-400 text-sm mb-2 capitalize">{currentQ.num2}</div>
-                        <div className="text-white text-2xl font-bold mb-4">{currentQ.num1}</div>
-                        {safeHint && <p className="text-gray-400 text-sm">{safeHint}</p>}
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 relative z-20">
-                        {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-2xl font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
-                        ))}
-                    </div>
-                </div>
+                </>
             );
         }
 
@@ -292,7 +433,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const hour = parseInt(currentQ.num1 || '3');
             const minute = parseInt(currentQ.num2 || '0');
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-blue-400 text-sm mb-2">{currentQ.operation === 'read' ? 'Read the Clock' : 'Calculate Duration'}</div>
                         {currentQ.operation === 'read' && (
@@ -325,7 +466,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             const isChange = currentQ.num2 === 'change';
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-green-400 text-sm mb-2">{isChange ? '💵 Make Change' : '🪙 Count the Coins'}</div>
                         <div className="text-white text-2xl font-bold mb-4">{currentQ.num1 || ''}</div>
@@ -343,34 +484,6 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             );
         }
 
-        // Geometry
-        if (gameId === 'geometry-galaxy') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
-            return (
-                <div className="w-full max-w-lg">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
-                        <div className="text-pink-400 text-sm mb-2">{currentQ.operation}</div>
-                        {currentQ.operation === 'identify' && <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>}
-                        {currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
-                        {(currentQ.operation === 'perimeter' || currentQ.operation === 'area') && (
-                            <>
-                                <div className="text-white text-xl mb-4">{currentQ.operation === 'perimeter' ? 'Perimeter' : 'Area'} of square with side {currentQ.num1}?</div>
-                                <div className="w-20 h-20 bg-pink-500/30 border-4 border-pink-400 mx-auto flex items-center justify-center text-white text-lg font-bold">{currentQ.num1}</div>
-                            </>
-                        )}
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 relative z-20">
-                        {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === currentQ.answer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
-                        ))}
-                    </div>
-                </div>
-            );
-        }
-
         // ==================== SKILL GAMES ====================
 
         // Pattern Forge - Complete the pattern
@@ -378,9 +491,10 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-violet-400 text-sm mb-4">🧩 Complete the pattern!</div>
+                        {commonImage}
                         <div className="flex justify-center gap-3 mb-4 flex-wrap">
                             {patternParts.map((part, i) => (
                                 <div
@@ -414,7 +528,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'logic-lab') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
                         <div className="text-emerald-400 text-sm mb-3 text-center">🔍 Solve the puzzle!</div>
                         <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-4">
@@ -441,7 +555,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'odd-wizard') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-amber-400 text-sm mb-4">🎯 Find the odd one out!</div>
                         {currentQ.text1 && (
@@ -470,7 +584,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'sorting-station') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-cyan-400 text-sm mb-4">📦 Put in correct order!</div>
                         <div className="text-white text-xl font-medium mb-4">{currentQ.text1}</div>
@@ -502,7 +616,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'code-breaker') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-fuchsia-400 text-sm mb-4">🔐 Crack the code!</div>
                         {currentQ.text2 && (
@@ -540,7 +654,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
     return (
         <SpaceBackground variant={background}>
-            <Header timer={timer} streak={streak} stars={stars} onBack={onBack} formatTime={(s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`} difficulty={difficulty} />
+            <Header timer={timer} streak={streak} stars={stars} onBack={onBack} formatTime={(s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`} difficulty={difficulty} progress={{ current: currentIndex + 1, total: totalQuestions }} />
             <div className="flex flex-col items-center justify-center h-full pt-20 px-4">
                 {!gameActive && !gameOver && (
                     <div className="text-center">

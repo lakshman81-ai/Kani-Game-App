@@ -188,3 +188,53 @@ inference-investigator,The ice cream melted on the sidewalk.,What was the weathe
 inference-investigator,The library was quiet and everyone whispered.,Why are people whispering?,Library rules,Party time,Gym class,Recess,,Hard,inference,Libraries require quiet - that's why whispers!
 inference-investigator,Chef tasted the soup and added more salt.,What was wrong with soup?,Not salty enough,Too salty,Too hot,Perfect,,Hard,inference,Adding salt = soup needed more salt flavor!
 inference-investigator,Bird gathering worms in its beak repeatedly.,What is bird doing?,Feeding babies,Flying south,Building nest,Sleeping,,Hard,inference,Gathering food repeatedly = feeding baby birds!
+grammar-galaxy,She _____ to the store.,Simple Present,walks,walks,walk,walking,walked,Easy,grammar,She is singular so we add 's' to the verb.
+grammar-galaxy,They _____ happy.,Subject-Verb Agreement,are,are,is,am,be,Easy,grammar,They is plural so we use 'are'.
+grammar-galaxy,He _____ football every day.,Simple Present,plays,plays,play,playing,played,Easy,grammar,He plays (singular subject).
+grammar-galaxy,We _____ lunch at noon.,Simple Present,eat,eat,eats,eating,ate,Easy,grammar,We is plural so we use the base form 'eat'.
+grammar-galaxy,The cat _____ on the mat.,Simple Present,sleeps,sleeps,sleep,sleeping,slept,Easy,grammar,The cat (singular) sleeps.
+grammar-galaxy,My dog _____ loudly.,Simple Present,barks,barks,bark,barking,barked,Easy,grammar,My dog (it) barks.
+grammar-galaxy,Birds _____ in the sky.,Simple Present,fly,fly,flies,flying,flew,Easy,grammar,Birds (plural) fly.
+grammar-galaxy,She _____ her homework.,Simple Present,does,does,do,doing,did,Medium,grammar,She does (singular).
+grammar-galaxy,I _____ a book.,Simple Present,read,read,reads,reading,red,Easy,grammar,I read (singular first person uses base form).
+grammar-galaxy,He _____ TV in the evening.,Simple Present,watches,watches,watch,watching,watched,Medium,grammar,He watches (add -es after ch/sh).
+grammar-galaxy,The sun _____ in the east.,Simple Present,rises,rises,rise,rising,rose,Medium,grammar,The sun (singular) rises.
+grammar-galaxy,They _____ to school.,Simple Present,go,go,goes,going,gone,Medium,grammar,They (plural) go.
+grammar-galaxy,Sarah _____ cookies.,Simple Present,likes,likes,like,liking,liked,Easy,grammar,Sarah (she) likes.
+grammar-galaxy,The boys _____ fast.,Simple Present,run,run,runs,running,ran,Medium,grammar,The boys (plural) run.
+grammar-galaxy,My mom _____ dinner.,Simple Present,cooks,cooks,cook,cooking,cooked,Easy,grammar,My mom (she) cooks.
+grammar-galaxy,We _____ hard.,Simple Present,study,study,studies,studying,studied,Medium,grammar,We (plural) study.
+grammar-galaxy,He _____ his teeth.,Simple Present,brushes,brushes,brush,brushing,brushed,Medium,grammar,He brushes (add -es).
+grammar-galaxy,It _____ a lot here.,Simple Present,rains,rains,rain,raining,rained,Medium,grammar,It rains.
+grammar-galaxy,You _____ beautiful.,Subject-Verb Agreement,look,look,looks,looking,looked,Easy,grammar,You look (second person).
+grammar-galaxy,The teacher _____ on the board.,Simple Present,writes,writes,write,writing,wrote,Medium,grammar,The teacher (he/she) writes.
+grammar-galaxy,Water _____ at 100 degrees.,Simple Present,boils,boils,boil,boiling,boiled,Hard,grammar,Water (singular uncountable) boils.
+grammar-galaxy,She _____ English well.,Simple Present,speaks,speaks,speak,speaking,spoke,Medium,grammar,She speaks.
+grammar-galaxy,My friends _____ me.,Simple Present,help,help,helps,helping,helped,Medium,grammar,My friends (plural) help.
+grammar-galaxy,The baby _____ at night.,Simple Present,cries,cries,cry,crying,cried,Medium,grammar,The baby cries (change y to ies).
+grammar-galaxy,A mechanic _____ cars.,Simple Present,fixes,fixes,fix,fixing,fixed,Hard,grammar,A mechanic fixes.
+grammar-galaxy,Do you _____ chocolate?,Simple Present,like,like,likes,liking,liked,Medium,grammar,Do you like (question form uses base verb).
+grammar-galaxy,She _____ not know.,Simple Present,does,does,do,is,has,Medium,grammar,She does not know.
+grammar-galaxy,Where _____ he live?,Simple Present,does,does,do,is,has,Medium,grammar,Where does he live?
+grammar-galaxy,_____ they play soccer?,Simple Present,Do,Do,Does,Is,Are,Medium,grammar,Do they play?
+grammar-galaxy,The train _____ at 5 PM.,Simple Present,arrives,arrives,arrive,arriving,arrived,Hard,grammar,The train arrives.
+grammar-galaxy,Everybody _____ ice cream.,Subject-Verb Agreement,loves,loves,love,loving,loved,Hard,grammar,Everybody is singular.
+grammar-galaxy,Neither of them _____ ready.,Subject-Verb Agreement,is,is,are,am,be,Hard,grammar,Neither is singular.
+grammar-galaxy,The team _____ winning.,Subject-Verb Agreement,is,is,are,am,be,Hard,grammar,The team (collective singular) is.
+grammar-galaxy,My family _____ in London.,Simple Present,lives,lives,live,living,lived,Hard,grammar,My family (collective singular) lives.
+grammar-galaxy,Cats _____ mice.,Simple Present,chase,chase,chases,chasing,chased,Easy,grammar,Cats (plural) chase.
+grammar-galaxy,A spider _____ eight legs.,Simple Present,has,has,have,having,had,Medium,grammar,A spider has.
+grammar-galaxy,The earth _____ round the sun.,Simple Present,goes,goes,go,going,went,Medium,grammar,The earth goes.
+grammar-galaxy,She always _____ late.,Simple Present,arrives,arrives,arrive,arriving,arrived,Medium,grammar,She arrives.
+grammar-galaxy,He never _____ lies.,Simple Present,tells,tells,tell,telling,told,Medium,grammar,He tells.
+grammar-galaxy,We often _____ movies.,Simple Present,watch,watch,watches,watching,watched,Medium,grammar,We watch.
+grammar-galaxy,The bus _____ here.,Simple Present,stops,stops,stop,stopping,stopped,Medium,grammar,The bus stops.
+grammar-galaxy,These books _____ heavy.,Subject-Verb Agreement,are,are,is,am,was,Easy,grammar,These books are.
+grammar-galaxy,That house _____ old.,Subject-Verb Agreement,is,is,are,am,were,Easy,grammar,That house is.
+grammar-galaxy,There _____ many stars.,Subject-Verb Agreement,are,are,is,am,was,Medium,grammar,There are (plural stars).
+grammar-galaxy,There _____ a spider.,Subject-Verb Agreement,is,is,are,am,were,Medium,grammar,There is (singular spider).
+grammar-galaxy,Mathematics _____ hard.,Subject-Verb Agreement,is,is,are,am,were,Hard,grammar,Mathematics is (singular subject).
+grammar-galaxy,Physics _____ interesting.,Subject-Verb Agreement,is,is,are,am,were,Hard,grammar,Physics is (singular).
+grammar-galaxy,The news _____ good.,Subject-Verb Agreement,is,is,are,am,were,Hard,grammar,News is singular.
+grammar-galaxy,Ten dollars _____ enough.,Subject-Verb Agreement,is,is,are,am,were,Hard,grammar,Money amounts are singular.
+grammar-galaxy,Bread and butter _____ tasty.,Subject-Verb Agreement,is,is,are,am,were,Hard,grammar,Bread and butter is a single dish.

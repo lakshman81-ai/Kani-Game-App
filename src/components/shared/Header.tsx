@@ -10,9 +10,10 @@ interface HeaderProps {
   onBack: () => void;
   formatTime: (s: number) => string;
   difficulty: Difficulty;
+  progress?: { current: number; total: number };
 }
 
-export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, formatTime, difficulty }) => (
+export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, formatTime, difficulty, progress }) => (
   <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
     <div className="flex items-center gap-4">
       <button onClick={onBack} aria-label="Back" className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white">←</button>
@@ -25,6 +26,12 @@ export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, fo
           <div className="text-xl font-bold text-orange-400">{streak}</div>
           <div className="text-xs text-orange-300">STREAK</div>
         </div>
+        {progress && (
+          <div className="ml-3 border-l border-gray-600 pl-3">
+            <div className="text-xl font-bold text-emerald-400">{progress.current}/{progress.total}</div>
+            <div className="text-xs text-emerald-300">QUES</div>
+          </div>
+        )}
         {difficulty && <div className="ml-3 border-l border-gray-600 pl-3"><DifficultyBadge difficulty={difficulty} /></div>}
       </div>
     </div>

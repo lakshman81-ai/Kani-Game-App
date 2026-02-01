@@ -11,12 +11,21 @@ export const useGameLogic = (
 ) => {
     const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy'].includes(gameId);
     const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense'].includes(gameId);
-    const sheetUrl = isMath ? settings.mathSheetUrl : isSkill ? (settings.skillSheetUrl || settings.englishSheetUrl) : settings.englishSheetUrl;
+
+    const getSheetUrl = () => {
+        if (settings.useGoogleSheets) {
+            return isMath ? settings.mathSheetUrl : isSkill ? (settings.skillSheetUrl || settings.englishSheetUrl) : settings.englishSheetUrl;
+        }
+        // Local fallbacks
+        return isMath ? 'MATH_GOOGLE_SHEET_DATA.csv' : isSkill ? 'SKILL_GAMES_DATA.csv' : 'ENGLISH_GOOGLE_SHEET_DATA.csv';
+    };
+
+    const sheetUrl = getSheetUrl();
     const { data: allQuestions, loading, error } = useSheetData(sheetUrl, gameId);
 
     const [stars, setStars] = useState(0);
-    const baseTimer = difficulty === 'Hard' ? GAME_CONSTANTS.TIMER.HARD : difficulty === 'Medium' ? GAME_CONSTANTS.TIMER.MEDIUM : GAME_CONSTANTS.TIMER.EASY;
-    const [timer, setTimer] = useState(baseTimer + (isMath ? 0 : 20));
+    // Timer now counts UP
+    const [timer, setTimer] = useState(0);
     const [gameActive, setGameActive] = useState(false);
     const [gameOver, setGameOver] = useState(false);
     const [currentQ, setCurrentQ] = useState<Question | null>(null);
@@ -25,47 +34,59 @@ export const useGameLogic = (
     const [feedback, setFeedback] = useState<Feedback | null>(null);
     const [playerName, setPlayerName] = useState('');
     const [scoreSaved, setScoreSaved] = useState(false);
-    const [usedIndices, setUsedIndices] = useState<Set<number>>(new Set());
 
-    const questions = allQuestions.filter(q => !q.difficulty || q.difficulty === difficulty || difficulty === 'None');
+    // New state for 10-question session
+    const [questionsQueue, setQuestionsQueue] = useState<Question[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [totalQuestions, setTotalQuestions] = useState(0);
 
-    const getNextQuestion = useCallback(() => {
-        if (questions.length === 0) return null;
-        let available = questions.filter((_, i) => !usedIndices.has(i));
-        if (available.length === 0) { setUsedIndices(new Set()); available = questions; }
-        const idx = Math.floor(Math.random() * available.length);
-        const realIdx = questions.indexOf(available[idx]);
-        setUsedIndices(prev => new Set([...prev, realIdx]));
-        return available[idx];
-    }, [questions, usedIndices]);
+    const filterQuestions = useCallback(() => {
+        return allQuestions.filter(q => !q.difficulty || q.difficulty === difficulty || difficulty === 'None');
+    }, [allQuestions, difficulty]);
 
-    const generateQuestion = useCallback(() => {
-        const q = getNextQuestion();
-        if (q) setCurrentQ(q);
-    }, [getNextQuestion]);
+    // Shuffle array helper
+    const shuffleArray = <T,>(array: T[]): T[] => {
+        const newArr = [...array];
+        for (let i = newArr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+        }
+        return newArr;
+    };
 
     useEffect(() => {
-        if (gameActive && timer > 0) {
-            const interval = setInterval(() => setTimer(t => Math.max(0, t - 1)), 1000);
+        // Timer counts UP when game is active
+        if (gameActive && !gameOver) {
+            const interval = setInterval(() => setTimer(t => t + 1), 1000);
             return () => clearInterval(interval);
-        } else if (timer === 0 && gameActive) {
-            setGameActive(false);
-            setGameOver(true);
         }
-    }, [gameActive, timer]);
+    }, [gameActive, gameOver]);
 
     const startGame = () => {
         setStars(0);
-        const baseTimer = difficulty === 'Hard' ? GAME_CONSTANTS.TIMER.HARD : difficulty === 'Medium' ? GAME_CONSTANTS.TIMER.MEDIUM : GAME_CONSTANTS.TIMER.EASY;
-        setTimer(baseTimer + (isMath ? 0 : 20));
+        setTimer(0); // Start from 0
         setStreak(0);
         setMaxStreak(0);
-        setUsedIndices(new Set());
         setGameActive(true);
         setGameOver(false);
         setScoreSaved(false);
         setPlayerName('');
-        generateQuestion();
+
+        // Prepare session questions
+        const filtered = filterQuestions();
+        const shuffled = shuffleArray(filtered);
+        const session = shuffled.slice(0, 10); // Take top 10
+
+        setQuestionsQueue(session);
+        setTotalQuestions(session.length);
+        setCurrentIndex(0);
+
+        if (session.length > 0) {
+            setCurrentQ(session[0]);
+        } else {
+            // Handle no questions case
+            setGameActive(false);
+        }
     };
 
     const [isProcessing, setIsProcessing] = useState(false);
@@ -75,6 +96,8 @@ export const useGameLogic = (
 
         setIsProcessing(true);
         const isCorrect = selected === correct || selected === String(correct);
+
+        // Calculate points
         if (isCorrect) {
             const mult = difficulty === 'Hard' ? GAME_CONSTANTS.SCORE.MULTIPLIER.HARD : difficulty === 'Medium' ? GAME_CONSTANTS.SCORE.MULTIPLIER.MEDIUM : GAME_CONSTANTS.SCORE.MULTIPLIER.EASY;
             setStars(s => s + Math.floor((GAME_CONSTANTS.SCORE.BASE_POINTS + streak * GAME_CONSTANTS.SCORE.STREAK_BONUS) * mult));
@@ -84,10 +107,21 @@ export const useGameLogic = (
             setStreak(0);
             setFeedback({ correct: false, answer: correct, explanation: currentQ?.explanation });
         }
+
+        // Delay for feedback then move to next question
         setTimeout(() => {
             setFeedback(null);
             setIsProcessing(false);
-            generateQuestion();
+
+            const nextIndex = currentIndex + 1;
+            if (nextIndex < questionsQueue.length) {
+                setCurrentIndex(nextIndex);
+                setCurrentQ(questionsQueue[nextIndex]);
+            } else {
+                // Game Over
+                setGameActive(false);
+                setGameOver(true);
+            }
         }, GAME_CONSTANTS.FEEDBACK_DURATION);
     };
 
@@ -108,7 +142,9 @@ export const useGameLogic = (
             maxStreak,
             feedback,
             playerName,
-            scoreSaved
+            scoreSaved,
+            currentIndex, // Expose for UI "1/10"
+            totalQuestions // Expose for UI "1/10"
         },
         setters: {
             setPlayerName
@@ -121,7 +157,7 @@ export const useGameLogic = (
         data: {
             loading,
             error,
-            questionsCount: questions.length
+            questionsCount: filterQuestions().length
         }
     };
 };
