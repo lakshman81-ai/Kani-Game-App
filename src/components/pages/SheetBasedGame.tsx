@@ -281,6 +281,16 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         data: { loading, error, questionsCount }
     } = useGameLogic(gameId, difficulty, settings, handleGameEnd);
 
+    const [showHint, setShowHint] = React.useState(false);
+
+    React.useEffect(() => {
+        setShowHint(false);
+        if (currentQ) {
+            const timer = setTimeout(() => setShowHint(true), 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [currentQ]);
+
     const gameTheme = GAME_THEMES[gameId];
 
     // Auto-select background based on theme or variant
@@ -302,8 +312,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center border border-white/10 shadow-2xl">
                         {commonImage}
                         {!commonImage && gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && (
                             <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>
@@ -323,7 +333,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         {/* Specific text fallbacks if no image */}
                         {gameId === 'geometry-galaxy' && currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
 
-                        {safeHint && <p className="text-gray-400 text-sm mt-2">{safeHint}</p>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-2">💡 {safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -348,7 +358,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const seqParts = currentQ.num1 ? currentQ.num1.split(' ') : [];
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
+                <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="flex justify-center gap-2 mb-6 flex-wrap">
                         {seqParts.map((part, i) => (
                             <div key={i} className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-white shadow-lg border-4 border-white/30 ${part === '?' ? 'bg-gray-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'
@@ -358,7 +368,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         ))}
                     </div>
                     <p className="text-white text-center mb-4">Find the missing number!</p>
-                    {safeHint && <p className="text-gray-400 text-sm text-center mb-4">{safeHint}</p>}
+                    {showHint && safeHint && <p className="text-gray-400 text-sm text-center mb-4">💡 {safeHint}</p>}
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
                             <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
@@ -375,8 +385,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'grammar-galaxy') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
                         <div className="text-xs text-purple-400 mb-2">{currentQ.text2}</div>
                         <div className="text-white text-2xl font-medium text-center">"{currentQ.text1}"</div>
                     </div>
@@ -399,8 +409,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const icons_map = { noun: '📦', verb: '🏃', adjective: '🎨', adverb: '⚡' };
             const colors_map: Record<string, string> = { noun: 'from-red-500 to-orange-500', verb: 'from-green-500 to-emerald-500', adjective: 'from-blue-500 to-purple-500', adverb: 'from-yellow-500 to-amber-500' };
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur mb-8 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur mb-8 text-center border border-white/10 shadow-2xl">
                         <div className="text-4xl font-bold text-white" style={{ animation: 'float 2s ease-in-out infinite' }}>{currentQ.text1}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 relative z-20">
@@ -421,8 +431,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'punctuation-pop') {
             const marks = ['.', '?', '!', ','];
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
                         <div className="text-white text-2xl font-medium text-center">
                             {currentQ.text1}<span className="text-yellow-400 text-3xl animate-pulse">_</span>
                         </div>
@@ -444,12 +454,12 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const tenseColors: Record<string, string> = { past: 'from-amber-600 to-orange-700', present: 'from-green-500 to-emerald-600', future: 'from-blue-500 to-indigo-600' };
             const tenseIcons: Record<string, string> = { past: '⏪', present: '▶️', future: '⏩' };
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className={`bg-gradient-to-r ${tenseColors[currentQ.text2 || ''] || 'from-gray-500 to-gray-600'} rounded-2xl p-4 mb-4 text-center`}>
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className={`bg-gradient-to-r ${tenseColors[currentQ.text2 || ''] || 'from-gray-500 to-gray-600'} rounded-2xl p-4 mb-4 text-center shadow-lg border border-white/20`}>
                         <div className="text-3xl mb-1">{tenseIcons[currentQ.text2 || ''] || '🕐'}</div>
                         <div className="text-white text-xl font-bold">{(currentQ.text2 || 'TENSE').toUpperCase()}</div>
                     </div>
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-gray-400 text-sm mb-2">Convert this verb:</div>
                         <div className="text-white text-4xl font-bold">{currentQ.text1}</div>
                     </div>
@@ -470,8 +480,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
             const isSynonym = gameId === 'synonym-stars';
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-green-300 text-sm mb-2">Find {isSynonym ? 'a word that means the same as' : 'the OPPOSITE of'}:</div>
                         <div className="text-white text-4xl font-bold">{currentQ.text1}</div>
                     </div>
@@ -523,8 +533,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const hour = parseInt(currentQ.num1 || '3');
             const minute = parseInt(currentQ.num2 || '0');
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-blue-400 text-sm mb-2">{currentQ.operation === 'read' ? 'Read the Clock' : 'Calculate Duration'}</div>
                         {currentQ.operation === 'read' && (
                             <svg viewBox="0 0 100 100" className="w-32 h-32 mx-auto">
@@ -556,12 +566,12 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             const isChange = currentQ.num2 === 'change';
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-green-400 text-sm mb-2">{isChange ? '💵 Make Change' : '🪙 Count the Coins'}</div>
                         {commonImage}
                         {!commonImage && <div className="text-white text-2xl font-bold mb-4">{currentQ.num1 || ''}</div>}
-                        {safeHint && <p className="text-gray-400 text-sm">{safeHint}</p>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm">💡 {safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -582,8 +592,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-violet-400 text-sm mb-4">🧩 Complete the pattern!</div>
                         {commonImage}
                         <div className="flex justify-center gap-3 mb-4 flex-wrap">
@@ -601,7 +611,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                                 </div>
                             ))}
                         </div>
-                        {currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -619,8 +629,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'logic-lab') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
                         <div className="text-emerald-400 text-sm mb-3 text-center">🔍 Solve the puzzle!</div>
                         <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-4">
                             <div className="text-white text-lg leading-relaxed">{currentQ.text1}</div>
@@ -628,7 +638,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         {currentQ.text2 && (
                             <div className="text-teal-300 text-center text-lg font-medium">{currentQ.text2}</div>
                         )}
-                        {currentQ.hint && <p className="text-gray-400 text-sm mt-3 text-center">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3 text-center">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -646,13 +656,13 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'odd-wizard') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-amber-400 text-sm mb-4">🎯 Find the odd one out!</div>
                         {currentQ.text1 && (
                             <div className="text-gray-300 text-sm mb-2">{currentQ.text1}</div>
                         )}
-                        {currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-4 relative z-20">
                         {options.map((opt, i) => (
@@ -675,14 +685,14 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'sorting-station') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-cyan-400 text-sm mb-4">📦 Put in correct order!</div>
                         <div className="text-white text-xl font-medium mb-4">{currentQ.text1}</div>
                         {currentQ.text2 && (
                             <div className="text-blue-300 text-sm">{currentQ.text2}</div>
                         )}
-                        {currentQ.hint && <p className="text-gray-400 text-sm mt-3">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-1 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -707,8 +717,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         if (gameId === 'code-breaker') {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
-                <div className="w-full max-w-lg relative">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                         <div className="text-fuchsia-400 text-sm mb-4">🔐 Crack the code!</div>
                         {currentQ.text2 && (
                             <div className="bg-purple-500/20 border border-purple-400/30 rounded-lg p-3 mb-4">
@@ -720,7 +730,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                             <div className="text-fuchsia-200 text-xs mb-2">Decode this:</div>
                             <div className="text-white text-2xl font-bold font-mono tracking-wider">{currentQ.text1}</div>
                         </div>
-                        {currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
@@ -751,7 +761,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                     <div className="text-center">
                         <h1 className="text-5xl font-bold text-white mb-2">{safeIcon} {safeTitle}</h1>
                         <DifficultyBadge difficulty={difficulty} />
-                        <p className="text-gray-300 my-4">{questionsCount} questions loaded from Google Sheets</p>
+                        <p className="text-gray-300 my-4">{questionsCount} questions loaded for challenge!</p>
                         <button onClick={startGame} disabled={questionsCount === 0}
                             className={`${GAME_THEMES[gameId]?.buttonBg || 'bg-blue-600'} text-white px-8 py-4 rounded-full text-xl font-bold hover:scale-105 transition-transform shadow-lg cursor-pointer disabled:opacity-50`}>
                             {questionsCount > 0 ? 'START GAME' : 'No Questions Available'}
