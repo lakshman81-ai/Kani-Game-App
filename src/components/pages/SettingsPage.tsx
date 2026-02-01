@@ -342,6 +342,42 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                                 </label>
                             </div>
                         </div>
+
+                        {/* Game Toggles (Visible if Surprise Mode is OFF) */}
+                        {!localSettings.surpriseMode && (
+                            <div className="mt-4 pt-4 border-t border-gray-700">
+                                <h3 className="text-white font-bold mb-4">🎮 Enable/Disable Games</h3>
+                                <div className="space-y-6">
+                                    {topicConfigs.map((config, i) => (
+                                        <div key={i}>
+                                            <h4 className="text-purple-300 text-sm font-bold mb-2 uppercase">{config.category}</h4>
+                                            <div className="space-y-2 pl-2">
+                                                {config.games.map(game => (
+                                                    <div key={game.id} className="flex items-center justify-between py-1">
+                                                        <span className="text-gray-300 text-sm">{game.title}</span>
+                                                        <label className="relative inline-flex items-center cursor-pointer">
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={localSettings.enabledGames?.[game.id] !== false}
+                                                                onChange={(e) => setLocalSettings({
+                                                                    ...localSettings,
+                                                                    enabledGames: {
+                                                                        ...localSettings.enabledGames,
+                                                                        [game.id]: e.target.checked
+                                                                    }
+                                                                })}
+                                                                className="sr-only peer"
+                                                            />
+                                                            <div className="w-9 h-5 bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                                                        </label>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Visual Settings */}

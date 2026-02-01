@@ -1,193 +1,252 @@
-game_type,num1,num2,operation,answer,option1,option2,option3,option4,difficulty,hint,know_more
-space-math,5,3,+,8,8,7,9,6,Easy,Add the numbers together,When adding start with the bigger number and count up!
-space-math,12,7,+,19,19,18,20,17,Easy,Count up from 12,Adding to 12: Count 7 more - 13 14 15 16 17 18 19!
-space-math,8,4,-,4,4,3,5,6,Easy,Take away 4 from 8,Subtraction means taking away. 8 fingers minus 4 equals 4!
-space-math,15,6,-,9,9,8,10,7,Easy,Subtract carefully,For subtraction count backwards from the bigger number.
-space-math,9,9,+,18,18,17,19,16,Easy,Double 9,Doubling means adding a number to itself. 9+9=18!
-space-math,25,13,+,38,38,35,40,36,Medium,Add tens then ones,Break it down: 25+10=35 then 35+3=38.
-space-math,34,17,-,17,17,15,19,18,Medium,Subtract step by step,Subtract 10 first (34-10=24) then subtract 7 (24-7=17).
-space-math,6,7,×,42,42,36,48,35,Medium,6 times 7,Multiplication is repeated addition. 6x7 means 7+7+7+7+7+7=42.
-space-math,8,4,×,32,32,28,36,24,Medium,8 times 4,8x4 means 4 groups of 8 or 8+8+8+8=32.
-space-math,45,18,+,63,63,60,65,58,Medium,Add carefully,Add the ones first (5+8=13) then add tens (40+10=50) plus carry 50+13=63.
-space-math,56,29,-,27,27,25,29,31,Hard,Borrow if needed,When ones column needs borrowing take 10 from tens column!
-space-math,9,8,×,72,72,64,81,63,Hard,9 times 8,Trick: 9x8 = 9x9-9 = 81-9 = 72. Or remember 8x9=72!
-space-math,48,6,÷,8,8,6,7,9,Hard,How many 6s in 48,Division answers: How many groups? 48÷6=8 because 6x8=48.
-space-math,72,8,÷,9,9,8,7,10,Hard,Division practice,To check division multiply your answer by divisor: 9x8=72 ✓
-space-math,11,12,×,132,132,121,144,120,Hard,11 times 12,11x12: Think of it as 11x10=110 plus 11x2=22. 110+22=132.
-alien-invasion,3,2,+,5,5,4,6,7,Easy,Quick addition,Speed tip: For small numbers use your fingers to count!
-alien-invasion,7,3,-,4,4,3,5,6,Easy,Fast subtraction,Counting back: Start at 7 count back 3: 6 5 4!
-alien-invasion,4,5,+,9,9,8,10,7,Easy,Add quickly,4+5=9. Remember pairs that make 9: 4+5 3+6 2+7 1+8!
-alien-invasion,10,4,-,6,6,5,7,8,Easy,Subtract fast,10 is easy to subtract from. 10-4=6.
-alien-invasion,6,3,+,9,9,8,10,7,Easy,Speed math,6+3=9. These are number friends that make 9!
-alien-invasion,5,4,×,20,20,16,24,25,Medium,Multiply fast,5x4=20. Counting by 5s four times: 5 10 15 20!
-alien-invasion,6,6,×,36,36,30,42,32,Medium,6 squared,6x6=36. A square number - same number times itself!
-alien-invasion,28,9,+,37,37,35,39,36,Medium,Add quickly,Add 10 then subtract 1: 28+10=38 then 38-1=37.
-alien-invasion,7,8,×,56,56,48,64,54,Medium,7 times 8,7x8=56. Memory trick: 5 6 7 8 → 56=7x8!
-alien-invasion,45,18,-,27,27,25,29,23,Medium,Subtract fast,45-18: Subtract 20 (=25) then add 2 back (=27).
-alien-invasion,9,9,×,81,81,72,90,63,Hard,9 squared,9x9=81. Square numbers: 1 4 9 16 25 36 49 64 81 100.
-alien-invasion,63,7,÷,9,9,8,7,6,Hard,Quick division,63÷7=9 because 7x9=63. Know your times tables!
-alien-invasion,84,12,-,72,72,70,74,68,Hard,Subtract large numbers,84-12=72. Subtract 10 first (74) then 2 more (72).
-alien-invasion,11,11,×,121,121,111,131,110,Hard,11 squared,11x11=121. Pattern: 11²=121 12²=144 13²=169.
-alien-invasion,96,8,÷,12,12,10,11,14,Hard,Division challenge,96÷8=12. Check: 12x8=96 ✓
-bubble-pop,2,3,+,5,5,4,6,7,Easy,Pop the sum,2+3=5. Use your fingers: hold up 2 then 3 more!
-bubble-pop,8,2,-,6,6,5,7,4,Easy,Find the difference,8-2=6. Take away means make the number smaller.
-bubble-pop,4,4,+,8,8,7,9,6,Easy,Double 4,4+4=8. Doubles are easy: 1+1=2 2+2=4 3+3=6 4+4=8 5+5=10!
-bubble-pop,9,5,-,4,4,3,5,6,Easy,Take away,9-5=4. Count back 5 from 9: 8 7 6 5 4!
-bubble-pop,7,6,+,13,13,12,14,11,Easy,Add together,7+6=13. Make 10 first: 7+3=10 then add 3 more = 13.
-bubble-pop,3,4,×,12,12,10,14,16,Medium,Multiply,3x4=12. Skip count by 3s four times: 3 6 9 12!
-bubble-pop,5,5,×,25,25,20,30,15,Medium,5 squared,5x5=25. Skip count by 5s: 5 10 15 20 25!
-bubble-pop,6,3,×,18,18,15,21,12,Medium,6 times 3,6x3=18. Three groups of 6 or six groups of 3!
-bubble-pop,20,4,÷,5,5,4,6,8,Medium,Divide evenly,20÷4=5. How many 4s fit in 20? Five of them!
-bubble-pop,8,7,×,56,56,49,63,54,Medium,Multiply quickly,8x7=56. Remember: 5 6 7 8 reads as 56=7x8!
-bubble-pop,9,6,×,54,54,48,60,45,Hard,9 times 6,9x6=54. Pattern: Digits of 9 times tables always add to 9!
-bubble-pop,42,7,÷,6,6,5,7,8,Hard,Division,42÷7=6. Six sevens make 42!
-bubble-pop,64,8,÷,8,8,7,9,6,Hard,8 squared backwards,64÷8=8. 64 is 8 squared (8x8=64).
-bubble-pop,12,11,×,132,132,121,143,120,Hard,Big multiply,12x11=132. Use 12x10=120 plus 12x1=12. 120+12=132!
-bubble-pop,144,12,÷,12,12,11,13,14,Hard,12 squared backwards,144÷12=12. 144 is 12 squared!
-planet-hopper,2 4 6 ? 10,sequence,,8,8,6,10,12,Easy,Add 2 each time,This is counting by 2s (even numbers): 2 4 6 8 10!
-planet-hopper,5 10 15 ? 25,sequence,,20,20,15,25,30,Easy,Add 5 each time,Skip counting by 5s like a clock: 5 10 15 20 25!
-planet-hopper,3 6 9 ? 15,sequence,,12,12,10,14,18,Easy,Add 3 each time,Times 3 table as a pattern: 3 6 9 12 15!
-planet-hopper,10 20 30 ? 50,sequence,,40,40,35,45,50,Easy,Add 10 each time,Counting by 10s is easy: 10 20 30 40 50!
-planet-hopper,1 2 3 ? 5,sequence,,4,4,3,5,6,Easy,Count by 1,Simple counting! 1 2 3 4 5.
-planet-hopper,4 8 12 ? 20,sequence,,16,16,14,18,20,Medium,Add 4 each time,4 times table: 4 8 12 16 20!
-planet-hopper,7 14 21 ? 35,sequence,,28,28,24,30,35,Medium,Add 7 each time,7 times table: 7 14 21 28 35!
-planet-hopper,6 12 18 ? 30,sequence,,24,24,20,26,30,Medium,Add 6 each time,Counting by 6s: 6 12 18 24 30!
-planet-hopper,9 18 27 ? 45,sequence,,36,36,32,40,45,Medium,Add 9 each time,9 times table: 9 18 27 36 45!
-planet-hopper,8 16 24 ? 40,sequence,,32,32,28,36,40,Medium,Add 8 each time,8 times table: 8 16 24 32 40!
-planet-hopper,11 22 33 ? 55,sequence,,44,44,40,48,55,Hard,Add 11 each time,11 times table: 11 22 33 44 55!
-planet-hopper,12 24 36 ? 60,sequence,,48,48,44,52,60,Hard,Add 12 each time,12 times table: 12 24 36 48 60!
-planet-hopper,15 30 45 ? 75,sequence,,60,60,55,65,75,Hard,Add 15 each time,Counting by 15s: Like quarter hours on a clock!
-planet-hopper,25 50 75 ? 125,sequence,,100,100,90,110,125,Hard,Add 25 each time,Counting by 25s: Like quarters (coins)!
-planet-hopper,2 6 18 ? 162,sequence,,54,54,36,72,108,Hard,Multiply by 3,This is a geometric sequence - multiply by 3 each time!
-fraction-frenzy,1/2 vs 1/4,compare,,1/2,1/2,1/4,1/3,2/3,Easy,Half is bigger than quarter,1/2 is bigger because 2 equal pieces are larger than 4!
-fraction-frenzy,3/4 vs 1/2,compare,,3/4,3/4,1/2,2/3,1/4,Easy,Three quarters is big,3/4 means 3 out of 4 pieces - thats more than half!
-fraction-frenzy,2/3 vs 1/3,compare,,2/3,2/3,1/3,1/2,3/4,Easy,Two thirds vs one third,2/3 is two slices 1/3 is one slice. More slices = bigger!
-fraction-frenzy,1/2 vs 1/4,compare,,1/2,1/2,1/4,1/8,1/3,Easy,Half vs quarter,Imagine a pizza: half is 2 slices of 4 vs 1 slice of 4!
-fraction-frenzy,2/4 vs 1/4,compare,,2/4,2/4,1/4,1/2,3/4,Easy,Same as half,2/4 equals 1/2! Two quarters make a half.
-fraction-frenzy,1/4 shaded of 4 parts,identify,,1/4,1/4,1/2,3/4,2/4,Medium,One part of four,Count shaded parts over total parts = fraction!
-fraction-frenzy,2/4 shaded of 4 parts,identify,,2/4,2/4,1/4,3/4,1/2,Medium,Two parts of four,2 out of 4 shaded = 2/4 which equals 1/2!
-fraction-frenzy,3/4 shaded of 4 parts,identify,,3/4,3/4,1/4,2/4,1/2,Medium,Three parts of four,3 out of 4 parts shaded = 3/4 (three quarters)!
-fraction-frenzy,1/3 shaded of 3 parts,identify,,1/3,1/3,2/3,1/2,1/4,Medium,One part of three,When something is divided into 3 equal parts - each part is 1/3!
-fraction-frenzy,2/3 shaded of 3 parts,identify,,2/3,2/3,1/3,1/2,3/4,Medium,Two parts of three,Two out of three equal parts = 2/3!
-fraction-frenzy,2/4 simplified,equivalent,,1/2,1/2,1/4,2/3,3/4,Hard,Simplify the fraction,2/4 simplifies to 1/2. Divide top and bottom by 2!
-fraction-frenzy,3/6 simplified,equivalent,,1/2,1/2,1/3,2/3,1/4,Hard,Three sixths equals,3/6 = 1/2. Both 3 and 6 divide by 3!
-fraction-frenzy,2/6 simplified,equivalent,,1/3,1/3,1/2,2/3,1/4,Hard,Two sixths equals,2/6 = 1/3. Divide both by 2!
-fraction-frenzy,4/8 simplified,equivalent,,1/2,1/2,1/4,3/4,2/3,Hard,Four eighths equals,4/8 = 1/2. Half of 8 is 4!
-fraction-frenzy,3/9 simplified,equivalent,,1/3,1/3,1/2,2/3,1/4,Hard,Three ninths equals,3/9 = 1/3. Divide both by 3!
-time-warp,3,0,read,3:00,3:00,6:00,9:00,12:00,Easy,Hour hand on 3,When minute hand points to 12 - read the hour hand!
-time-warp,6,0,read,6:00,6:00,3:00,9:00,12:00,Easy,Hour hand on 6,6:00 - hour hand on 6 minute hand on 12.
-time-warp,9,0,read,9:00,9:00,6:00,3:00,12:00,Easy,Hour hand on 9,9 oclock - the hour hand points to 9!
-time-warp,12,0,read,12:00,12:00,6:00,3:00,9:00,Easy,Both hands up,12:00 - both hands point straight up!
-time-warp,3,30,read,3:30,3:30,3:00,4:00,4:30,Easy,Half past 3,Half past = 30 minutes. Minute hand on 6!
-time-warp,6,30,read,6:30,6:30,6:00,7:00,7:30,Medium,Half past 6,At :30 the minute hand is on the 6 (bottom).
-time-warp,2,15,read,2:15,2:15,2:30,2:45,3:15,Medium,Quarter past 2,Quarter past = 15 minutes. Minute hand on 3!
-time-warp,4,45,read,4:45,4:45,4:15,5:00,4:30,Medium,Quarter to 5,4:45 is also called quarter to 5!
-time-warp,7,30,read,7:30,7:30,7:00,8:00,6:30,Medium,Half past 7,The short hand shows hours the long hand shows minutes.
-time-warp,10,15,read,10:15,10:15,10:30,10:45,9:15,Medium,Quarter past 10,15 minutes = quarter of an hour!
-time-warp,2:00 to 4:00,,duration,2 hours,2 hours,3 hours,1 hour,4 hours,Hard,Count the hours,Count from 2 to 4: thats 2 hours!
-time-warp,3:00 to 3:30,,duration,30 minutes,30 minutes,1 hour,15 minutes,45 minutes,Hard,Half hour passed,From :00 to :30 is always 30 minutes (half hour)!
-time-warp,1:00 to 2:30,,duration,1 hour 30 min,1 hour 30 min,2 hours,1 hour,45 minutes,Hard,Hour and a half,1:00 to 2:00 = 1 hour. Then 2:00 to 2:30 = 30 min. Total: 1.5 hours!
-time-warp,5:00 to 8:00,,duration,3 hours,3 hours,2 hours,4 hours,5 hours,Hard,Count from 5 to 8,Count: 5→6 (1hr) 6→7 (2hr) 7→8 (3hr) = 3 hours!
-time-warp,9:00 to 9:45,,duration,45 minutes,45 minutes,30 minutes,1 hour,15 minutes,Hard,Almost an hour,From :00 to :45 is 45 minutes (3 quarters of an hour)!
-money-master,2 quarters + 1 dime,count,,60¢,60¢,50¢,70¢,55¢,Easy,Add coin values,Quarter=25¢ Dime=10¢. So 25+25+10=60¢!
-money-master,1 quarter + 2 dimes,count,,45¢,45¢,40¢,50¢,35¢,Easy,Quarter is 25 cents,25¢ + 10¢ + 10¢ = 45¢!
-money-master,3 dimes,count,,30¢,30¢,25¢,35¢,40¢,Easy,Each dime is 10 cents,3 dimes = 10 + 10 + 10 = 30 cents!
-money-master,1 quarter + 1 dime,count,,35¢,35¢,30¢,40¢,45¢,Easy,25 + 10 cents,A quarter (25¢) plus a dime (10¢) = 35¢!
-money-master,5 dimes,count,,50¢,50¢,45¢,55¢,40¢,Easy,Count by 10s,5 dimes = 50 cents. Thats half a dollar!
-money-master,2 quarters + 2 dimes,count,,70¢,70¢,65¢,75¢,60¢,Medium,Add all coins,50¢ (2 quarters) + 20¢ (2 dimes) = 70¢!
-money-master,3 quarters,count,,75¢,75¢,70¢,80¢,65¢,Medium,25 times 3,3 quarters = 25 + 25 + 25 = 75 cents!
-money-master,1 quarter + 3 dimes,count,,55¢,55¢,50¢,60¢,45¢,Medium,Mixed coins,25¢ + 30¢ = 55¢!
-money-master,4 dimes + 2 nickels,count,,50¢,50¢,45¢,55¢,60¢,Medium,Dimes and nickels,40¢ (dimes) + 10¢ (nickels) = 50¢!
-money-master,4 quarters,count,,$1.00,$1.00,90¢,$1.10,80¢,Medium,4 quarters make a dollar,4 quarters = 100 cents = $1.00!
-money-master,Price 75¢ Pay $1.00,change,,25¢,25¢,20¢,30¢,15¢,Hard,Calculate change,Change = Payment - Price. $1.00 - 75¢ = 25¢!
-money-master,Price 50¢ Pay $1.00,change,,50¢,50¢,40¢,60¢,45¢,Hard,Half dollar back,$1.00 - 50¢ = 50¢ back. Half dollar!
-money-master,Price 35¢ Pay 50¢,change,,15¢,15¢,10¢,20¢,25¢,Hard,From 50 cents,50¢ - 35¢ = 15¢ change!
-money-master,Price 60¢ Pay $1.00,change,,40¢,40¢,35¢,45¢,30¢,Hard,Calculate change,100¢ - 60¢ = 40¢ back!
-money-master,Price 85¢ Pay $1.00,change,,15¢,15¢,10¢,20¢,25¢,Hard,15 cents back,100¢ - 85¢ = 15¢!
-geometry-galaxy,triangle,identify,,Triangle,Triangle,Square,Circle,Rectangle,Easy,3 sides shape,Triangles have 3 sides and 3 corners (vertices)!
-geometry-galaxy,square,identify,,Square,Square,Triangle,Circle,Rectangle,Easy,4 equal sides,Squares have 4 equal sides and 4 right angles!
-geometry-galaxy,circle,identify,,Circle,Circle,Oval,Square,Triangle,Easy,Round shape,Circles are perfectly round with no corners!
-geometry-galaxy,rectangle,identify,,Rectangle,Rectangle,Square,Triangle,Oval,Easy,4 sides 2 long,Rectangles have 4 sides but opposite sides are equal!
-geometry-galaxy,pentagon,identify,,Pentagon,Pentagon,Hexagon,Square,Octagon,Easy,5 sides,Penta means 5. Pentagon = 5 sides!
-geometry-galaxy,triangle,sides,,3,3,4,5,6,Medium,Three sided,TRI means 3. Triangle = 3 angles = 3 sides!
-geometry-galaxy,square,sides,,4,4,3,5,6,Medium,Four sided,QUAD means 4. Squares have 4 sides!
-geometry-galaxy,pentagon,sides,,5,5,4,6,8,Medium,Five sided,Pentagon has 5 sides. Think of the Pentagon building!
-geometry-galaxy,hexagon,sides,,6,6,5,8,4,Medium,Six sided,HEX means 6. Hexagon = 6 sides like a honeycomb!
-geometry-galaxy,octagon,sides,,8,8,6,10,5,Medium,Eight sided,OCT means 8. Stop signs are octagons!
-geometry-galaxy,square side 3,perimeter,,12,12,9,15,6,Hard,4 times 3,Perimeter = all sides added. 3+3+3+3 = 12!
-geometry-galaxy,square side 4,perimeter,,16,16,12,20,8,Hard,4 times 4,Perimeter of square = 4 × side length = 4×4 = 16!
-geometry-galaxy,square side 5,perimeter,,20,20,15,25,10,Hard,4 times 5,Perimeter = 4 × 5 = 20 units!
-geometry-galaxy,square side 2,area,,4,4,2,6,8,Hard,2 times 2,Area = side × side. A square with side 2 has area 2×2=4!
-geometry-galaxy,square side 3,area,,9,9,6,12,3,Hard,3 times 3,Area = 3 × 3 = 9 square units!
-space-math,6,2,+,8,8,7,9,10,Easy,Add 6 and 2,Adding small numbers: 6+2 equals 8!
-space-math,11,5,+,16,16,15,17,14,Easy,Add to 11,11+5: Start at 11 and count 5 more!
-space-math,9,3,-,6,6,5,7,8,Easy,9 minus 3,Subtraction: Take 3 away from 9 leaves 6!
-space-math,18,9,+,27,27,25,29,26,Medium,Add 18 and 9,Add: 18+10=28 then subtract 1 = 27!
-space-math,5,6,×,30,30,25,35,36,Medium,5 times 6,Multiply: 5×6 = 30. Count by 5s six times!
-space-math,7,9,×,63,63,54,72,56,Medium,7 times 9,7×9=63. Trick: 7×10=70 then subtract 7!
-space-math,81,9,÷,9,9,8,10,7,Hard,81 divided by 9,Division: 81÷9=9 because 9×9=81!
-space-math,13,11,×,143,143,121,154,132,Hard,13 times 11,13×11: Think (10+3)×11 = 110+33 = 143!
-space-math,108,9,÷,12,12,11,13,10,Hard,108 divided by 9,Division check: 12×9=108 so 108÷9=12!
-alien-invasion,5,2,+,7,7,6,8,9,Easy,Quick add,5+2=7. Use fingers to count quickly!
-alien-invasion,8,3,-,5,5,4,6,7,Easy,Fast take away,8-3=5. Count backwards: 7 6 5!
-alien-invasion,6,4,+,10,10,9,11,8,Easy,Make 10,6+4=10. Number bonds that make 10!
-alien-invasion,7,7,×,49,49,42,56,45,Medium,7 squared,7×7=49. Seven groups of seven!
-alien-invasion,9,4,×,36,36,32,40,35,Medium,9 times 4,9×4=36. Four nines: 9+9+9+9!
-alien-invasion,36,18,+,54,54,52,56,50,Medium,Add with tens,Add 20 then subtract 2: 36+20=56 -2=54!
-alien-invasion,144,12,÷,12,12,11,13,14,Hard,12 squared backwards,144÷12=12. Know your squares!
-alien-invasion,8,12,×,96,96,84,108,88,Hard,8 times 12,8×12=96. Double 8×6=48 then double again!
-alien-invasion,13,12,×,156,156,144,168,132,Hard,Big multiplication,13×12: 13×10=130 plus 13×2=26. Sum=156!
-bubble-pop,3,5,+,8,8,7,9,10,Easy,Add 3 and 5,3+5=8. Make patterns: 3+5 4+4!
-bubble-pop,10,3,-,7,7,6,8,9,Easy,10 minus 3,From 10 subtract 3 leaves 7!
-bubble-pop,5,6,+,11,11,10,12,13,Easy,5 plus 6,5+6=11. Think 5+5=10 plus 1 more!
-bubble-pop,7,5,×,35,35,30,40,32,Medium,7 times 5,7×5=35. Count by 7s: 7 14 21 28 35!
-bubble-pop,9,3,×,27,27,24,30,21,Medium,9 times 3,9×3=27. Three nines: 9+9+9=27!
-bubble-pop,24,6,÷,4,4,3,5,6,Medium,Divide 24 by 6,24÷6=4. How many 6s in 24? Four!
-bubble-pop,7,12,×,84,84,72,96,78,Hard,7 times 12,7×12=84. Seven dozen eggs!
-bubble-pop,11,9,×,99,99,88,110,90,Hard,11 times 9,11×9=99. Pattern: 11×9 has 9s!
-bubble-pop,72,9,÷,8,8,7,9,6,Hard,72 divided by 9,72÷9=8. Nine eights make 72!
-planet-hopper,1 3 5 ? 9,sequence,,7,7,5,9,11,Easy,Add 2 odd numbers,Odd numbers: 1 3 5 7 9!
-planet-hopper,4 8 12 16 ?,sequence,,20,20,18,22,24,Easy,Add 4 each time,Counting by 4s like quarters!
-planet-hopper,2 4 8 ? 32,sequence,,16,16,12,20,24,Easy,Double each time,Pattern: ×2 each step. 2 4 8 16 32!
-planet-hopper,5 10 15 20 ?,sequence,,25,25,20,30,35,Medium,Add 5 each time,Skip counting by 5s!
-planet-hopper,3 9 27 ?,sequence,,81,81,54,72,90,Medium,Times 3 pattern,Multiply by 3: 3 9 27 81!
-planet-hopper,100 90 80 ? 60,sequence,,70,70,65,75,50,Medium,Subtract 10,Counting backwards by 10s!
-planet-hopper,1 4 9 16 ?,sequence,,25,25,20,30,36,Hard,Square numbers,Squares: 1² 2² 3² 4² 5² = 1 4 9 16 25!
-planet-hopper,20 40 60 ? 100,sequence,,80,80,70,90,85,Hard,Add 20 each time,Counting by 20s!
-planet-hopper,1 1 2 3 5 ?,sequence,,8,8,6,10,7,Hard,Fibonacci sequence,Add last two: 1+1=2 1+2=3 2+3=5 3+5=8!
-fraction-frenzy,1/3 vs 2/3,compare,,2/3,2/3,1/3,1/2,3/4,Easy,More thirds,2 out of 3 is bigger than 1 out of 3!
-fraction-frenzy,1/2 vs 3/4,compare,,3/4,3/4,1/2,1/3,2/3,Easy,Three quarters bigger,3/4 is more than half (1/2)!
-fraction-frenzy,1/4 vs 1/2,compare,,1/2,1/2,1/4,3/4,2/4,Easy,Half vs quarter,1/2 is double 1/4!
-fraction-frenzy,3/4 shaded of 8 parts,identify,,6/8,6/8,3/4,1/2,2/8,Medium,Six eighths,6 out of 8 parts = 6/8 which equals 3/4!
-fraction-frenzy,1/2 shaded of 6 parts,identify,,3/6,3/6,1/2,2/6,4/6,Medium,Three sixths,Half of 6 is 3 so 3/6 = 1/2!
-fraction-frenzy,2/3 shaded of 6 parts,identify,,4/6,4/6,2/3,3/6,5/6,Medium,Four sixths,4 out of 6 = 4/6 = 2/3!
-fraction-frenzy,6/8 simplified,equivalent,,3/4,3/4,1/2,2/3,1/4,Hard,Six eighths equals,6/8 = 3/4. Divide both by 2!
-fraction-frenzy,4/6 simplified,equivalent,,2/3,2/3,1/2,3/4,1/3,Hard,Four sixths equals,4/6 = 2/3. Divide both by 2!
-fraction-frenzy,5/10 simplified,equivalent,,1/2,1/2,1/5,2/5,5/5,Hard,Five tenths equals,5/10 = 1/2. Half of 10 is 5!
-time-warp,1,0,read,1:00,1:00,2:00,12:00,11:00,Easy,Hour hand on 1,1 o'clock - hour hand points to 1!
-time-warp,2,0,read,2:00,2:00,1:00,3:00,4:00,Easy,Hour hand on 2,2:00 - both hands make an L shape!
-time-warp,5,0,read,5:00,5:00,4:00,6:00,7:00,Easy,Hour hand on 5,5 o'clock - minute hand up hour hand on 5!
-time-warp,8,30,read,8:30,8:30,8:00,9:00,7:30,Medium,Half past 8,8:30 - halfway between 8 and 9!
-time-warp,5,15,read,5:15,5:15,5:30,5:45,4:15,Medium,Quarter past 5,15 minutes after 5 o'clock!
-time-warp,11,45,read,11:45,11:45,11:15,12:00,10:45,Medium,Quarter to 12,11:45 is 15 minutes before noon!
-time-warp,4:00 to 7:00,,duration,3 hours,3 hours,4 hours,2 hours,5 hours,Hard,Count hours,From 4 to 7 is 3 hours: 4→5→6→7!
-time-warp,6:00 to 6:15,,duration,15 minutes,15 minutes,30 minutes,45 minutes,1 hour,Hard,Quarter hour,15 minutes = quarter of an hour!
-time-warp,2:30 to 5:00,,duration,2 hours 30 min,2 hours 30 min,2 hours,3 hours,2 hours 15 min,Hard,Two and a half hours,2:30 to 5:00 = 2.5 hours!
-money-master,1 quarter + 1 nickel,count,,30¢,30¢,25¢,35¢,20¢,Easy,Quarter plus nickel,25¢ + 5¢ = 30¢!
-money-master,2 dimes + 1 nickel,count,,25¢,25¢,20¢,30¢,15¢,Easy,Dimes and nickel,20¢ + 5¢ = 25¢ (quarter)!
-money-master,4 nickels,count,,20¢,20¢,15¢,25¢,10¢,Easy,Count nickels,4 nickels: 5+5+5+5 = 20¢!
-money-master,3 quarters + 1 dime,count,,85¢,85¢,80¢,90¢,75¢,Medium,Quarters and dime,75¢ + 10¢ = 85¢!
-money-master,2 quarters + 3 nickels,count,,65¢,65¢,60¢,70¢,55¢,Medium,Mixed coins count,50¢ + 15¢ = 65¢!
-money-master,6 dimes,count,,60¢,60¢,50¢,70¢,55¢,Medium,Six dimes,6×10¢ = 60¢!
-money-master,Price 45¢ Pay $1.00,change,,55¢,55¢,50¢,60¢,45¢,Hard,Change from dollar,$1.00 - 45¢ = 55¢ back!
-money-master,Price 70¢ Pay $1.00,change,,30¢,30¢,25¢,35¢,40¢,Hard,30 cents change,100¢ - 70¢ = 30¢!
-money-master,Price 55¢ Pay $1.00,change,,45¢,45¢,40¢,50¢,35¢,Hard,Calculate change,100¢ - 55¢ = 45¢ back!
-geometry-galaxy,hexagon,identify,,Hexagon,Hexagon,Pentagon,Octagon,Square,Easy,6 sided shape,Hexagons have 6 sides like honeycomb!
-geometry-galaxy,oval,identify,,Oval,Oval,Circle,Rectangle,Square,Easy,Egg shape,Ovals are stretched circles like eggs!
-geometry-galaxy,octagon,identify,,Octagon,Octagon,Hexagon,Pentagon,Square,Easy,8 sided shape,Octagons have 8 sides like stop signs!
-geometry-galaxy,rectangle,sides,,4,4,3,5,6,Medium,Four sides,Rectangles have 4 sides - 2 long 2 short!
-geometry-galaxy,circle,sides,,0,0,1,2,infinite,Medium,No sides,Circles have no sides - they're round!
-geometry-galaxy,triangle,sides,,3,3,4,2,5,Medium,Three sides,Triangles always have exactly 3 sides!
-geometry-galaxy,square side 6,perimeter,,24,24,18,30,12,Hard,4 times 6,Perimeter = 4×6 = 24 units!
-geometry-galaxy,square side 4,area,,16,16,12,20,8,Hard,4 times 4,Area = 4×4 = 16 square units!
-geometry-galaxy,square side 5,area,,25,25,20,30,15,Hard,5 times 5,Area = side² = 5×5 = 25!
+game_type,option1,text1,answer,know_more,num1,difficulty,operation,option2,option4,hint,image_url,num2,option3
+space-math,8,,8,When adding start with the bigger number and count up!,5,Easy,+,7,6,Add the numbers together,,3,9
+space-math,19,,19,Adding to 12: Count 7 more - 13 14 15 16 17 18 19!,12,Easy,+,18,17,Count up from 12,,7,20
+space-math,4,,4,Subtraction means taking away. 8 fingers minus 4 equals 4!,8,Easy,-,3,6,Take away 4 from 8,,4,5
+space-math,9,,9,For subtraction count backwards from the bigger number.,15,Easy,-,8,7,Subtract carefully,,6,10
+space-math,18,,18,Doubling means adding a number to itself. 9+9=18!,9,Easy,+,17,16,Double 9,,9,19
+space-math,38,,38,Break it down: 25+10=35 then 35+3=38.,25,Medium,+,35,36,Add tens then ones,,13,40
+space-math,17,,17,Subtract 10 first (34-10=24) then subtract 7 (24-7=17).,34,Medium,-,15,18,Subtract step by step,,17,19
+space-math,42,,42,Multiplication is repeated addition. 6x7 means 7+7+7+7+7+7=42.,6,Medium,×,36,35,6 times 7,,7,48
+space-math,32,,32,8x4 means 4 groups of 8 or 8+8+8+8=32.,8,Medium,×,28,24,8 times 4,,4,36
+space-math,63,,63,Add the ones first (5+8=13) then add tens (40+10=50) plus carry 50+13=63.,45,Medium,+,60,58,Add carefully,,18,65
+space-math,27,,27,When ones column needs borrowing take 10 from tens column!,56,Hard,-,25,31,Borrow if needed,,29,29
+space-math,72,,72,Trick: 9x8 = 9x9-9 = 81-9 = 72. Or remember 8x9=72!,9,Hard,×,64,63,9 times 8,,8,81
+space-math,8,,8,Division answers: How many groups? 48÷6=8 because 6x8=48.,48,Hard,÷,6,9,How many 6s in 48,,6,7
+space-math,9,,9,To check division multiply your answer by divisor: 9x8=72 ✓,72,Hard,÷,8,10,Division practice,,8,7
+space-math,132,,132,11x12: Think of it as 11x10=110 plus 11x2=22. 110+22=132.,11,Hard,×,121,120,11 times 12,,12,144
+alien-invasion,5,,5,Speed tip: For small numbers use your fingers to count!,3,Easy,+,4,7,Quick addition,,2,6
+alien-invasion,4,,4,Counting back: Start at 7 count back 3: 6 5 4!,7,Easy,-,3,6,Fast subtraction,,3,5
+alien-invasion,9,,9,4+5=9. Remember pairs that make 9: 4+5 3+6 2+7 1+8!,4,Easy,+,8,7,Add quickly,,5,10
+alien-invasion,6,,6,10 is easy to subtract from. 10-4=6.,10,Easy,-,5,8,Subtract fast,,4,7
+alien-invasion,9,,9,6+3=9. These are number friends that make 9!,6,Easy,+,8,7,Speed math,,3,10
+alien-invasion,20,,20,5x4=20. Counting by 5s four times: 5 10 15 20!,5,Medium,×,16,25,Multiply fast,,4,24
+alien-invasion,36,,36,6x6=36. A square number - same number times itself!,6,Medium,×,30,32,6 squared,,6,42
+alien-invasion,37,,37,Add 10 then subtract 1: 28+10=38 then 38-1=37.,28,Medium,+,35,36,Add quickly,,9,39
+alien-invasion,56,,56,7x8=56. Memory trick: 5 6 7 8 → 56=7x8!,7,Medium,×,48,54,7 times 8,,8,64
+alien-invasion,27,,27,45-18: Subtract 20 (=25) then add 2 back (=27).,45,Medium,-,25,23,Subtract fast,,18,29
+alien-invasion,81,,81,9x9=81. Square numbers: 1 4 9 16 25 36 49 64 81 100.,9,Hard,×,72,63,9 squared,,9,90
+alien-invasion,9,,9,63÷7=9 because 7x9=63. Know your times tables!,63,Hard,÷,8,6,Quick division,,7,7
+alien-invasion,72,,72,84-12=72. Subtract 10 first (74) then 2 more (72).,84,Hard,-,70,68,Subtract large numbers,,12,74
+alien-invasion,121,,121,11x11=121. Pattern: 11²=121 12²=144 13²=169.,11,Hard,×,111,110,11 squared,,11,131
+alien-invasion,12,,12,96÷8=12. Check: 12x8=96 ✓,96,Hard,÷,10,14,Division challenge,,8,11
+bubble-pop,5,,5,2+3=5. Use your fingers: hold up 2 then 3 more!,2,Easy,+,4,7,Pop the sum,,3,6
+bubble-pop,6,,6,8-2=6. Take away means make the number smaller.,8,Easy,-,5,4,Find the difference,,2,7
+bubble-pop,8,,8,4+4=8. Doubles are easy: 1+1=2 2+2=4 3+3=6 4+4=8 5+5=10!,4,Easy,+,7,6,Double 4,,4,9
+bubble-pop,4,,4,9-5=4. Count back 5 from 9: 8 7 6 5 4!,9,Easy,-,3,6,Take away,,5,5
+bubble-pop,13,,13,7+6=13. Make 10 first: 7+3=10 then add 3 more = 13.,7,Easy,+,12,11,Add together,,6,14
+bubble-pop,12,,12,3x4=12. Skip count by 3s four times: 3 6 9 12!,3,Medium,×,10,16,Multiply,,4,14
+bubble-pop,25,,25,5x5=25. Skip count by 5s: 5 10 15 20 25!,5,Medium,×,20,15,5 squared,,5,30
+bubble-pop,18,,18,6x3=18. Three groups of 6 or six groups of 3!,6,Medium,×,15,12,6 times 3,,3,21
+bubble-pop,5,,5,20÷4=5. How many 4s fit in 20? Five of them!,20,Medium,÷,4,8,Divide evenly,,4,6
+bubble-pop,56,,56,8x7=56. Remember: 5 6 7 8 reads as 56=7x8!,8,Medium,×,49,54,Multiply quickly,,7,63
+bubble-pop,54,,54,9x6=54. Pattern: Digits of 9 times tables always add to 9!,9,Hard,×,48,45,9 times 6,,6,60
+bubble-pop,6,,6,42÷7=6. Six sevens make 42!,42,Hard,÷,5,8,Division,,7,7
+bubble-pop,8,,8,64÷8=8. 64 is 8 squared (8x8=64).,64,Hard,÷,7,6,8 squared backwards,,8,9
+bubble-pop,132,,132,12x11=132. Use 12x10=120 plus 12x1=12. 120+12=132!,12,Hard,×,121,120,Big multiply,,11,143
+bubble-pop,12,,12,144÷12=12. 144 is 12 squared!,144,Hard,÷,11,14,12 squared backwards,,12,13
+planet-hopper,8,,8,This is counting by 2s (even numbers): 2 4 6 8 10!,2 4 6 ? 10,Easy,,6,12,Add 2 each time,,sequence,10
+planet-hopper,20,,20,Skip counting by 5s like a clock: 5 10 15 20 25!,5 10 15 ? 25,Easy,,15,30,Add 5 each time,,sequence,25
+planet-hopper,12,,12,Times 3 table as a pattern: 3 6 9 12 15!,3 6 9 ? 15,Easy,,10,18,Add 3 each time,,sequence,14
+planet-hopper,40,,40,Counting by 10s is easy: 10 20 30 40 50!,10 20 30 ? 50,Easy,,35,50,Add 10 each time,,sequence,45
+planet-hopper,4,,4,Simple counting! 1 2 3 4 5.,1 2 3 ? 5,Easy,,3,6,Count by 1,,sequence,5
+planet-hopper,16,,16,4 times table: 4 8 12 16 20!,4 8 12 ? 20,Medium,,14,20,Add 4 each time,,sequence,18
+planet-hopper,28,,28,7 times table: 7 14 21 28 35!,7 14 21 ? 35,Medium,,24,35,Add 7 each time,,sequence,30
+planet-hopper,24,,24,Counting by 6s: 6 12 18 24 30!,6 12 18 ? 30,Medium,,20,30,Add 6 each time,,sequence,26
+planet-hopper,36,,36,9 times table: 9 18 27 36 45!,9 18 27 ? 45,Medium,,32,45,Add 9 each time,,sequence,40
+planet-hopper,32,,32,8 times table: 8 16 24 32 40!,8 16 24 ? 40,Medium,,28,40,Add 8 each time,,sequence,36
+planet-hopper,44,,44,11 times table: 11 22 33 44 55!,11 22 33 ? 55,Hard,,40,55,Add 11 each time,,sequence,48
+planet-hopper,48,,48,12 times table: 12 24 36 48 60!,12 24 36 ? 60,Hard,,44,60,Add 12 each time,,sequence,52
+planet-hopper,60,,60,Counting by 15s: Like quarter hours on a clock!,15 30 45 ? 75,Hard,,55,75,Add 15 each time,,sequence,65
+planet-hopper,100,,100,Counting by 25s: Like quarters (coins)!,25 50 75 ? 125,Hard,,90,125,Add 25 each time,,sequence,110
+planet-hopper,54,,54,This is a geometric sequence - multiply by 3 each time!,2 6 18 ? 162,Hard,,36,108,Multiply by 3,,sequence,72
+time-warp,3:00,,3:00,When minute hand points to 12 - read the hour hand!,3,Easy,read,6:00,12:00,Hour hand on 3,,0,9:00
+time-warp,6:00,,6:00,6:00 - hour hand on 6 minute hand on 12.,6,Easy,read,3:00,12:00,Hour hand on 6,,0,9:00
+time-warp,9:00,,9:00,9 oclock - the hour hand points to 9!,9,Easy,read,6:00,12:00,Hour hand on 9,,0,3:00
+time-warp,12:00,,12:00,12:00 - both hands point straight up!,12,Easy,read,6:00,9:00,Both hands up,,0,3:00
+time-warp,3:30,,3:30,Half past = 30 minutes. Minute hand on 6!,3,Easy,read,3:00,4:30,Half past 3,,30,4:00
+time-warp,6:30,,6:30,At :30 the minute hand is on the 6 (bottom).,6,Medium,read,6:00,7:30,Half past 6,,30,7:00
+time-warp,2:15,,2:15,Quarter past = 15 minutes. Minute hand on 3!,2,Medium,read,2:30,3:15,Quarter past 2,,15,2:45
+time-warp,4:45,,4:45,4:45 is also called quarter to 5!,4,Medium,read,4:15,4:30,Quarter to 5,,45,5:00
+time-warp,7:30,,7:30,The short hand shows hours the long hand shows minutes.,7,Medium,read,7:00,6:30,Half past 7,,30,8:00
+time-warp,10:15,,10:15,15 minutes = quarter of an hour!,10,Medium,read,10:30,9:15,Quarter past 10,,15,10:45
+time-warp,2 hours,,2 hours,Count from 2 to 4: thats 2 hours!,2:00 to 4:00,Hard,duration,3 hours,4 hours,Count the hours,,,1 hour
+time-warp,30 minutes,,30 minutes,From :00 to :30 is always 30 minutes (half hour)!,3:00 to 3:30,Hard,duration,1 hour,45 minutes,Half hour passed,,,15 minutes
+time-warp,1 hour 30 min,,1 hour 30 min,1:00 to 2:00 = 1 hour. Then 2:00 to 2:30 = 30 min. Total: 1.5 hours!,1:00 to 2:30,Hard,duration,2 hours,45 minutes,Hour and a half,,,1 hour
+time-warp,3 hours,,3 hours,Count: 5→6 (1hr) 6→7 (2hr) 7→8 (3hr) = 3 hours!,5:00 to 8:00,Hard,duration,2 hours,5 hours,Count from 5 to 8,,,4 hours
+time-warp,45 minutes,,45 minutes,From :00 to :45 is 45 minutes (3 quarters of an hour)!,9:00 to 9:45,Hard,duration,30 minutes,15 minutes,Almost an hour,,,1 hour
+space-math,8,,8,Adding small numbers: 6+2 equals 8!,6,Easy,+,7,10,Add 6 and 2,,2,9
+space-math,16,,16,11+5: Start at 11 and count 5 more!,11,Easy,+,15,14,Add to 11,,5,17
+space-math,6,,6,Subtraction: Take 3 away from 9 leaves 6!,9,Easy,-,5,8,9 minus 3,,3,7
+space-math,27,,27,Add: 18+10=28 then subtract 1 = 27!,18,Medium,+,25,26,Add 18 and 9,,9,29
+space-math,30,,30,Multiply: 5×6 = 30. Count by 5s six times!,5,Medium,×,25,36,5 times 6,,6,35
+space-math,63,,63,7×9=63. Trick: 7×10=70 then subtract 7!,7,Medium,×,54,56,7 times 9,,9,72
+space-math,9,,9,Division: 81÷9=9 because 9×9=81!,81,Hard,÷,8,7,81 divided by 9,,9,10
+space-math,143,,143,13×11: Think (10+3)×11 = 110+33 = 143!,13,Hard,×,121,132,13 times 11,,11,154
+space-math,12,,12,Division check: 12×9=108 so 108÷9=12!,108,Hard,÷,11,10,108 divided by 9,,9,13
+alien-invasion,7,,7,5+2=7. Use fingers to count quickly!,5,Easy,+,6,9,Quick add,,2,8
+alien-invasion,5,,5,8-3=5. Count backwards: 7 6 5!,8,Easy,-,4,7,Fast take away,,3,6
+alien-invasion,10,,10,6+4=10. Number bonds that make 10!,6,Easy,+,9,8,Make 10,,4,11
+alien-invasion,49,,49,7×7=49. Seven groups of seven!,7,Medium,×,42,45,7 squared,,7,56
+alien-invasion,36,,36,9×4=36. Four nines: 9+9+9+9!,9,Medium,×,32,35,9 times 4,,4,40
+alien-invasion,54,,54,Add 20 then subtract 2: 36+20=56 -2=54!,36,Medium,+,52,50,Add with tens,,18,56
+alien-invasion,12,,12,144÷12=12. Know your squares!,144,Hard,÷,11,14,12 squared backwards,,12,13
+alien-invasion,96,,96,8×12=96. Double 8×6=48 then double again!,8,Hard,×,84,88,8 times 12,,12,108
+alien-invasion,156,,156,13×12: 13×10=130 plus 13×2=26. Sum=156!,13,Hard,×,144,132,Big multiplication,,12,168
+bubble-pop,8,,8,3+5=8. Make patterns: 3+5 4+4!,3,Easy,+,7,10,Add 3 and 5,,5,9
+bubble-pop,7,,7,From 10 subtract 3 leaves 7!,10,Easy,-,6,9,10 minus 3,,3,8
+bubble-pop,11,,11,5+6=11. Think 5+5=10 plus 1 more!,5,Easy,+,10,13,5 plus 6,,6,12
+bubble-pop,35,,35,7×5=35. Count by 7s: 7 14 21 28 35!,7,Medium,×,30,32,7 times 5,,5,40
+bubble-pop,27,,27,9×3=27. Three nines: 9+9+9=27!,9,Medium,×,24,21,9 times 3,,3,30
+bubble-pop,4,,4,24÷6=4. How many 6s in 24? Four!,24,Medium,÷,3,6,Divide 24 by 6,,6,5
+bubble-pop,84,,84,7×12=84. Seven dozen eggs!,7,Hard,×,72,78,7 times 12,,12,96
+bubble-pop,99,,99,11×9=99. Pattern: 11×9 has 9s!,11,Hard,×,88,90,11 times 9,,9,110
+bubble-pop,8,,8,72÷9=8. Nine eights make 72!,72,Hard,÷,7,6,72 divided by 9,,9,9
+planet-hopper,7,,7,Odd numbers: 1 3 5 7 9!,1 3 5 ? 9,Easy,,5,11,Add 2 odd numbers,,sequence,9
+planet-hopper,20,,20,Counting by 4s like quarters!,4 8 12 16 ?,Easy,,18,24,Add 4 each time,,sequence,22
+planet-hopper,16,,16,Pattern: ×2 each step. 2 4 8 16 32!,2 4 8 ? 32,Easy,,12,24,Double each time,,sequence,20
+planet-hopper,25,,25,Skip counting by 5s!,5 10 15 20 ?,Medium,,20,35,Add 5 each time,,sequence,30
+planet-hopper,81,,81,Multiply by 3: 3 9 27 81!,3 9 27 ?,Medium,,54,90,Times 3 pattern,,sequence,72
+planet-hopper,70,,70,Counting backwards by 10s!,100 90 80 ? 60,Medium,,65,50,Subtract 10,,sequence,75
+planet-hopper,25,,25,Squares: 1² 2² 3² 4² 5² = 1 4 9 16 25!,1 4 9 16 ?,Hard,,20,36,Square numbers,,sequence,30
+planet-hopper,80,,80,Counting by 20s!,20 40 60 ? 100,Hard,,70,85,Add 20 each time,,sequence,90
+planet-hopper,8,,8,Add last two: 1+1=2 1+2=3 2+3=5 3+5=8!,1 1 2 3 5 ?,Hard,,6,7,Fibonacci sequence,,sequence,10
+time-warp,1:00,,1:00,1 o'clock - hour hand points to 1!,1,Easy,read,2:00,11:00,Hour hand on 1,,0,12:00
+time-warp,2:00,,2:00,2:00 - both hands make an L shape!,2,Easy,read,1:00,4:00,Hour hand on 2,,0,3:00
+time-warp,5:00,,5:00,5 o'clock - minute hand up hour hand on 5!,5,Easy,read,4:00,7:00,Hour hand on 5,,0,6:00
+time-warp,8:30,,8:30,8:30 - halfway between 8 and 9!,8,Medium,read,8:00,7:30,Half past 8,,30,9:00
+time-warp,5:15,,5:15,15 minutes after 5 o'clock!,5,Medium,read,5:30,4:15,Quarter past 5,,15,5:45
+time-warp,11:45,,11:45,11:45 is 15 minutes before noon!,11,Medium,read,11:15,10:45,Quarter to 12,,45,12:00
+time-warp,3 hours,,3 hours,From 4 to 7 is 3 hours: 4→5→6→7!,4:00 to 7:00,Hard,duration,4 hours,5 hours,Count hours,,,2 hours
+time-warp,15 minutes,,15 minutes,15 minutes = quarter of an hour!,6:00 to 6:15,Hard,duration,30 minutes,1 hour,Quarter hour,,,45 minutes
+time-warp,2 hours 30 min,,2 hours 30 min,2:30 to 5:00 = 2.5 hours!,2:30 to 5:00,Hard,duration,2 hours,2 hours 15 min,Two and a half hours,,,3 hours
+fraction-frenzy,3/10,,7/8,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,7,Easy,identify,2/3,7/8,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:7:8,8,2/10
+fraction-frenzy,3/6,,2/3,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,2,Easy,identify,1/6,2/3,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:2:3,3,1/2
+fraction-frenzy,1/4,,1/3,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,2/3,1/3,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:3,3,5/8
+fraction-frenzy,2/8,,1/2,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,2/6,1/2,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:2,2,1/5
+fraction-frenzy,1/3,,1/3,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,1/2,5/6,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:3,3,1/5
+fraction-frenzy,9/10,,1/5,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,1/2,1/5,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:5,5,4/5
+fraction-frenzy,4/8,,4/6,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,4,Easy,identify,4/6,1/2,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:4:6,6,5/10
+fraction-frenzy,1/3,,4/6,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,4,Easy,identify,4/6,4/8,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:4:6,6,2/3
+fraction-frenzy,3/5,,1/2,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,1/10,1/2,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:2,2,5/8
+fraction-frenzy,1/10,,3/4,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,3,Easy,identify,3/4,1/4,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:3:4,4,2/4
+fraction-frenzy,1/2,,1/2,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,1,Easy,identify,1/8,3/4,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:1:2,2,1/4
+fraction-frenzy,1/2,,7/10,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,7,Easy,identify,3/5,1/4,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:7:10,10,7/10
+fraction-frenzy,2/4,,4/5,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,4,Easy,identify,1/2,3/4,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:4:5,5,4/5
+fraction-frenzy,1/2,,5/6,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,5,Easy,identify,5/6,2/3,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:5:6,6,1/3
+fraction-frenzy,2/5,,5/10,The top number (numerator) counts shaded parts. The bottom number (denominator) counts total parts.,5,Easy,identify,7/8,9/10,Count the shaded parts (top) and total parts (bottom).,dynamic:fraction:5:10,10,5/10
+fraction-frenzy,>,,<,Compare shaded areas.,4/8,Medium,compare,<,?,Right is bigger,dynamic:compare:4:8:5:6,5/6,=
+fraction-frenzy,>,,>,Compare shaded areas.,5/8,Medium,compare,<,?,Left is bigger,dynamic:compare:5:8:1:6,1/6,=
+fraction-frenzy,>,,<,Compare shaded areas.,2/6,Medium,compare,<,?,Right is bigger,dynamic:compare:2:6:4:6,4/6,=
+fraction-frenzy,>,,<,Compare shaded areas.,5/8,Medium,compare,<,?,Right is bigger,dynamic:compare:5:8:4:6,4/6,=
+fraction-frenzy,>,,>,Compare shaded areas.,3/6,Medium,compare,<,?,Left is bigger,dynamic:compare:3:6:1:3,1/3,=
+fraction-frenzy,>,,>,Compare shaded areas.,5/6,Medium,compare,<,?,Left is bigger,dynamic:compare:5:6:4:8,4/8,=
+fraction-frenzy,>,,<,Compare shaded areas.,1/6,Medium,compare,<,?,Right is bigger,dynamic:compare:1:6:2:4,2/4,=
+fraction-frenzy,>,,>,Compare shaded areas.,5/8,Medium,compare,<,?,Left is bigger,dynamic:compare:5:8:1:2,1/2,=
+fraction-frenzy,>,,>,Compare shaded areas.,5/8,Medium,compare,<,?,Left is bigger,dynamic:compare:5:8:1:8,1/8,=
+fraction-frenzy,>,,<,Compare shaded areas.,4/6,Medium,compare,<,?,Right is bigger,dynamic:compare:4:6:6:8,6/8,=
+fraction-frenzy,>,,=,Compare shaded areas.,4/8,Medium,compare,<,?,Equal!,dynamic:compare:4:8:3:6,3/6,=
+fraction-frenzy,>,,>,Compare shaded areas.,2/3,Medium,compare,<,?,Left is bigger,dynamic:compare:2:3:1:3,1/3,=
+fraction-frenzy,>,,<,Compare shaded areas.,1/8,Medium,compare,<,?,Right is bigger,dynamic:compare:1:8:1:2,1/2,=
+fraction-frenzy,>,,>,Compare shaded areas.,1/2,Medium,compare,<,?,Left is bigger,dynamic:compare:1:2:1:3,1/3,=
+fraction-frenzy,>,,<,Compare shaded areas.,2/6,Medium,compare,<,?,Right is bigger,dynamic:compare:2:6:1:2,1/2,=
+fraction-frenzy,2,,2,1/2 is the same as 2/4.,1/2,Hard,fill-blank,3,4,Equivalent fractions.,dynamic:fraction:1:2,?/4,1
+fraction-frenzy,3,,3,1/2 is the same as 3/6.,1/2,Hard,fill-blank,4,6,Equivalent fractions.,dynamic:fraction:1:2,?/6,2
+fraction-frenzy,4,,4,1/2 is the same as 4/8.,1/2,Hard,fill-blank,5,8,Equivalent fractions.,dynamic:fraction:1:2,?/8,3
+fraction-frenzy,5,,5,1/2 is the same as 5/10.,1/2,Hard,fill-blank,6,10,Equivalent fractions.,dynamic:fraction:1:2,?/10,4
+fraction-frenzy,2,,2,1/3 is the same as 2/6.,1/3,Hard,fill-blank,3,6,Equivalent fractions.,dynamic:fraction:1:3,?/6,1
+fraction-frenzy,3,,3,1/3 is the same as 3/9.,1/3,Hard,fill-blank,4,9,Equivalent fractions.,dynamic:fraction:1:3,?/9,2
+fraction-frenzy,4,,4,2/3 is the same as 4/6.,2/3,Hard,fill-blank,5,6,Equivalent fractions.,dynamic:fraction:2:3,?/6,3
+fraction-frenzy,6,,6,2/3 is the same as 6/9.,2/3,Hard,fill-blank,7,9,Equivalent fractions.,dynamic:fraction:2:3,?/9,5
+fraction-frenzy,2,,2,1/4 is the same as 2/8.,1/4,Hard,fill-blank,3,8,Equivalent fractions.,dynamic:fraction:1:4,?/8,1
+fraction-frenzy,6,,6,3/4 is the same as 6/8.,3/4,Hard,fill-blank,7,8,Equivalent fractions.,dynamic:fraction:3:4,?/8,5
+fraction-frenzy,2,,2,1/5 is the same as 2/10.,1/5,Hard,fill-blank,3,10,Equivalent fractions.,dynamic:fraction:1:5,?/10,1
+fraction-frenzy,4,,4,2/5 is the same as 4/10.,2/5,Hard,fill-blank,5,10,Equivalent fractions.,dynamic:fraction:2:5,?/10,3
+fraction-frenzy,3/3,,2/3,Sum of parts.,1/3,Medium,add,2/3,1/3,Add top numbers.,dynamic:add:1:3:1:3,1/3,2/3
+fraction-frenzy,3/3,,3/3,Sum of parts.,1/3,Medium,add,1/3,1/3,Add top numbers.,dynamic:add:1:3:2:3,2/3,2/3
+fraction-frenzy,1/3,,2/3,Sum of parts.,1/3,Medium,add,2/3,1/3,Add top numbers.,dynamic:add:1:3:1:3,1/3,3/3
+fraction-frenzy,3/3,,2/3,Sum of parts.,1/3,Medium,add,3/3,2/3,Add top numbers.,dynamic:add:1:3:1:3,1/3,1/3
+fraction-frenzy,3/5,,5/5,Sum of parts.,2/5,Medium,add,2/5,1/5,Add top numbers.,dynamic:add:2:5:3:5,3/5,5/5
+fraction-frenzy,9/10,,7/10,Sum of parts.,3/10,Medium,add,5/10,7/10,Add top numbers.,dynamic:add:3:10:4:10,4/10,10/10
+fraction-frenzy,6/6,,6/6,Sum of parts.,2/6,Medium,add,5/6,2/6,Add top numbers.,dynamic:add:2:6:4:6,4/6,1/6
+fraction-frenzy,5/10,,8/10,Sum of parts.,5/10,Medium,add,9/10,3/10,Add top numbers.,dynamic:add:5:10:3:10,3/10,8/10
+fraction-frenzy,1/4,,4/4,Sum of parts.,1/4,Medium,add,4/4,3/4,Add top numbers.,dynamic:add:1:4:3:4,3/4,2/4
+fraction-frenzy,2/4,,3/4,Sum of parts.,1/4,Medium,add,3/4,1/4,Add top numbers.,dynamic:add:1:4:2:4,2/4,4/4
+geometry-galaxy,Hexagon,circle,Circle,circle shape.,,Easy,identify,Circle,Square,Count sides/corners.,dynamic:shape:circle,,Cross
+geometry-galaxy,Arrow,triangle,Triangle,triangle shape.,,Easy,identify,Rhombus,Triangle,Count sides/corners.,dynamic:shape:triangle,,Circle
+geometry-galaxy,Square,square,Square,square shape.,,Easy,identify,Oval,Rectangle,Count sides/corners.,dynamic:shape:square,,Hexagon
+geometry-galaxy,Hexagon,rectangle,Rectangle,rectangle shape.,,Easy,identify,Circle,Rectangle,Count sides/corners.,dynamic:shape:rectangle,,Triangle
+geometry-galaxy,Triangle,pentagon,Pentagon,pentagon shape.,,Easy,identify,Star,Pentagon,Count sides/corners.,dynamic:shape:pentagon,,Heart
+geometry-galaxy,Hexagon,hexagon,Hexagon,hexagon shape.,,Easy,identify,Square,Triangle,Count sides/corners.,dynamic:shape:hexagon,,Trapezoid
+geometry-galaxy,Octagon,octagon,Octagon,octagon shape.,,Easy,identify,Triangle,Circle,Count sides/corners.,dynamic:shape:octagon,,Pentagon
+geometry-galaxy,Pentagon,star,Star,star shape.,,Easy,identify,Star,Rhombus,Count sides/corners.,dynamic:shape:star,,Square
+geometry-galaxy,Octagon,rhombus,Rhombus,rhombus shape.,,Easy,identify,Rhombus,Star,Count sides/corners.,dynamic:shape:rhombus,,Triangle
+geometry-galaxy,Arrow,trapezoid,Trapezoid,trapezoid shape.,,Easy,identify,Triangle,Trapezoid,Count sides/corners.,dynamic:shape:trapezoid,,Heart
+geometry-galaxy,Arrow,oval,Oval,oval shape.,,Easy,identify,Oval,Heart,Count sides/corners.,dynamic:shape:oval,,Square
+geometry-galaxy,Hexagon,heart,Heart,heart shape.,,Easy,identify,Heart,Rhombus,Count sides/corners.,dynamic:shape:heart,,Arrow
+geometry-galaxy,Pentagon,arrow,Arrow,arrow shape.,,Easy,identify,Arrow,Rhombus,Count sides/corners.,dynamic:shape:arrow,,Hexagon
+geometry-galaxy,Cross,cross,Cross,cross shape.,,Easy,identify,Triangle,Arrow,Count sides/corners.,dynamic:shape:cross,,Pentagon
+geometry-galaxy,Semicircle,semicircle,Semicircle,semicircle shape.,,Easy,identify,Arrow,Oval,Count sides/corners.,dynamic:shape:semicircle,,Star
+geometry-galaxy,Sphere,cube,Cube,cube is 3D.,,Medium,identify,Cone,Cylinder,3D Object.,dynamic:shape:cube,,Cube
+geometry-galaxy,Cylinder,sphere,Sphere,sphere is 3D.,,Medium,identify,Sphere,Pyramid,3D Object.,dynamic:shape:sphere,,Cone
+geometry-galaxy,4,triangle,3,3 sides.,,Medium,sides,3,9,Count lines.,dynamic:shape:triangle,,6
+geometry-galaxy,7,triangle,3,3 sides.,,Medium,sides,4,3,Count lines.,dynamic:shape:triangle,,5
+geometry-galaxy,7,square,4,4 sides.,,Medium,sides,4,3,Count lines.,dynamic:shape:square,,8
+geometry-galaxy,3,square,4,4 sides.,,Medium,sides,4,6,Count lines.,dynamic:shape:square,,5
+geometry-galaxy,7,rectangle,4,4 sides.,,Medium,sides,4,9,Count lines.,dynamic:shape:rectangle,,3
+geometry-galaxy,9,rectangle,4,4 sides.,,Medium,sides,4,5,Count lines.,dynamic:shape:rectangle,,8
+geometry-galaxy,6,pentagon,5,5 sides.,,Medium,sides,5,3,Count lines.,dynamic:shape:pentagon,,4
+geometry-galaxy,4,pentagon,5,5 sides.,,Medium,sides,10,6,Count lines.,dynamic:shape:pentagon,,5
+geometry-galaxy,8,hexagon,6,6 sides.,,Medium,sides,4,6,Count lines.,dynamic:shape:hexagon,,9
+geometry-galaxy,3,hexagon,6,6 sides.,,Medium,sides,5,9,Count lines.,dynamic:shape:hexagon,,6
+geometry-galaxy,7,octagon,8,8 sides.,,Medium,sides,8,10,Count lines.,dynamic:shape:octagon,,9
+geometry-galaxy,8,octagon,8,8 sides.,,Medium,sides,9,10,Count lines.,dynamic:shape:octagon,,4
+money-master,21¢,,21¢,Total is 21¢.,Count Coins,Easy,count,16¢,31¢,Sum the values.,dynamic:coins:dime:2:penny:1,,20¢
+money-master,77¢,,67¢,Total is 67¢.,Count Coins,Medium,count,72¢,57¢,Sum the values.,dynamic:coins:quarter:2:nickel:3:penny:2,,67¢
+money-master,23¢,,23¢,Total is 23¢.,Count Coins,Easy,count,33¢,28¢,Sum the values.,dynamic:coins:nickel:4:penny:3,,18¢
+money-master,47¢,,42¢,Total is 42¢.,Count Coins,Easy,count,37¢,42¢,Sum the values.,dynamic:coins:dime:4:penny:2,,41¢
+money-master,77¢,,77¢,Total is 77¢.,Count Coins,Medium,count,67¢,87¢,Sum the values.,dynamic:coins:quarter:1:dime:4:nickel:2:penny:2,,78¢
+money-master,56¢,,55¢,Total is 55¢.,Count Coins,Medium,count,54¢,55¢,Sum the values.,dynamic:coins:quarter:1:dime:1:nickel:4,,65¢
+money-master,23¢,,33¢,Total is 33¢.,Count Coins,Easy,count,43¢,34¢,Sum the values.,dynamic:coins:dime:1:nickel:4:penny:3,,33¢
+money-master,98¢,,97¢,Total is 97¢.,Count Coins,Medium,count,92¢,102¢,Sum the values.,dynamic:coins:quarter:2:dime:3:nickel:3:penny:2,,97¢
+money-master,94¢,,94¢,Total is 94¢.,Count Coins,Medium,count,99¢,95¢,Sum the values.,dynamic:coins:quarter:3:dime:1:nickel:1:penny:4,,84¢
+money-master,98¢,,97¢,Total is 97¢.,Count Coins,Medium,count,87¢,102¢,Sum the values.,dynamic:coins:quarter:3:dime:1:nickel:2:penny:2,,97¢
+money-master,81¢,,91¢,Total is 91¢.,Count Coins,Medium,count,86¢,96¢,Sum the values.,dynamic:coins:quarter:2:dime:4:penny:1,,91¢
+money-master,94¢,,94¢,Total is 94¢.,Count Coins,Medium,count,99¢,89¢,Sum the values.,dynamic:coins:quarter:2:dime:3:nickel:2:penny:4,,95¢
+money-master,77¢,,72¢,Total is 72¢.,Count Coins,Medium,count,71¢,72¢,Sum the values.,dynamic:coins:quarter:2:dime:1:nickel:2:penny:2,,67¢
+money-master,63¢,,62¢,Total is 62¢.,Count Coins,Medium,count,52¢,62¢,Sum the values.,dynamic:coins:quarter:2:nickel:2:penny:2,,67¢
+money-master,30¢,,25¢,Total is 25¢.,Count Coins,Easy,count,25¢,20¢,Sum the values.,dynamic:coins:quarter:1,,24¢
+money-master,108¢,,109¢,Total is 109¢.,Count Coins,Medium,count,109¢,114¢,Sum the values.,dynamic:coins:quarter:3:dime:3:penny:4,,99¢
+money-master,69¢,,69¢,Total is 69¢.,Count Coins,Medium,count,68¢,59¢,Sum the values.,dynamic:coins:quarter:2:nickel:3:penny:4,,79¢
+money-master,45¢,,44¢,Total is 44¢.,Count Coins,Easy,count,49¢,54¢,Sum the values.,dynamic:coins:quarter:1:dime:1:nickel:1:penny:4,,44¢
+money-master,22¢,,21¢,Total is 21¢.,Count Coins,Easy,count,21¢,20¢,Sum the values.,dynamic:coins:dime:1:nickel:2:penny:1,,11¢
+money-master,51¢,,56¢,Total is 56¢.,Count Coins,Medium,count,55¢,56¢,Sum the values.,dynamic:coins:quarter:1:dime:1:nickel:4:penny:1,,66¢
+money-master,76¢,,86¢,Total is 86¢.,Count Coins,Medium,count,91¢,86¢,Sum the values.,dynamic:coins:quarter:2:dime:3:nickel:1:penny:1,,87¢
+money-master,42¢,,43¢,Total is 43¢.,Count Coins,Easy,count,33¢,53¢,Sum the values.,dynamic:coins:quarter:1:dime:1:nickel:1:penny:3,,43¢
+money-master,48¢,,43¢,Total is 43¢.,Count Coins,Easy,count,44¢,53¢,Sum the values.,dynamic:coins:dime:4:penny:3,,43¢
+money-master,46¢,,41¢,Total is 41¢.,Count Coins,Easy,count,41¢,31¢,Sum the values.,dynamic:coins:dime:3:nickel:2:penny:1,,40¢
+money-master,95¢,,94¢,Total is 94¢.,Count Coins,Medium,count,84¢,94¢,Sum the values.,dynamic:coins:quarter:3:nickel:3:penny:4,,104¢
+money-master,123¢,,122¢,Total is 122¢.,Count Coins,Medium,count,122¢,127¢,Sum the values.,dynamic:coins:quarter:3:dime:4:nickel:1:penny:2,,112¢
+money-master,25¢,,30¢,Total is 30¢.,Count Coins,Easy,count,31¢,30¢,Sum the values.,dynamic:coins:dime:1:nickel:4,,20¢
+money-master,83¢,,83¢,Total is 83¢.,Count Coins,Medium,count,78¢,93¢,Sum the values.,dynamic:coins:quarter:1:dime:4:nickel:3:penny:3,,88¢
+money-master,61¢,,61¢,Total is 61¢.,Count Coins,Medium,count,60¢,66¢,Sum the values.,dynamic:coins:dime:4:nickel:4:penny:1,,62¢
+money-master,73¢,,78¢,Total is 78¢.,Count Coins,Medium,count,83¢,78¢,Sum the values.,dynamic:coins:quarter:1:dime:4:nickel:2:penny:3,,77¢
+money-master,60¢,Paid: $1.00,60¢,Change is 60¢.,Price: 40¢,Hard,change,65¢,70¢,100 - 40,,change,55¢
+money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
+money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
+money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
+money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
+money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
+money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
+money-master,25¢,Paid: $1.00,25¢,Change is 25¢.,Price: 75¢,Hard,change,30¢,35¢,100 - 75,,change,20¢
+money-master,75¢,Paid: $1.00,75¢,Change is 75¢.,Price: 25¢,Hard,change,80¢,85¢,100 - 25,,change,70¢
+money-master,10¢,Paid: $1.00,10¢,Change is 10¢.,Price: 90¢,Hard,change,15¢,20¢,100 - 90,,change,5¢
+money-master,45¢,Paid: $1.00,45¢,Change is 45¢.,Price: 55¢,Hard,change,50¢,55¢,100 - 55,,change,40¢
+money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
+money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
+money-master,70¢,Paid: $1.00,70¢,Change is 70¢.,Price: 30¢,Hard,change,75¢,80¢,100 - 30,,change,65¢
+money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
+money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
+money-master,40¢,Paid: $1.00,40¢,Change is 40¢.,Price: 60¢,Hard,change,45¢,50¢,100 - 60,,change,35¢
+money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
+money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
+money-master,25¢,Paid: $1.00,25¢,Change is 25¢.,Price: 75¢,Hard,change,30¢,35¢,100 - 75,,change,20¢

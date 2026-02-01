@@ -1,12 +1,9 @@
 
 > learning-galaxy@5.0.0 dev
-> vite --port 3000
+> vite
 
 
-  VITE v5.4.21  ready in 366 ms
+  VITE v5.4.21  ready in 278 ms
 
   ➜  Local:   http://localhost:3000/Kani-Game-App/
   ➜  Network: use --host to expose
-9:59:20 AM [vite] hmr update /src/components/shared/Header.tsx, /src/index.css
-9:59:56 AM [vite] hmr update /src/components/pages/SheetBasedGame.tsx, /src/index.css
-10:00:10 AM [vite] hmr update /src/components/pages/SheetBasedGame.tsx, /src/index.css
