@@ -27,9 +27,17 @@ export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, fo
           <div className="text-xs text-orange-300">STREAK</div>
         </div>
         {progress && (
-          <div className="ml-3 border-l border-gray-600 pl-3">
-            <div className="text-xl font-bold text-emerald-400">{progress.current}/{progress.total}</div>
-            <div className="text-xs text-emerald-300">QUES</div>
+          <div className="ml-3 border-l border-gray-600 pl-3 flex flex-col justify-center min-w-[120px]">
+            <div className="flex justify-between text-xs text-emerald-300 mb-1">
+              <span className="font-bold">PROGRESS</span>
+              <span className="font-bold">{progress.current}/{progress.total}</span>
+            </div>
+            <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden border border-gray-600">
+              <div
+                className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-500 ease-out shadow-[0_0_10px_rgba(52,211,153,0.5)]"
+                style={{ width: `${(progress.current / progress.total) * 100}%` }}
+              />
+            </div>
           </div>
         )}
         {difficulty && <div className="ml-3 border-l border-gray-600 pl-3"><DifficultyBadge difficulty={difficulty} /></div>}

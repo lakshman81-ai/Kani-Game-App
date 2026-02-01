@@ -160,6 +160,14 @@ export const DataDetectiveGame: React.FC<DataDetectiveGameProps> = ({ onBack, di
         }, 1500);
     };
 
+    const [showHint, setShowHint] = React.useState(false);
+
+    useEffect(() => {
+        setShowHint(false);
+        const timer = setTimeout(() => setShowHint(true), 5000);
+        return () => clearTimeout(timer);
+    }, [question]);
+
     // Timer
     useEffect(() => {
         if (gameState === 'play') {
@@ -265,8 +273,9 @@ export const DataDetectiveGame: React.FC<DataDetectiveGameProps> = ({ onBack, di
 
                 {gameState === 'play' && (
                     <div className="flex flex-col items-center w-full max-w-2xl">
-                        <div className="bg-gray-800/80 backdrop-blur border border-cyan-500/30 rounded-2xl p-6 w-full mb-6">
+                        <div className="bg-gray-800/80 backdrop-blur border border-cyan-500/30 rounded-2xl p-6 w-full mb-6 shadow-2xl animate-slideIn">
                             <h2 className="text-xl text-cyan-100 mb-6 text-center">{question}</h2>
+                            {showHint && <div className="text-center text-cyan-300 mb-4 animate-bounce">💡 Hint: Look closely at the chart!</div>}
 
                             <div className="flex justify-center mb-6">
                                 {chartType === 'bar' && renderBarChart()}
