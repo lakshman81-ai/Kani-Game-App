@@ -160,7 +160,24 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                                 {showUrls ? '🙈 Hide' : '👁️ Show'}
                             </button>
                         </div>
-                        <div className="space-y-4">
+
+                        <div className="flex items-center justify-between py-2 border-b border-gray-700 mb-4 pb-4">
+                            <div>
+                                <span className="text-white font-bold">🌐 Use Google Sheets</span>
+                                <p className="text-gray-400 text-xs mt-1">Enable to fetch questions from online sheets. Turn OFF to use local files.</p>
+                            </div>
+                            <label className="relative inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    checked={localSettings.useGoogleSheets}
+                                    onChange={(e) => setLocalSettings({ ...localSettings, useGoogleSheets: e.target.checked })}
+                                    className="sr-only peer"
+                                />
+                                <div className="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+
+                        <div className={`space-y-4 ${!localSettings.useGoogleSheets ? 'opacity-50 pointer-events-none grayscale' : ''}`}>
                             <div>
                                 <label className="block text-white font-bold mb-2 text-sm">🔢 Math Data URL</label>
                                 <div className="flex gap-2">

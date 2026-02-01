@@ -27,6 +27,7 @@ export interface Question {
     subtopic?: string;
     know_more?: string;
     explanation?: string; // Mapped from know_more
+    image_url?: string;
 }
 
 export interface Feedback {
@@ -55,6 +56,7 @@ export interface Settings {
     generatorGrade: string;
     generatorDifficulty: string;
     surpriseMode: boolean;
+    useGoogleSheets?: boolean;
 }
 
 export interface QAStats {

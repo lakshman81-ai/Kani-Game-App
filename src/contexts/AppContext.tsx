@@ -21,7 +21,8 @@ const DEFAULT_SETTINGS: Settings = {
     enabledGames: {},
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',
-    surpriseMode: true
+    surpriseMode: true,
+    useGoogleSheets: false
 };
 
 // Storage helper
