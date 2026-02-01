@@ -47,10 +47,27 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
         const radius = size * 0.45;
         let paths = [];
 
-        // Background circle
-        paths.push(<circle cx={center} cy={center} r={radius} fill="#374151" stroke="white" strokeWidth="2" key="bg" />);
+        // Defs for glossy effect
+        const defs = (
+            <defs>
+                <linearGradient id="sliceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#60A5FA" />
+                    <stop offset="100%" stopColor="#2563EB" />
+                </linearGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                    <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+        );
 
-        if (den === 0) return paths;
+        // Background circle
+        paths.push(<circle cx={center} cy={center} r={radius} fill="#1F2937" stroke="#374151" strokeWidth="2" key="bg" />);
+
+        if (den === 0) return <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>{defs}{paths}</svg>;
 
         // Slices
         const anglePerSlice = 360 / den;
@@ -67,20 +84,66 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
 
             // For a full circle (1/1), SVG arc path gets tricky, so we handle it simply
             if (den === 1 && num === 1) {
-                paths.push(<circle cx={center} cy={center} r={radius} fill="#60A5FA" key={`slice-${i}`} />);
+                paths.push(<circle cx={center} cy={center} r={radius} fill="url(#sliceGrad)" key={`slice-${i}`} filter="url(#glow)" />);
             } else {
                 paths.push(
                     <path
                         d={`M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`}
-                        fill="#60A5FA"
+                        fill="url(#sliceGrad)"
                         stroke="white"
                         strokeWidth="1"
                         key={`slice-${i}`}
+                        filter="url(#glow)"
                     />
                 );
             }
         }
-        return <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>{paths}</svg>;
+        return <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>{defs}{paths}</svg>;
+    };
+
+    const renderCoin = (coinType: string, count: number) => {
+        const coins = [];
+        for (let i = 0; i < count; i++) {
+            let color = "#E5E7EB"; // Silver default
+            let size = 40;
+            let text = "";
+            let borderColor = "#9CA3AF";
+
+            if (coinType === 'penny') {
+                color = "#B45309"; // Copper
+                borderColor = "#78350F";
+                size = 36;
+                text = "1¢";
+            } else if (coinType === 'nickel') {
+                color = "#D1D5DB"; // Nickel
+                borderColor = "#6B7280";
+                size = 44;
+                text = "5¢";
+            } else if (coinType === 'dime') {
+                color = "#E5E7EB"; // Silver
+                borderColor = "#9CA3AF";
+                size = 32; // Smallest
+                text = "10¢";
+            } else if (coinType === 'quarter') {
+                color = "#F3F4F6"; // Silver/White
+                borderColor = "#4B5563";
+                size = 52; // Largest
+                text = "25¢";
+            }
+
+            coins.push(
+                <div key={`${coinType}-${i}`} className="relative flex items-center justify-center rounded-full shadow-lg"
+                    style={{
+                        width: size, height: size,
+                        background: `radial-gradient(circle at 30% 30%, #fff, ${color})`,
+                        border: `2px solid ${borderColor}`,
+                        margin: '4px'
+                    }}>
+                    <span className="font-bold text-gray-700 text-xs shadow-white drop-shadow-sm">{text}</span>
+                </div>
+            );
+        }
+        return coins;
     };
 
     if (type === 'fraction') {
@@ -129,34 +192,57 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
         );
     }
 
+    if (type === 'coins') {
+        // dynamic:coins:quarter:2:dime:1...
+        const coinGroups = [];
+        for (let i = 2; i < parts.length; i += 2) {
+            const cType = parts[i];
+            const cCount = parseInt(parts[i + 1]);
+            coinGroups.push(...renderCoin(cType, cCount));
+        }
+        return <div className="flex flex-wrap justify-center gap-2 mb-4 max-w-md">{coinGroups}</div>;
+    }
+
     if (type === 'shape') {
         const shape = parts[2];
         const size = 120;
         const color = "#EC4899"; // Pink
 
+        const defs = (
+            <defs>
+                <linearGradient id="shapeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#F472B6" />
+                    <stop offset="100%" stopColor="#DB2777" />
+                </linearGradient>
+                <filter id="shadow">
+                    <feDropShadow dx="2" dy="2" stdDeviation="3" floodOpacity="0.5" />
+                </filter>
+            </defs>
+        );
+
         let path = null;
-        if (shape === 'square') path = <rect x="20" y="20" width="80" height="80" fill={color} />;
-        if (shape === 'circle') path = <circle cx="60" cy="60" r="45" fill={color} />;
-        if (shape === 'triangle') path = <polygon points="60,15 105,95 15,95" fill={color} />;
-        if (shape === 'rectangle') path = <rect x="10" y="35" width="100" height="50" fill={color} />;
-        if (shape === 'pentagon') path = <polygon points="60,10 108,45 90,100 30,100 12,45" fill={color} />;
-        if (shape === 'hexagon') path = <polygon points="60,10 105,35 105,85 60,110 15,85 15,35" fill={color} />;
-        if (shape === 'octagon') path = <polygon points="41,10 79,10 106,37 106,75 79,102 41,102 14,75 14,37" fill={color} />;
-        if (shape === 'star') path = <polygon points="60,10 75,45 115,45 85,70 95,110 60,85 25,110 35,70 5,45 45,45" fill={color} />;
-        if (shape === 'rhombus') path = <polygon points="60,10 100,60 60,110 20,60" fill={color} />;
-        if (shape === 'trapezoid') path = <polygon points="30,20 90,20 110,100 10,100" fill={color} />;
-        if (shape === 'oval') path = <ellipse cx="60" cy="60" rx="50" ry="30" fill={color} />;
-        if (shape === 'heart') path = <path d="M60,100 L20,60 A20,20 0 0 1 60,30 A20,20 0 0 1 100,60 Z" fill={color} transform="translate(0, -10) scale(1.0)" />; // Simplified heart
-        if (shape === 'arrow') path = <polygon points="20,40 80,40 80,20 110,60 80,100 80,80 20,80" fill={color} />;
-        if (shape === 'cross') path = <path d="M40,10 L80,10 L80,40 L110,40 L110,80 L80,80 L80,110 L40,110 L40,80 L10,80 L10,40 L40,40 Z" fill={color} />;
-        if (shape === 'semicircle') path = <path d="M10,60 A50,50 0 0 1 110,60 Z" fill={color} />;
+        if (shape === 'square') path = <rect x="20" y="20" width="80" height="80" fill="url(#shapeGrad)" />;
+        if (shape === 'circle') path = <circle cx="60" cy="60" r="45" fill="url(#shapeGrad)" />;
+        if (shape === 'triangle') path = <polygon points="60,15 105,95 15,95" fill="url(#shapeGrad)" />;
+        if (shape === 'rectangle') path = <rect x="10" y="35" width="100" height="50" fill="url(#shapeGrad)" />;
+        if (shape === 'pentagon') path = <polygon points="60,10 108,45 90,100 30,100 12,45" fill="url(#shapeGrad)" />;
+        if (shape === 'hexagon') path = <polygon points="60,10 105,35 105,85 60,110 15,85 15,35" fill="url(#shapeGrad)" />;
+        if (shape === 'octagon') path = <polygon points="41,10 79,10 106,37 106,75 79,102 41,102 14,75 14,37" fill="url(#shapeGrad)" />;
+        if (shape === 'star') path = <polygon points="60,10 75,45 115,45 85,70 95,110 60,85 25,110 35,70 5,45 45,45" fill="url(#shapeGrad)" />;
+        if (shape === 'rhombus') path = <polygon points="60,10 100,60 60,110 20,60" fill="url(#shapeGrad)" />;
+        if (shape === 'trapezoid') path = <polygon points="30,20 90,20 110,100 10,100" fill="url(#shapeGrad)" />;
+        if (shape === 'oval') path = <ellipse cx="60" cy="60" rx="50" ry="30" fill="url(#shapeGrad)" />;
+        if (shape === 'heart') path = <path d="M60,100 L20,60 A20,20 0 0 1 60,30 A20,20 0 0 1 100,60 Z" fill="url(#shapeGrad)" transform="translate(0, -10) scale(1.0)" />;
+        if (shape === 'arrow') path = <polygon points="20,40 80,40 80,20 110,60 80,100 80,80 20,80" fill="url(#shapeGrad)" />;
+        if (shape === 'cross') path = <path d="M40,10 L80,10 L80,40 L110,40 L110,80 L80,80 L80,110 L40,110 L40,80 L10,80 L10,40 L40,40 Z" fill="url(#shapeGrad)" />;
+        if (shape === 'semicircle') path = <path d="M10,60 A50,50 0 0 1 110,60 Z" fill="url(#shapeGrad)" />;
         if (shape === 'cube') {
              // Simple 3D cube projection
              return (
                  <svg width={size} height={size} viewBox="0 0 120 120" stroke="white" strokeWidth="2" fill="none">
-                     <rect x="30" y="30" width="60" height="60" fill={color} opacity="0.8" />
-                     <path d="M30,30 L50,10 L110,10 L90,30" fill={color} opacity="0.6" />
-                     <path d="M90,30 L110,10 L110,70 L90,90" fill={color} opacity="0.5" />
+                     <rect x="30" y="30" width="60" height="60" fill="url(#shapeGrad)" opacity="0.9" filter="url(#shadow)" />
+                     <path d="M30,30 L50,10 L110,10 L90,30" fill="url(#shapeGrad)" opacity="0.7" />
+                     <path d="M90,30 L110,10 L110,70 L90,90" fill="url(#shapeGrad)" opacity="0.6" />
                  </svg>
              );
         }
@@ -170,12 +256,12 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
                         </radialGradient>
                     </defs>
                     <circle cx="60" cy="60" r="45" fill={color} />
-                    <circle cx="60" cy="60" r="45" fill="url(#sphereGrad)" />
+                    <circle cx="60" cy="60" r="45" fill="url(#sphereGrad)" filter="url(#shadow)" />
                 </svg>
             );
         }
 
-        return <svg width={size} height={size} viewBox="0 0 120 120">{path}</svg>;
+        return <svg width={size} height={size} viewBox="0 0 120 120" filter="url(#shadow)">{defs}{path}</svg>;
     }
 
     return null;
@@ -219,16 +305,20 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center">
                         {commonImage}
-                        {!commonImage && (
-                            <>
-                                {gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>}
-                                {gameId !== 'geometry-galaxy' && (
-                                    <div className="text-white text-4xl font-bold mb-2">
+                        {!commonImage && gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && (
+                            <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>
+                        )}
+                        {gameId !== 'geometry-galaxy' && (!commonImage || currentQ.operation === 'fill-blank') && (
+                            <div className="text-white text-4xl font-bold mb-2">
+                                {currentQ.operation === 'fill-blank' ? (
+                                    <span>{currentQ.num1} = {currentQ.num2}</span>
+                                ) : (
+                                    <>
                                         {currentQ.num1} {currentQ.operation} {currentQ.num2} {currentQ.operation && '= ?'}
                                         {gameId === 'fraction-frenzy' && currentQ.operation === 'identify' && currentQ.num1 && !currentQ.num2 && <span>{currentQ.num1}</span>}
-                                    </div>
+                                    </>
                                 )}
-                            </>
+                            </div>
                         )}
                         {/* Specific text fallbacks if no image */}
                         {gameId === 'geometry-galaxy' && currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
@@ -469,7 +559,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 <div className="w-full max-w-lg relative">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center">
                         <div className="text-green-400 text-sm mb-2">{isChange ? '💵 Make Change' : '🪙 Count the Coins'}</div>
-                        <div className="text-white text-2xl font-bold mb-4">{currentQ.num1 || ''}</div>
+                        {commonImage}
+                        {!commonImage && <div className="text-white text-2xl font-bold mb-4">{currentQ.num1 || ''}</div>}
                         {safeHint && <p className="text-gray-400 text-sm">{safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
