@@ -160,6 +160,38 @@ export const GAME_THEMES = {
     borderColor: 'border-red-500',
     glowColor: 'shadow-red-500/50',
   },
+  'word-wizard': {
+    gradient: 'from-indigo-500 to-blue-500',
+    buttonBg: 'bg-gradient-to-r from-indigo-500 to-blue-500',
+    cardBg: 'bg-indigo-900/30',
+    accentColor: 'text-indigo-300',
+    borderColor: 'border-indigo-400',
+    glowColor: 'shadow-indigo-500/50',
+  },
+  'root-raider': {
+    gradient: 'from-green-600 to-teal-500',
+    buttonBg: 'bg-gradient-to-r from-green-600 to-teal-500',
+    cardBg: 'bg-green-900/30',
+    accentColor: 'text-green-300',
+    borderColor: 'border-green-400',
+    glowColor: 'shadow-green-500/50',
+  },
+  'idiom-island': {
+    gradient: 'from-orange-500 to-yellow-400',
+    buttonBg: 'bg-gradient-to-r from-orange-500 to-yellow-400',
+    cardBg: 'bg-orange-900/30',
+    accentColor: 'text-orange-300',
+    borderColor: 'border-orange-400',
+    glowColor: 'shadow-orange-500/50',
+  },
+  'homophone-hunt': {
+    gradient: 'from-pink-500 to-red-400',
+    buttonBg: 'bg-gradient-to-r from-pink-500 to-red-400',
+    cardBg: 'bg-pink-900/30',
+    accentColor: 'text-pink-300',
+    borderColor: 'border-pink-400',
+    glowColor: 'shadow-pink-500/50',
+  },
 
   // Comprehension games - Enhanced with unique themes
   'story-nebula': {

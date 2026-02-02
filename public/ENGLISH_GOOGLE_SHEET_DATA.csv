@@ -188,3 +188,33 @@ inference-investigator,The ice cream melted on the sidewalk.,What was the weathe
 inference-investigator,The library was quiet and everyone whispered.,Why are people whispering?,Library rules,Party time,Gym class,Recess,,Hard,inference,Libraries require quiet - that's why whispers!
 inference-investigator,Chef tasted the soup and added more salt.,What was wrong with soup?,Not salty enough,Too salty,Too hot,Perfect,,Hard,inference,Adding salt = soup needed more salt flavor!
 inference-investigator,Bird gathering worms in its beak repeatedly.,What is bird doing?,Feeding babies,Flying south,Building nest,Sleeping,,Hard,inference,Gathering food repeatedly = feeding baby birds!
+word-wizard,The _____ kitten hid under the bed during the storm.,frightened means very scared,scared,scared,happy,angry,sleepy,Easy,vocabulary,Context clues: hiding during storm suggests fear
+word-wizard,The teacher asked us to _____ the passage carefully before answering.,read with attention,examine,examine,ignore,skip,forget,Easy,vocabulary,Teachers want careful reading
+word-wizard,After running the marathon he felt completely _____.,very tired,exhausted,exhausted,energetic,hungry,happy,Medium,vocabulary,Running 26 miles makes you very tired
+word-wizard,The _____ explorers discovered a hidden cave in the mountains.,brave and ready for adventure,intrepid,intrepid,scared,tired,lost,Medium,vocabulary,Explorers who discover things are brave
+word-wizard,Despite the _____ weather we decided to go hiking anyway.,bad or unpleasant,inclement,inclement,perfect,sunny,beautiful,Hard,vocabulary,Inclement means bad weather
+word-wizard,Her _____ response surprised everyone in the meeting.,quick and witty,astute,astute,slow,boring,angry,Hard,vocabulary,Astute means clever and quick
+root-raider,bio,biology biography,life,life,water,earth,fire,Easy,vocabulary,Bio = life. Biology = study of life
+root-raider,aqua,aquarium aquatic,water,water,fire,earth,air,Easy,vocabulary,Aqua = water. Aquarium = water tank
+root-raider,geo,geography geology,earth,earth,water,fire,life,Easy,vocabulary,Geo = earth. Geography = study of earth
+root-raider,tele,telephone television,far/distant,far/distant,close,inside,above,Medium,vocabulary,Tele = far. Telephone = far sound
+root-raider,chrono,chronological chronicle,time,time,color,sound,light,Medium,vocabulary,Chrono = time. Chronological = in time order
+root-raider,phon,phonics telephone,sound,sound,light,smell,taste,Medium,vocabulary,Phon = sound. Phonics = study of sounds
+root-raider,bene,benefit beneficial,good/well,good/well,bad,small,large,Hard,vocabulary,Bene = good. Benefit = something good
+root-raider,mal,malfunction malice,bad/evil,bad/evil,good,fast,slow,Hard,vocabulary,Mal = bad. Malfunction = bad function
+idiom-island,Break a leg!,Said to performers before a show,Good luck!,Good luck!,Get injured,Run away,Be careful,Easy,vocabulary,Theater tradition - wishing good luck
+idiom-island,It's raining cats and dogs.,Describing weather,Raining very heavily,Raining very heavily,Animals falling,Light rain,Cloudy sky,Easy,vocabulary,Means extremely heavy rain
+idiom-island,Piece of cake,Describing a task,Very easy,Very easy,Delicious food,Party time,Sweet treat,Easy,vocabulary,When something is super easy to do
+idiom-island,Hit the books,What a student should do,Study hard,Study hard,Fight books,Throw books,Buy books,Medium,vocabulary,Means to study seriously
+idiom-island,Under the weather,How someone feels,Feeling sick,Feeling sick,Outside in rain,Very cold,Lost compass,Medium,vocabulary,Feeling unwell or ill
+idiom-island,Cost an arm and a leg,Describing a price,Very expensive,Very expensive,Need surgery,Free item,Body parts,Medium,vocabulary,Something that costs a lot of money
+idiom-island,Burning the midnight oil,Describing work habits,Working very late,Working very late,Fire hazard,Cooking oil,Lamp repair,Hard,vocabulary,Working late into the night
+idiom-island,Bite off more than you can chew,Describing a situation,Taking on too much,Taking on too much,Eating fast,Dental problem,Food fight,Hard,vocabulary,Taking on more than you can handle
+homophone-hunt,_____ going to the park tomorrow.,They are going,They're,They're,Their,There,They,Easy,vocabulary,They're = They are
+homophone-hunt,The dog wagged _____ tail happily.,Belonging to the dog,its,its,it's,its',is,Easy,vocabulary,Its = belonging to it (no apostrophe)
+homophone-hunt,Put the books over _____.,That place,there,there,their,they're,the,Easy,vocabulary,There = a place
+homophone-hunt,_____ house is the blue one on the corner.,Belonging to them,Their,Their,There,They're,Theirs,Medium,vocabulary,Their = belonging to them
+homophone-hunt,I _____ the answer to the question.,Past tense of know,knew,knew,new,kniew,know,Medium,vocabulary,Knew = past tense of know
+homophone-hunt,We need to _____ the package today.,Send through mail,mail,mail,male,mael,mal,Medium,vocabulary,Mail = to send
+homophone-hunt,The _____ of the story is to be kind.,Lesson learned,moral,moral,morale,mural,mortal,Hard,vocabulary,Moral = lesson or principle
+homophone-hunt,The knight wore heavy _____ armor.,Made of metal,steel,steel,steal,stele,stil,Hard,vocabulary,Steel = metal. Steal = to take

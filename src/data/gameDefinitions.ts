@@ -122,6 +122,38 @@ export const VOCABULARY_GAMES: GameDefinition[] = [
         difficulty: 'Easy',
         description: 'Find opposites!'
     },
+    {
+        id: 'word-wizard',
+        title: 'Word Wizard',
+        icon: '🧙',
+        color: 'from-indigo-500 to-blue-500',
+        difficulty: 'Medium',
+        description: 'Guess from clues!'
+    },
+    {
+        id: 'root-raider',
+        title: 'Root Raider',
+        icon: '🌳',
+        color: 'from-green-600 to-teal-500',
+        difficulty: 'Hard',
+        description: 'Word roots!'
+    },
+    {
+        id: 'idiom-island',
+        title: 'Idiom Island',
+        icon: '🏝️',
+        color: 'from-orange-500 to-yellow-400',
+        difficulty: 'Medium',
+        description: 'Figure of speech!'
+    },
+    {
+        id: 'homophone-hunt',
+        title: 'Homophone Hunt',
+        icon: '👂',
+        color: 'from-pink-500 to-red-400',
+        difficulty: 'Easy',
+        description: 'Sound-alike words!'
+    }
 ];
 
 export const COMPREHENSION_GAMES: GameDefinition[] = [
