@@ -25,22 +25,6 @@ export const StoryNebulaRenderer: React.FC<RendererProps> = ({ currentQ, handleA
           </h3>
         </div>
 
-        {/* Story Content with better readability */}
-        <div className="max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-          <p className="text-white text-lg leading-relaxed font-medium">
-            {currentQ.text2}
-          </p>
-        </div>
-
-        {/* Hint section if available */}
-        {currentQ.hint && (
-          <div className="mt-4 pt-4 border-t border-teal-400/20">
-            <p className="text-teal-300 text-sm italic flex items-center gap-2">
-              <span>💡</span>
-              <span>{currentQ.hint}</span>
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Question Section with enhanced styling */}
@@ -48,7 +32,7 @@ export const StoryNebulaRenderer: React.FC<RendererProps> = ({ currentQ, handleA
         <div className="flex items-start gap-3">
           <span className="text-3xl mt-1">❓</span>
           <div className="text-white text-xl font-semibold leading-relaxed">
-            {currentQ.answer}
+            {currentQ.category === 'comprehension' ? currentQ.explanation : currentQ.category || currentQ.explanation}
           </div>
         </div>
       </div>
@@ -58,9 +42,9 @@ export const StoryNebulaRenderer: React.FC<RendererProps> = ({ currentQ, handleA
         {options.map((opt, i) => (
           <button
             key={i}
-            onClick={() => handleAnswer(opt, currentQ.option1)} // Note: check logic here, might be answer key mismatch
+            onClick={() => handleAnswer(opt, currentQ.answer)}
             className={`p-4 rounded-xl text-left font-medium text-lg transition-all transform hover:scale-102 hover:shadow-xl ${feedback
-                ? opt === currentQ.option1
+                ? opt === currentQ.answer
                   ? 'bg-green-500 text-white border-2 border-green-300 shadow-lg shadow-green-500/50'
                   : 'bg-gray-700 text-gray-400 border-2 border-gray-600'
                 : `${gameTheme.buttonBg} text-white hover:brightness-110 border-2 ${gameTheme.borderColor}`

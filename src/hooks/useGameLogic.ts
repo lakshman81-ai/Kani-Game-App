@@ -7,7 +7,7 @@ export const useGameLogic = (
     gameId: string,
     difficulty: Difficulty,
     settings: Settings,
-    onGameEnd: (game: string, name: string, stars: number, streak: number) => Promise<void>
+    onGameEnd: (game: string, name: string, stars: number, streak: number, hintsUsed: number) => Promise<void>
 ) => {
     const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy', 'story-solver', 'estimation-express', 'pattern-planet', 'measurement-mission'].includes(gameId);
     const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense'].includes(gameId);
@@ -81,8 +81,27 @@ export const useGameLogic = (
 
         // Prepare session questions
         const filtered = filterQuestions();
-        const shuffled = shuffleArray(filtered);
-        const session = shuffled.slice(0, 10); // Take top 10
+        let session: Question[] = [];
+
+        if (gameId === 'story-nebula') {
+            // Group by story title
+            const grouped: Record<string, Question[]> = {};
+            filtered.forEach(q => {
+                const title = q.text1 || 'Untitled';
+                if (!grouped[title]) grouped[title] = [];
+                grouped[title].push(q);
+            });
+
+            const titles = Object.keys(grouped);
+            if (titles.length > 0) {
+                // Pick one random story
+                const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+                session = grouped[randomTitle];
+            }
+        } else {
+            const shuffled = shuffleArray(filtered);
+            session = shuffled.slice(0, 10); // Take top 10
+        }
 
         setQuestionsQueue(session);
         setTotalQuestions(session.length);
@@ -147,7 +166,8 @@ export const useGameLogic = (
 
     const handleSaveScore = async () => {
         if (!playerName.trim()) return;
-        await onGameEnd(gameId, playerName, stars, maxStreak);
+        const hintsUsed = Object.values(hintLogs).filter(Boolean).length;
+        await onGameEnd(gameId, playerName, stars, maxStreak, hintsUsed);
         setScoreSaved(true);
     };
 
@@ -166,7 +186,8 @@ export const useGameLogic = (
             currentIndex,
             totalQuestions,
             answers,
-            hintLogs
+            hintLogs,
+            totalHintsUsed: Object.values(hintLogs).filter(Boolean).length
         },
         setters: {
             setPlayerName

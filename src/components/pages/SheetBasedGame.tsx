@@ -270,16 +270,27 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
 export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficulty, settings, gameId, title, icon, variant }) => {
     const { addLeaderboardEntry } = useAppContext();
 
-    const handleGameEnd = async (game: string, name: string, stars: number, streak: number) => {
-        await addLeaderboardEntry({ game, name, stars, streak, date: new Date().toISOString() });
+    const handleGameEnd = async (game: string, name: string, stars: number, streak: number, hintsUsed: number) => {
+        await addLeaderboardEntry({ game, name, stars, streak, date: new Date().toISOString(), hintsUsed });
     };
 
     const {
-        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved, currentIndex, totalQuestions, answers, hintLogs },
+        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved, currentIndex, totalQuestions, answers, hintLogs, totalHintsUsed },
         setters: { setPlayerName },
         actions: { startGame, handleAnswer, handleSaveScore, navigateQuestion, toggleHint },
         data: { loading, error, questionsCount }
     } = useGameLogic(gameId, difficulty, settings, handleGameEnd);
+
+    const [readingPhase, setReadingPhase] = useState(false);
+    const [showHintModal, setShowHintModal] = useState(false);
+
+    useEffect(() => {
+        if (gameActive && gameId === 'story-nebula') {
+            setReadingPhase(true);
+        } else {
+            setReadingPhase(false);
+        }
+    }, [gameActive, gameId]);
 
     // Derived state
     const isAnswered = !!answers[currentIndex];
@@ -312,9 +323,16 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         const commonImage = currentQ.image_url ? <DynamicImageRenderer url={currentQ.image_url} /> : null;
 
         // Hint Button
+        const handleHintClick = () => {
+            toggleHint();
+            if (gameId === 'story-nebula') {
+                setShowHintModal(true);
+            }
+        };
+
         const HintButton = () => safeHint ? (
             <button
-                onClick={toggleHint}
+                onClick={handleHintClick}
                 className={`absolute top-0 right-0 p-2 rounded-full transition-all ${showHint ? 'bg-yellow-500/20 text-yellow-300' : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'}`}
                 title="Show Hint"
             >
@@ -657,12 +675,15 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const gameTheme = GAME_THEMES['story-nebula'] || GAME_THEMES['space-math'];
             return (
                 <>
-                <StoryNebulaRenderer
-                    currentQ={currentQ}
-                    handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
-                    feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
-                    gameTheme={gameTheme}
-                />
+                    <div className="relative">
+                        <HintButton />
+                        <StoryNebulaRenderer
+                            currentQ={currentQ}
+                            handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
+                            feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
+                            gameTheme={gameTheme}
+                        />
+                    </div>
                 </>
             );
         }
@@ -911,7 +932,35 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
     return (
         <SpaceBackground variant={background}>
-            <Header timer={timer} streak={streak} stars={stars} onBack={onBack} formatTime={(s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`} difficulty={difficulty} progress={{ current: currentIndex + 1, total: totalQuestions }} />
+            <Header timer={timer} streak={streak} stars={stars} onBack={onBack} formatTime={(s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`} difficulty={difficulty} progress={{ current: currentIndex + 1, total: totalQuestions }} hintCount={totalHintsUsed} />
+
+            {/* Hint Modal */}
+            {showHintModal && gameId === 'story-nebula' && (
+                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] animate-fadeIn">
+                    <div className="bg-gray-900 border-2 border-yellow-500 rounded-2xl p-6 max-w-lg w-full relative m-4 shadow-2xl shadow-yellow-500/20">
+                        <button
+                            onClick={() => setShowHintModal(false)}
+                            className="absolute top-4 right-4 text-gray-400 hover:text-white"
+                        >✕</button>
+                        <div className="flex items-center gap-3 mb-4">
+                            <span className="text-3xl">💡</span>
+                            <h3 className="text-yellow-400 font-bold text-xl">Story Hint</h3>
+                        </div>
+                        <div className="bg-yellow-500/10 rounded-xl p-4 border border-yellow-500/30">
+                            <p className="text-white text-lg leading-relaxed italic">
+                                "{safeHint}"
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => setShowHintModal(false)}
+                            className="mt-6 w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold py-3 rounded-xl transition-colors"
+                        >
+                            Got it!
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <div className="flex flex-col items-center justify-center h-full pt-20 px-4 pb-20">
                 {!gameActive && !gameOver && (
                     <div className="text-center">
@@ -928,8 +977,35 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
                 {gameActive && (
                     <>
-                        {renderQuestion()}
-                        {isAnswered && (
+                        {readingPhase ? (
+                            <div className="w-full max-w-3xl bg-gray-900/90 backdrop-blur-md rounded-2xl p-8 border border-white/10 shadow-2xl animate-slideIn flex flex-col items-center max-h-[80vh]">
+                                <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                                    <span>📖</span> {currentQ?.text1}
+                                </h2>
+
+                                <div className="flex flex-col md:flex-row gap-6 mb-6 w-full overflow-y-auto custom-scrollbar">
+                                    {currentQ?.image_url && (
+                                        <div className="flex-shrink-0 mx-auto scale-125 p-4">
+                                            <DynamicImageRenderer url={currentQ.image_url} />
+                                        </div>
+                                    )}
+                                    <div className="text-white text-lg leading-relaxed font-medium">
+                                        {currentQ?.text2}
+                                    </div>
+                                </div>
+
+                                <button
+                                    onClick={() => setReadingPhase(false)}
+                                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl text-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-blue-500/30 mt-auto"
+                                >
+                                    Start Challenge! 🚀
+                                </button>
+                            </div>
+                        ) : (
+                            renderQuestion()
+                        )}
+
+                        {!readingPhase && isAnswered && (
                             <div className={`mt-4 text-center text-xl font-bold ${answerState.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
                                 {answerState.isCorrect ? '✓ Correct!' : `✗ Answer: ${answerState.correctEnv || safeAnswer}`}
                             </div>
