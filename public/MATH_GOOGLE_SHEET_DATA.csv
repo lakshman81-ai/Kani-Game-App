@@ -250,3 +250,204 @@ money-master,40¢,Paid: $1.00,40¢,Change is 40¢.,Price: 60¢,Hard,change,45¢,
 money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
 money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
 money-master,25¢,Paid: $1.00,25¢,Change is 25¢.,Price: 75¢,Hard,change,30¢,35¢,100 - 75,,change,20¢
+
+story-solver,2,Tom has 14 toy cars. He arranges them in rows of 2. How many rows does he make?,7,Divide the total cars by the number in each row.,14,Medium,word_problem,7,3,Divide 14 by 2,,2,8
+story-solver,Yes,Sarah has 13 apples. She wants to give one to each of her 13 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,13,Medium,word_problem,No,Don't Know,Is 13 bigger than 13?,,13,Maybe
+story-solver,61,There are 25 cookies in a jar. Mom puts 36 more cookies in. How many cookies are there now?,61,Add the new cookies to the ones already there.,25,Medium,word_problem,66,58,Add them up!,,36,57
+story-solver,50,A box holds 85 crayons. 40 crayons are broken. How many are not broken?,45,Subtract the broken crayons from the total.,85,Medium,word_problem,48,45,Take away the broken ones.,,40,40
+story-solver,30,Leo reads 9 pages on Monday and 26 pages on Tuesday. How many pages did he read in total?,35,Add the pages from both days together.,9,Medium,word_problem,31,35,Combine Monday and Tuesday.,,26,32
+story-solver,59,Emma has 38 stickers. She buys 18 more. How many stickers does she have now?,56,Add the stickers she started with and the ones she bought!,38,Medium,word_problem,51,57,Think: 38 plus 18,,18,56
+story-solver,16,There are 37 birds on a tree. 21 fly away. How many birds are left?,16,Subtract the birds that flew away from the total.,37,Medium,word_problem,12,14,Think: 37 minus 21,,21,19
+story-solver,48,Emma has 36 stickers. She buys 16 more. How many stickers does she have now?,52,Add the stickers she started with and the ones she bought!,36,Medium,word_problem,53,50,Think: 36 plus 16,,16,52
+story-solver,8,There are 22 birds on a tree. 14 fly away. How many birds are left?,8,Subtract the birds that flew away from the total.,22,Medium,word_problem,4,11,Think: 22 minus 14,,14,9
+story-solver,Yes,Sarah has 12 apples. She wants to give one to each of her 14 friends. Does she have enough?,No,Compare the number of apples to the number of friends.,12,Medium,word_problem,No,Don't Know,Is 12 bigger than 14?,,14,Maybe
+story-solver,1,A box holds 32 crayons. 28 crayons are broken. How many are not broken?,4,Subtract the broken crayons from the total.,32,Medium,word_problem,8,4,Take away the broken ones.,,28,6
+story-solver,12,Tom has 20 toy cars. He arranges them in rows of 2. How many rows does he make?,10,Divide the total cars by the number in each row.,20,Medium,word_problem,10,15,Divide 20 by 2,,2,11
+story-solver,3,A garden has 3 rows of flowers. Each row has 2 flowers. How many flowers are there in total?,6,Multiply rows by flowers per row.,3,Medium,word_problem,5,6,3 groups of 2,,2,10
+story-solver,Yes,Sarah has 7 apples. She wants to give one to each of her 13 friends. Does she have enough?,No,Compare the number of apples to the number of friends.,7,Medium,word_problem,No,Don't Know,Is 7 bigger than 13?,,13,Maybe
+story-solver,63,There are 35 cookies in a jar. Mom puts 32 more cookies in. How many cookies are there now?,67,Add the new cookies to the ones already there.,35,Medium,word_problem,67,64,Add them up!,,32,72
+story-solver,7,Tom has 20 toy cars. He arranges them in rows of 4. How many rows does he make?,5,Divide the total cars by the number in each row.,20,Medium,word_problem,8,1,Divide 20 by 4,,4,5
+story-solver,7,A classroom has 68 chairs. 64 chairs are empty. How many chairs are occupied?,4,Total chairs minus empty chairs equals occupied chairs.,68,Medium,word_problem,4,1,Subtract the empty ones.,,64,5
+story-solver,11,A box holds 25 crayons. 18 crayons are broken. How many are not broken?,7,Subtract the broken crayons from the total.,25,Medium,word_problem,7,2,Take away the broken ones.,,18,9
+story-solver,9,A garden has 2 rows of flowers. Each row has 3 flowers. How many flowers are there in total?,6,Multiply rows by flowers per row.,2,Medium,word_problem,5,11,2 groups of 3,,3,6
+story-solver,22,Leo reads 6 pages on Monday and 20 pages on Tuesday. How many pages did he read in total?,26,Add the pages from both days together.,6,Medium,word_problem,30,26,Combine Monday and Tuesday.,,20,24
+story-solver,52,Emma has 41 stickers. She buys 8 more. How many stickers does she have now?,49,Add the stickers she started with and the ones she bought!,41,Medium,word_problem,49,51,Think: 41 plus 8,,8,47
+story-solver,51,A garden has 7 rows of flowers. Each row has 8 flowers. How many flowers are there in total?,56,Multiply rows by flowers per row.,7,Medium,word_problem,56,59,7 groups of 8,,8,60
+story-solver,8,Tom has 20 toy cars. He arranges them in rows of 4. How many rows does he make?,5,Divide the total cars by the number in each row.,20,Medium,word_problem,5,1,Divide 20 by 4,,4,2
+story-solver,44,Leo reads 22 pages on Monday and 22 pages on Tuesday. How many pages did he read in total?,44,Add the pages from both days together.,22,Medium,word_problem,46,43,Combine Monday and Tuesday.,,22,48
+story-solver,70,Emma has 30 stickers. She buys 37 more. How many stickers does she have now?,67,Add the stickers she started with and the ones she bought!,30,Medium,word_problem,68,67,Think: 30 plus 37,,37,65
+story-solver,13,Tom has 45 toy cars. He arranges them in rows of 5. How many rows does he make?,9,Divide the total cars by the number in each row.,45,Medium,word_problem,9,8,Divide 45 by 5,,5,6
+story-solver,26,There are 52 birds on a tree. 25 fly away. How many birds are left?,27,Subtract the birds that flew away from the total.,52,Medium,word_problem,27,22,Think: 52 minus 25,,25,28
+story-solver,18,A box holds 41 crayons. 19 crayons are broken. How many are not broken?,22,Subtract the broken crayons from the total.,41,Medium,word_problem,26,25,Take away the broken ones.,,19,22
+story-solver,8,Tom has 50 toy cars. He arranges them in rows of 5. How many rows does he make?,10,Divide the total cars by the number in each row.,50,Medium,word_problem,7,10,Divide 50 by 5,,5,15
+story-solver,50,A box holds 61 crayons. 11 crayons are broken. How many are not broken?,50,Subtract the broken crayons from the total.,61,Medium,word_problem,53,51,Take away the broken ones.,,11,45
+story-solver,73,Emma has 38 stickers. She buys 30 more. How many stickers does she have now?,68,Add the stickers she started with and the ones she bought!,38,Medium,word_problem,71,66,Think: 38 plus 30,,30,68
+story-solver,5,Tom has 25 toy cars. He arranges them in rows of 5. How many rows does he make?,5,Divide the total cars by the number in each row.,25,Medium,word_problem,1,8,Divide 25 by 5,,5,3
+story-solver,Yes,Sarah has 10 apples. She wants to give one to each of her 12 friends. Does she have enough?,No,Compare the number of apples to the number of friends.,10,Medium,word_problem,No,Don't Know,Is 10 bigger than 12?,,12,Maybe
+story-solver,1,A box holds 87 crayons. 86 crayons are broken. How many are not broken?,1,Subtract the broken crayons from the total.,87,Medium,word_problem,6,3,Take away the broken ones.,,86,4
+story-solver,63,Leo reads 30 pages on Monday and 35 pages on Tuesday. How many pages did he read in total?,65,Add the pages from both days together.,30,Medium,word_problem,65,67,Combine Monday and Tuesday.,,35,69
+story-solver,84,A box holds 89 crayons. 6 crayons are broken. How many are not broken?,83,Subtract the broken crayons from the total.,89,Medium,word_problem,83,81,Take away the broken ones.,,6,79
+story-solver,Yes,Sarah has 9 apples. She wants to give one to each of her 8 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,9,Medium,word_problem,No,Don't Know,Is 9 bigger than 8?,,8,Maybe
+story-solver,41,Leo reads 19 pages on Monday and 17 pages on Tuesday. How many pages did he read in total?,36,Add the pages from both days together.,19,Medium,word_problem,35,32,Combine Monday and Tuesday.,,17,36
+story-solver,47,Leo reads 39 pages on Monday and 10 pages on Tuesday. How many pages did he read in total?,49,Add the pages from both days together.,39,Medium,word_problem,49,44,Combine Monday and Tuesday.,,10,54
+story-solver,Yes,Sarah has 14 apples. She wants to give one to each of her 13 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,14,Medium,word_problem,No,Don't Know,Is 14 bigger than 13?,,13,Maybe
+story-solver,52,A garden has 7 rows of flowers. Each row has 7 flowers. How many flowers are there in total?,49,Multiply rows by flowers per row.,7,Medium,word_problem,49,44,7 groups of 7,,7,47
+story-solver,47,Leo reads 11 pages on Monday and 35 pages on Tuesday. How many pages did he read in total?,46,Add the pages from both days together.,11,Medium,word_problem,49,45,Combine Monday and Tuesday.,,35,46
+story-solver,62,A box holds 59 crayons. 1 crayons are broken. How many are not broken?,58,Subtract the broken crayons from the total.,59,Medium,word_problem,60,58,Take away the broken ones.,,1,61
+story-solver,11,Tom has 16 toy cars. He arranges them in rows of 2. How many rows does he make?,8,Divide the total cars by the number in each row.,16,Medium,word_problem,7,3,Divide 16 by 2,,2,8
+story-solver,34,A garden has 4 rows of flowers. Each row has 8 flowers. How many flowers are there in total?,32,Multiply rows by flowers per row.,4,Medium,word_problem,32,27,4 groups of 8,,8,35
+story-solver,8,Tom has 24 toy cars. He arranges them in rows of 3. How many rows does he make?,8,Divide the total cars by the number in each row.,24,Medium,word_problem,10,6,Divide 24 by 3,,3,3
+story-solver,Yes,Sarah has 14 apples. She wants to give one to each of her 8 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,14,Medium,word_problem,No,Don't Know,Is 14 bigger than 8?,,8,Maybe
+story-solver,10,A classroom has 22 chairs. 12 chairs are empty. How many chairs are occupied?,10,Total chairs minus empty chairs equals occupied chairs.,22,Medium,word_problem,8,13,Subtract the empty ones.,,12,15
+story-solver,Yes,Sarah has 11 apples. She wants to give one to each of her 10 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,11,Medium,word_problem,No,Don't Know,Is 11 bigger than 10?,,10,Maybe
+story-solver,10,Tom has 40 toy cars. He arranges them in rows of 5. How many rows does he make?,8,Divide the total cars by the number in each row.,40,Medium,word_problem,5,9,Divide 40 by 5,,5,8
+estimation-express,90,,100,Estimation helps checking answers!,30,Medium,+,100,110,Round 30 -> 30 and 71 -> 70,,71,70
+estimation-express,60,,60,Estimation helps checking answers!,14,Medium,*,70,80,Close to 10 x 4,,4,50
+estimation-express,60,,80,Estimation helps checking answers!,21,Medium,*,100,80,Close to 20 x 4,,4,50
+estimation-express,110,,110,Estimation helps checking answers!,31,Medium,+,80,140,Round 31 -> 30 and 83 -> 80,,83,90
+estimation-express,20,,30,Estimation helps checking answers!,63,Medium,-,60,30,Round 63 -> 60 and 34 -> 30,,34,50
+estimation-express,70,,100,Estimation helps checking answers!,85,Medium,+,100,120,Round 85 -> 80 and 15 -> 20,,15,80
+estimation-express,70,,100,Estimation helps checking answers!,25,Medium,*,120,110,Close to 20 x 4,,4,100
+estimation-express,80,,80,Estimation helps checking answers!,16,Medium,+,100,90,Round 16 -> 20 and 65 -> 60,,65,70
+estimation-express,80,,80,Estimation helps checking answers!,20,Medium,+,60,50,Round 20 -> 20 and 65 -> 60,,65,90
+estimation-express,50,,60,Estimation helps checking answers!,73,Medium,-,30,70,Round 73 -> 70 and 15 -> 20,,15,60
+estimation-express,50,,20,Estimation helps checking answers!,54,Medium,-,20,40,Round 54 -> 50 and 30 -> 30,,30,30
+estimation-express,40,,40,Estimation helps checking answers!,83,Medium,-,30,60,Round 83 -> 80 and 45 -> 40,,45,10
+estimation-express,60,,90,Estimation helps checking answers!,101,Medium,-,90,70,Round 101 -> 100 and 15 -> 20,,15,120
+estimation-express,20,,40,Estimation helps checking answers!,13,Medium,*,30,50,Close to 10 x 3,,3,40
+estimation-express,50,,30,Estimation helps checking answers!,12,Medium,+,20,10,Round 12 -> 10 and 15 -> 20,,15,30
+estimation-express,50,,30,Estimation helps checking answers!,55,Medium,-,40,10,Round 55 -> 60 and 26 -> 30,,26,30
+estimation-express,100,,120,Estimation helps checking answers!,132,Medium,-,130,90,Round 132 -> 130 and 15 -> 20,,15,120
+estimation-express,10,,0,Estimation helps checking answers!,50,Medium,-,20,30,Round 50 -> 50 and 46 -> 50,,46,0
+estimation-express,120,,110,Estimation helps checking answers!,19,Medium,+,110,100,Round 19 -> 20 and 94 -> 90,,94,80
+estimation-express,40,,40,Estimation helps checking answers!,80,Medium,-,50,60,Round 80 -> 80 and 44 -> 40,,44,30
+estimation-express,80,,80,Estimation helps checking answers!,19,Medium,+,110,90,Round 19 -> 20 and 56 -> 60,,56,70
+estimation-express,120,,100,Estimation helps checking answers!,16,Medium,+,130,100,Round 16 -> 20 and 84 -> 80,,84,110
+estimation-express,90,,70,Estimation helps checking answers!,62,Medium,+,70,40,Round 62 -> 60 and 12 -> 10,,12,100
+estimation-express,130,,120,Estimation helps checking answers!,24,Medium,*,120,150,Close to 20 x 5,,5,90
+estimation-express,130,,160,Estimation helps checking answers!,69,Medium,+,180,160,Round 69 -> 70 and 87 -> 90,,87,140
+estimation-express,40,,40,Estimation helps checking answers!,33,Medium,+,70,50,Round 33 -> 30 and 12 -> 10,,12,10
+estimation-express,60,,60,Estimation helps checking answers!,12,Medium,+,30,50,Round 12 -> 10 and 47 -> 50,,47,70
+estimation-express,50,,50,Estimation helps checking answers!,25,Medium,+,60,30,Round 25 -> 20 and 26 -> 30,,26,70
+estimation-express,30,,50,Estimation helps checking answers!,23,Medium,*,40,50,Close to 20 x 2,,2,70
+estimation-express,40,,50,Estimation helps checking answers!,64,Medium,-,70,80,Round 64 -> 60 and 18 -> 20,,18,50
+estimation-express,10,,30,Estimation helps checking answers!,13,Medium,*,40,50,Close to 10 x 2,,2,30
+estimation-express,60,,80,Estimation helps checking answers!,17,Medium,*,80,110,Close to 20 x 5,,5,90
+estimation-express,30,,30,Estimation helps checking answers!,13,Medium,*,50,60,Close to 10 x 2,,2,40
+estimation-express,20,,20,Estimation helps checking answers!,69,Medium,-,30,40,Round 69 -> 70 and 49 -> 50,,49,50
+estimation-express,60,,90,Estimation helps checking answers!,125,Medium,-,90,110,Round 125 -> 120 and 36 -> 40,,36,100
+estimation-express,20,,50,Estimation helps checking answers!,25,Medium,+,50,80,Round 25 -> 20 and 21 -> 20,,21,70
+estimation-express,80,,90,Estimation helps checking answers!,132,Medium,-,60,90,Round 132 -> 130 and 39 -> 40,,39,100
+estimation-express,100,,100,Estimation helps checking answers!,71,Medium,+,80,110,Round 71 -> 70 and 30 -> 30,,30,70
+estimation-express,80,,100,Estimation helps checking answers!,114,Medium,-,120,110,Round 114 -> 110 and 15 -> 20,,15,100
+estimation-express,50,,20,Estimation helps checking answers!,64,Medium,-,10,30,Round 64 -> 60 and 40 -> 40,,40,20
+estimation-express,50,,40,Estimation helps checking answers!,20,Medium,*,40,60,Close to 20 x 2,,2,20
+estimation-express,30,,60,Estimation helps checking answers!,99,Medium,-,90,60,Round 99 -> 100 and 43 -> 40,,43,50
+estimation-express,60,,80,Estimation helps checking answers!,29,Medium,+,90,80,Round 29 -> 30 and 54 -> 50,,54,70
+estimation-express,50,,30,Estimation helps checking answers!,17,Medium,*,30,40,Close to 20 x 2,,2,20
+estimation-express,90,,100,Estimation helps checking answers!,16,Medium,+,100,80,Round 16 -> 20 and 85 -> 80,,85,120
+estimation-express,30,,60,Estimation helps checking answers!,11,Medium,*,60,80,Close to 10 x 5,,5,90
+estimation-express,90,,100,Estimation helps checking answers!,141,Medium,-,120,100,Round 141 -> 140 and 43 -> 40,,43,80
+estimation-express,100,,70,Estimation helps checking answers!,18,Medium,*,70,50,Close to 20 x 4,,4,90
+estimation-express,120,,110,Estimation helps checking answers!,23,Medium,+,90,110,Round 23 -> 20 and 89 -> 90,,89,80
+estimation-express,100,,100,Estimation helps checking answers!,145,Medium,-,130,120,Round 145 -> 140 and 48 -> 50,,48,90
+pattern-planet,🟢,🔴 🟢 🔴 🟢 ?,🔴,Patterns follow a rule!,,Easy,,🟡,🔴,Alternating colors,,,🟣
+pattern-planet,28,20 22 24 26 ?,28,Patterns follow a rule!,,Easy,,31,26,Add 2 each time,,,29
+pattern-planet,30,15 18 21 24 ?,27,Patterns follow a rule!,,Easy,,27,29,Add 3 each time,,,28
+pattern-planet,14,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,12,16,Double the number each time,,,22
+pattern-planet,25,10 14 18 22 ?,26,Patterns follow a rule!,,Easy,,26,23,Add 4 each time,,,24
+pattern-planet,13,7 9 11 13 ?,15,Patterns follow a rule!,,Easy,,18,15,Add 2 each time,,,14
+pattern-planet,48,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,54,52,Double the number each time,,,46
+pattern-planet,🌙,☀️ ☁️ ☀️ ☀️ ?,☁️,Patterns follow a rule!,,Easy,,⭐,☁️,Repeats every 3 items,,,☀️
+pattern-planet,🟢,🔵 🟢 🔵 🟢 ?,🔵,Patterns follow a rule!,,Easy,,🔵,🔴,Alternating colors,,,🟣
+pattern-planet,33,16 21 26 31 ?,36,Patterns follow a rule!,,Easy,,37,36,Add 5 each time,,,38
+pattern-planet,☁️,☁️ ⭐ 🌙 ☁️ ?,⭐,Patterns follow a rule!,,Easy,,⚡,⭐,Repeats every 3 items,,,🌙
+pattern-planet,🟡,🔵 🟢 🔵 🟢 ?,🔵,Patterns follow a rule!,,Easy,,🔵,🟣,Alternating colors,,,🟢
+pattern-planet,🟣,🟡 🟣 🟡 🟣 ?,🟡,Patterns follow a rule!,,Easy,,🟡,🔵,Alternating colors,,,🟢
+pattern-planet,20,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,18,16,Double the number each time,,,22
+pattern-planet,🔴,🟢 🟣 🟢 🟣 ?,🟢,Patterns follow a rule!,,Easy,,🟣,🟢,Alternating colors,,,🟡
+pattern-planet,29,11 15 19 23 ?,27,Patterns follow a rule!,,Easy,,28,30,Add 4 each time,,,27
+pattern-planet,48,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,54,52,Double the number each time,,,50
+pattern-planet,🟢,🟣 🟢 🟣 🟢 ?,🟣,Patterns follow a rule!,,Easy,,🔵,🟡,Alternating colors,,,🟣
+pattern-planet,16,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,20,18,Double the number each time,,,10
+pattern-planet,28,2 4 8 16 ?,32,Patterns follow a rule!,,Easy,,32,38,Double the number each time,,,34
+pattern-planet,☀️,☀️ ⚡ ☀️ ☀️ ?,⚡,Patterns follow a rule!,,Easy,,⭐,☁️,Repeats every 3 items,,,⚡
+pattern-planet,🌙,☁️ ☁️ ⚡ ☁️ ?,☁️,Patterns follow a rule!,,Easy,,⭐,☁️,Repeats every 3 items,,,⚡
+pattern-planet,10,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,16,18,Double the number each time,,,20
+pattern-planet,🟡,🔵 🔴 🔵 🔴 ?,🔵,Patterns follow a rule!,,Easy,,🔵,🔴,Alternating colors,,,🟢
+pattern-planet,🟢,🔴 🟢 🔴 🟢 ?,🔴,Patterns follow a rule!,,Easy,,🔴,🟣,Alternating colors,,,🔵
+pattern-planet,46,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,48,52,Double the number each time,,,54
+pattern-planet,🔴,🟣 🔴 🟣 🔴 ?,🟣,Patterns follow a rule!,,Easy,,🟡,🔵,Alternating colors,,,🟣
+pattern-planet,⚡,⭐ ☀️ ☁️ ⭐ ?,☀️,Patterns follow a rule!,,Easy,,⭐,☁️,Repeats every 3 items,,,☀️
+pattern-planet,29,15 18 21 24 ?,27,Patterns follow a rule!,,Easy,,27,28,Add 3 each time,,,30
+pattern-planet,☁️,🌙 ☁️ ⭐ 🌙 ?,☁️,Patterns follow a rule!,,Easy,,🌙,⭐,Repeats every 3 items,,,⚡
+pattern-planet,44,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,46,54,Double the number each time,,,48
+pattern-planet,22,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,12,14,Double the number each time,,,16
+pattern-planet,⭐,☁️ ☁️ ☀️ ☁️ ?,☁️,Patterns follow a rule!,,Easy,,🌙,☀️,Repeats every 3 items,,,☁️
+pattern-planet,☁️,☁️ ☀️ ☀️ ☁️ ?,☀️,Patterns follow a rule!,,Easy,,☀️,🌙,Repeats every 3 items,,,⭐
+pattern-planet,42,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,50,52,Double the number each time,,,48
+pattern-planet,33,18 22 26 30 ?,34,Patterns follow a rule!,,Easy,,32,34,Add 4 each time,,,31
+pattern-planet,28,17 20 23 26 ?,29,Patterns follow a rule!,,Easy,,27,29,Add 3 each time,,,32
+pattern-planet,🔵,🔵 🔴 🔵 🔴 ?,🔵,Patterns follow a rule!,,Easy,,🟡,🟣,Alternating colors,,,🔴
+pattern-planet,54,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,50,44,Double the number each time,,,48
+pattern-planet,🌙,🌙 ☁️ ⭐ 🌙 ?,☁️,Patterns follow a rule!,,Easy,,⭐,⚡,Repeats every 3 items,,,☁️
+pattern-planet,🟣,🔴 🟡 🔴 🟡 ?,🔴,Patterns follow a rule!,,Easy,,🔴,🟢,Alternating colors,,,🟡
+pattern-planet,🟡,🔴 🟢 🔴 🟢 ?,🔴,Patterns follow a rule!,,Easy,,🟢,🟣,Alternating colors,,,🔴
+pattern-planet,🔴,🟡 🔴 🟡 🔴 ?,🟡,Patterns follow a rule!,,Easy,,🟣,🔵,Alternating colors,,,🟡
+pattern-planet,26,13 17 21 25 ?,29,Patterns follow a rule!,,Easy,,28,31,Add 4 each time,,,29
+pattern-planet,32,15 20 25 30 ?,35,Patterns follow a rule!,,Easy,,33,35,Add 5 each time,,,34
+pattern-planet,42,3 6 12 24 ?,48,Patterns follow a rule!,,Easy,,48,52,Double the number each time,,,50
+pattern-planet,18,1 2 4 8 ?,16,Patterns follow a rule!,,Easy,,16,22,Double the number each time,,,20
+pattern-planet,13,1 4 7 10 ?,13,Patterns follow a rule!,,Easy,,11,12,Add 3 each time,,,10
+pattern-planet,21,5 9 13 17 ?,21,Patterns follow a rule!,,Easy,,18,22,Add 4 each time,,,19
+pattern-planet,34,18 22 26 30 ?,34,Patterns follow a rule!,,Easy,,37,35,Add 4 each time,,,32
+measurement-mission,20,How many 500ml bottles fill a 5 liter jug?,10,Measure carefully!,,Medium,capacity,10,7,1 Liter = 2 x 500ml,,,5
+measurement-mission,12,How many hours is 180 minutes?,3,Measure carefully!,,Medium,time,3,18,60 minutes = 1 hour,,,6
+measurement-mission,500,How many meters in 1000 centimeters?,10,Measure carefully!,,Medium,length,100,10,100 cm = 1 m,,,10000
+measurement-mission,2000,How many grams in 2 kilograms?,2000,Measure carefully!,,Medium,weight,20,200,1 kg = 1000 g,,,1000
+measurement-mission,Equal,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,Yes,Maybe,60 minutes = 1 hour,,,No
+measurement-mission,400,How many grams in 4 kilograms?,4000,Measure carefully!,,Medium,weight,40,4000,1 kg = 1000 g,,,2000
+measurement-mission,10,How many 500ml bottles fill a 5 liter jug?,10,Measure carefully!,,Medium,capacity,5,7,1 Liter = 2 x 500ml,,,20
+measurement-mission,6,How many 500ml bottles fill a 3 liter jug?,6,Measure carefully!,,Medium,capacity,12,5,1 Liter = 2 x 500ml,,,3
+measurement-mission,1000,How many grams in 2 kilograms?,2000,Measure carefully!,,Medium,weight,200,20,1 kg = 1000 g,,,2000
+measurement-mission,16,How many 500ml bottles fill a 4 liter jug?,8,Measure carefully!,,Medium,capacity,8,4,1 Liter = 2 x 500ml,,,6
+measurement-mission,25,How many meters in 250 centimeters?,2.5,Measure carefully!,,Medium,length,125,2.5,100 cm = 1 m,,,2500
+measurement-mission,8,How many hours is 120 minutes?,2,Measure carefully!,,Medium,time,12,2,60 minutes = 1 hour,,,4
+measurement-mission,No,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,Maybe,Yes,60 minutes = 1 hour,,,Equal
+measurement-mission,12,How many hours is 120 minutes?,2,Measure carefully!,,Medium,time,2,4,60 minutes = 1 hour,,,8
+measurement-mission,200,How many grams in 2 kilograms?,2000,Measure carefully!,,Medium,weight,20,1000,1 kg = 1000 g,,,2000
+measurement-mission,1500,How many grams in 3 kilograms?,3000,Measure carefully!,,Medium,weight,30,300,1 kg = 1000 g,,,3000
+measurement-mission,100,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2000,20,100 cm = 1 m,,,2
+measurement-mission,250,How many meters in 500 centimeters?,5,Measure carefully!,,Medium,length,5000,5,100 cm = 1 m,,,50
+measurement-mission,6,How many hours is 180 minutes?,3,Measure carefully!,,Medium,time,12,18,60 minutes = 1 hour,,,3
+measurement-mission,10000,How many meters in 1000 centimeters?,10,Measure carefully!,,Medium,length,500,100,100 cm = 1 m,,,10
+measurement-mission,Maybe,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,No,Yes,60 minutes = 1 hour,,,Equal
+measurement-mission,4000,How many grams in 4 kilograms?,4000,Measure carefully!,,Medium,weight,2000,40,1 kg = 1000 g,,,400
+measurement-mission,18,How many hours is 180 minutes?,3,Measure carefully!,,Medium,time,12,3,60 minutes = 1 hour,,,6
+measurement-mission,4,How many hours is 120 minutes?,2,Measure carefully!,,Medium,time,2,12,60 minutes = 1 hour,,,8
+measurement-mission,2,How many hours is 120 minutes?,2,Measure carefully!,,Medium,time,8,4,60 minutes = 1 hour,,,12
+measurement-mission,1.5,How many meters in 150 centimeters?,1.5,Measure carefully!,,Medium,length,75,15,100 cm = 1 m,,,1500
+measurement-mission,3,How many 500ml bottles fill a 3 liter jug?,6,Measure carefully!,,Medium,capacity,12,5,1 Liter = 2 x 500ml,,,6
+measurement-mission,250,How many meters in 500 centimeters?,5,Measure carefully!,,Medium,length,5000,50,100 cm = 1 m,,,5
+measurement-mission,20,How many 500ml bottles fill a 5 liter jug?,10,Measure carefully!,,Medium,capacity,7,10,1 Liter = 2 x 500ml,,,5
+measurement-mission,300,How many grams in 3 kilograms?,3000,Measure carefully!,,Medium,weight,3000,1500,1 kg = 1000 g,,,30
+measurement-mission,4,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,2,8,1 Liter = 2 x 500ml,,,4
+measurement-mission,1.5,How many meters in 150 centimeters?,1.5,Measure carefully!,,Medium,length,75,15,100 cm = 1 m,,,1500
+measurement-mission,20,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2,100,100 cm = 1 m,,,2000
+measurement-mission,Yes,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,Maybe,No,60 minutes = 1 hour,,,Equal
+measurement-mission,8,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,2,4,1 Liter = 2 x 500ml,,,4
+measurement-mission,1000,How many grams in 1 kilograms?,1000,Measure carefully!,,Medium,weight,10,500,1 kg = 1000 g,,,100
+measurement-mission,Yes,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,No,Equal,60 minutes = 1 hour,,,Maybe
+measurement-mission,4,How many 500ml bottles fill a 4 liter jug?,8,Measure carefully!,,Medium,capacity,8,6,1 Liter = 2 x 500ml,,,16
+measurement-mission,1500,How many grams in 3 kilograms?,3000,Measure carefully!,,Medium,weight,3000,300,1 kg = 1000 g,,,30
+measurement-mission,12,How many 500ml bottles fill a 3 liter jug?,6,Measure carefully!,,Medium,capacity,3,6,1 Liter = 2 x 500ml,,,5
+measurement-mission,2500,How many meters in 250 centimeters?,2.5,Measure carefully!,,Medium,length,2.5,125,100 cm = 1 m,,,25
+measurement-mission,1,How many hours is 60 minutes?,1,Measure carefully!,,Medium,time,6,2,60 minutes = 1 hour,,,4
+measurement-mission,50,How many grams in 5 kilograms?,5000,Measure carefully!,,Medium,weight,2500,500,1 kg = 1000 g,,,5000
+measurement-mission,Maybe,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,No,Equal,60 minutes = 1 hour,,,Yes
+measurement-mission,5,How many meters in 500 centimeters?,5,Measure carefully!,,Medium,length,250,50,100 cm = 1 m,,,5000
+measurement-mission,15,How many meters in 150 centimeters?,1.5,Measure carefully!,,Medium,length,75,1500,100 cm = 1 m,,,1.5
+measurement-mission,10000,How many meters in 1000 centimeters?,10,Measure carefully!,,Medium,length,500,10,100 cm = 1 m,,,100
+measurement-mission,6,How many 500ml bottles fill a 4 liter jug?,8,Measure carefully!,,Medium,capacity,16,8,1 Liter = 2 x 500ml,,,4
+measurement-mission,8,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,4,2,1 Liter = 2 x 500ml,,,4
+measurement-mission,2,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2000,100,100 cm = 1 m,,,20
