@@ -5,6 +5,7 @@ import { DifficultyBadge } from '../shared/DifficultyBadge';
 import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { GameOverScreen } from '../shared/GameOverScreen';
 import { StoryNebulaRenderer, InferenceInvestigatorRenderer } from '../../renderers/ComprehensionRenderer';
+import { VocabularyRenderer } from '../../renderers/VocabularyRenderer';
 import { useAppContext } from '../../contexts/AppContext';
 import { useGameLogic } from '../../hooks/useGameLogic';
 import { GAME_THEMES } from '../../themes/themeConfig';
@@ -494,6 +495,22 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         ))}
                     </div>
                 </div>
+            );
+        }
+
+        // New Vocabulary Games
+        if (['word-wizard', 'root-raider', 'idiom-island', 'homophone-hunt'].includes(gameId)) {
+            return (
+                <VocabularyRenderer
+                    gameId={gameId}
+                    currentQ={currentQ}
+                    showHint={showHint}
+                    safeHint={safeHint}
+                    safeExplanation={safeExplanation}
+                    handleAnswer={handleAnswer}
+                    feedback={feedback}
+                    safeAnswer={safeAnswer}
+                />
             );
         }
 
