@@ -238,7 +238,6 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
         if (shape === 'cross') path = <path d="M40,10 L80,10 L80,40 L110,40 L110,80 L80,80 L80,110 L40,110 L40,80 L10,80 L10,40 L40,40 Z" fill="url(#shapeGrad)" />;
         if (shape === 'semicircle') path = <path d="M10,60 A50,50 0 0 1 110,60 Z" fill="url(#shapeGrad)" />;
         if (shape === 'cube') {
-             // Simple 3D cube projection
              return (
                  <svg width={size} height={size} viewBox="0 0 120 120" stroke="white" strokeWidth="2" fill="none">
                      <rect x="30" y="30" width="60" height="60" fill="url(#shapeGrad)" opacity="0.9" filter="url(#shadow)" />
@@ -276,32 +275,35 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
     };
 
     const {
-        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved, currentIndex, totalQuestions },
+        gameState: { stars, timer, gameActive, gameOver, currentQ, streak, maxStreak, feedback, playerName, scoreSaved, currentIndex, totalQuestions, answers, hintLogs },
         setters: { setPlayerName },
-        actions: { startGame, handleAnswer, handleSaveScore },
+        actions: { startGame, handleAnswer, handleSaveScore, navigateQuestion, toggleHint },
         data: { loading, error, questionsCount }
     } = useGameLogic(gameId, difficulty, settings, handleGameEnd);
 
-    const [showHint, setShowHint] = React.useState(false);
-
-    React.useEffect(() => {
-        setShowHint(false);
-        if (currentQ) {
-            const timer = setTimeout(() => setShowHint(true), 5000);
-            return () => clearTimeout(timer);
-        }
-    }, [currentQ]);
-
-    const gameTheme = GAME_THEMES[gameId];
-
-    // Auto-select background based on theme or variant
-    const background = gameTheme ? `linear-gradient(135deg, var(--theme-secondary, #1a1a2e) 0%, ${gameTheme.gradient.includes('to-') ? 'rgba(0,0,0,0.8)' : gameTheme.gradient} 100%)` : variant;
-
+    // Derived state
+    const isAnswered = !!answers[currentIndex];
+    const answerState = answers[currentIndex];
+    const showHint = !!hintLogs[currentIndex];
     const safeTitle = title || 'Game';
     const safeIcon = icon || '🎮';
     const safeAnswer = currentQ?.answer || '';
     const safeHint = currentQ?.hint || '';
     const safeExplanation = feedback?.explanation || '';
+
+    // Determine button styles based on answer state
+    const getButtonStyle = (opt: string, baseStyle: string) => {
+        if (isAnswered) {
+            if (opt === safeAnswer) return 'bg-green-500 text-white scale-105';
+            if (opt === answerState.selected) return 'bg-red-500 text-white opacity-80';
+            return 'bg-gray-700 text-gray-400 opacity-50 cursor-not-allowed';
+        }
+        return `${baseStyle} text-white hover:scale-105 cursor-pointer`;
+    };
+
+    const gameTheme = GAME_THEMES[gameId];
+    // Auto-select background based on theme or variant
+    const background = gameTheme ? `linear-gradient(135deg, var(--theme-secondary, #1a1a2e) 0%, ${gameTheme.gradient.includes('to-') ? 'rgba(0,0,0,0.8)' : gameTheme.gradient} 100%)` : variant;
 
     // Render question based on game type
     const renderQuestion = () => {
@@ -309,12 +311,24 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         const commonImage = currentQ.image_url ? <DynamicImageRenderer url={currentQ.image_url} /> : null;
 
-        // Math equations (space-math, alien-invasion, bubble-pop)
+        // Hint Button
+        const HintButton = () => safeHint ? (
+            <button
+                onClick={toggleHint}
+                className={`absolute top-0 right-0 p-2 rounded-full transition-all ${showHint ? 'bg-yellow-500/20 text-yellow-300' : 'bg-white/5 text-gray-400 hover:text-white hover:bg-white/10'}`}
+                title="Show Hint"
+            >
+                💡
+            </button>
+        ) : null;
+
+        // Math equations
         if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         {commonImage}
                         {!commonImage && gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && (
                             <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>
@@ -331,25 +345,136 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                                 )}
                             </div>
                         )}
-                        {/* Specific text fallbacks if no image */}
                         {gameId === 'geometry-galaxy' && currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
 
-                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-2">💡 {safeHint}</p>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-2 animate-slideIn">💡 {safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-2xl font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : `${gameTheme?.buttonBg || 'bg-blue-600'} text-white hover:scale-105`
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-2xl font-bold transition-all ${getButtonStyle(opt, gameTheme?.buttonBg || 'bg-blue-600')}`}>{opt}</button>
                         ))}
                     </div>
-                    {safeExplanation && (
-                        <div className="mt-6 bg-white/10 rounded-xl p-4 backdrop-blur animate-slideIn">
-                            <h3 className="text-yellow-400 font-bold mb-1">💡 Know More</h3>
-                            <p className="text-white text-sm">{safeExplanation}</p>
+                </div>
+            );
+        }
+
+        // Story Solver - Word problems
+        if (gameId === 'story-solver') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            return (
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-violet-300 text-sm mb-3">📖 Read carefully and solve!</div>
+                        <div className="bg-violet-500/20 rounded-xl p-4 mb-4">
+                            <div className="text-white text-lg leading-relaxed">{currentQ.text1}</div>
                         </div>
-                    )}
+                        {currentQ.text2 && (
+                            <div className="text-yellow-300 text-center font-medium">{currentQ.text2}</div>
+                        )}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-3 text-center animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-violet-500 to-purple-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Estimation Express - Quick estimates
+        if (gameId === 'estimation-express') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            return (
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-amber-300 text-sm mb-3">🎯 Estimate quickly! About how much?</div>
+                        <div className="text-white text-4xl font-bold mb-4">
+                            {currentQ.num1} {currentQ.operation} {currentQ.num2} ≈ ?
+                        </div>
+                        {showHint && safeHint && <p className="text-gray-400 text-sm animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-2xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-amber-500 to-red-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Pattern Planet - Visual/numerical patterns
+        if (gameId === 'pattern-planet') {
+            const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            return (
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-fuchsia-300 text-sm mb-4">🔮 What comes next?</div>
+                        <div className="flex justify-center gap-3 mb-4 flex-wrap">
+                            {patternParts.map((part, i) => (
+                                <div key={i}
+                                    className={`w-16 h-16 rounded-xl flex items-center justify-center text-2xl font-bold shadow-lg border-2
+                                        ${part === '?'
+                                            ? 'bg-fuchsia-500/30 border-fuchsia-400 text-fuchsia-300 animate-pulse'
+                                            : 'bg-gradient-to-br from-fuchsia-500 to-pink-500 border-fuchsia-300/50 text-white'
+                                        }`}
+                                    style={{ animation: part !== '?' ? `float ${2 + i * 0.2}s ease-in-out infinite` : undefined }}
+                                >
+                                    {part}
+                                </div>
+                            ))}
+                        </div>
+                        {currentQ.text2 && <div className="text-gray-400 text-sm">{currentQ.text2}</div>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-2 animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-2xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-fuchsia-500 to-pink-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Measurement Mission - Length, weight, capacity
+        if (gameId === 'measurement-mission') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const measureIcons: Record<string, string> = {
+                length: '📏',
+                weight: '⚖️',
+                capacity: '🫗',
+                time: '⏱️',
+                temperature: '🌡️'
+            };
+            const measureType = currentQ.operation || 'length';
+            return (
+                <div className="w-full max-w-lg relative animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-sky-300 text-sm mb-3">{measureIcons[measureType] || '📏'} Measurement Mission!</div>
+                        <div className="text-white text-xl leading-relaxed mb-4">{currentQ.text1}</div>
+                        {currentQ.text2 && <div className="text-sky-300 text-lg font-medium">{currentQ.text2}</div>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-3 animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-sky-500 to-blue-500')}`}>{opt}</button>
+                        ))}
+                    </div>
                 </div>
             );
         }
@@ -360,22 +485,24 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="flex justify-center gap-2 mb-6 flex-wrap">
-                        {seqParts.map((part, i) => (
-                            <div key={i} className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-white shadow-lg border-4 border-white/30 ${part === '?' ? 'bg-gray-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'
-                                }`} style={{ animation: 'float 3s ease-in-out infinite' }}>
-                                {part}
-                            </div>
-                        ))}
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="flex justify-center gap-2 mb-6 flex-wrap">
+                            {seqParts.map((part, i) => (
+                                <div key={i} className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold text-white shadow-lg border-4 border-white/30 ${part === '?' ? 'bg-gray-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'
+                                    }`} style={{ animation: 'float 3s ease-in-out infinite' }}>
+                                    {part}
+                                </div>
+                            ))}
+                        </div>
+                        <p className="text-white text-center mb-4">Find the missing number!</p>
+                        {showHint && safeHint && <p className="text-gray-400 text-sm text-center mb-4 animate-slideIn">💡 {safeHint}</p>}
                     </div>
-                    <p className="text-white text-center mb-4">Find the missing number!</p>
-                    {showHint && safeHint && <p className="text-gray-400 text-sm text-center mb-4">💡 {safeHint}</p>}
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-xl font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-purple-500 to-pink-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -387,17 +514,17 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-xs text-purple-400 mb-2">{currentQ.text2}</div>
                         <div className="text-white text-2xl font-medium text-center">"{currentQ.text1}"</div>
                     </div>
                     <p className="text-purple-200 text-center mb-4">Choose the correct word:</p>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-purple-600 to-indigo-600')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -411,13 +538,17 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const colors_map: Record<string, string> = { noun: 'from-red-500 to-orange-500', verb: 'from-green-500 to-emerald-500', adjective: 'from-blue-500 to-purple-500', adverb: 'from-yellow-500 to-amber-500' };
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur mb-8 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur mb-8 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-4xl font-bold text-white" style={{ animation: 'float 2s ease-in-out infinite' }}>{currentQ.text1}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 relative z-20">
                         {categories.map(cat => (
-                            <button key={cat} onClick={() => handleAnswer(cat, safeAnswer)}
-                                className={`p-6 rounded-2xl text-white font-bold text-lg transition-all hover:scale-105 cursor-pointer bg-gradient-to-br ${colors_map[cat]} ${feedback && cat === safeAnswer ? 'ring-4 ring-green-400' : ''
+                            <button key={cat} onClick={() => !isAnswered && handleAnswer(cat, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-6 rounded-2xl text-white font-bold text-lg transition-all ${isAnswered
+                                    ? (cat === safeAnswer ? 'bg-green-500' : (cat === answerState.selected ? 'bg-red-500' : 'bg-gray-700 opacity-50'))
+                                    : `bg-gradient-to-br ${colors_map[cat]} hover:scale-105 cursor-pointer`
                                     }`}>
                                 <div className="text-3xl mb-2">{icons_map[cat as keyof typeof icons_map]}</div>
                                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -433,15 +564,19 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const marks = ['.', '?', '!', ','];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-white text-2xl font-medium text-center">
                             {currentQ.text1}<span className="text-yellow-400 text-3xl animate-pulse">_</span>
                         </div>
                     </div>
                     <div className="flex justify-center gap-4 relative z-20">
                         {marks.map(mark => (
-                            <button key={mark} onClick={() => handleAnswer(mark, safeAnswer)}
-                                className={`w-16 h-16 rounded-full text-3xl font-bold transition-all hover:scale-110 cursor-pointer ${feedback && mark === safeAnswer ? 'bg-green-500 text-white' : 'bg-gradient-to-b from-pink-400 to-rose-500 text-white'
+                            <button key={mark} onClick={() => !isAnswered && handleAnswer(mark, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`w-16 h-16 rounded-full text-3xl font-bold transition-all ${isAnswered
+                                    ? (mark === safeAnswer ? 'bg-green-500 text-white' : (mark === answerState.selected ? 'bg-red-500 text-white' : 'bg-gray-700 text-gray-400 opacity-50'))
+                                    : 'bg-gradient-to-b from-pink-400 to-rose-500 text-white hover:scale-110 cursor-pointer'
                                     }`}>{mark}</button>
                         ))}
                     </div>
@@ -460,16 +595,16 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         <div className="text-3xl mb-1">{tenseIcons[currentQ.text2 || ''] || '🕐'}</div>
                         <div className="text-white text-xl font-bold">{(currentQ.text2 || 'TENSE').toUpperCase()}</div>
                     </div>
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-gray-400 text-sm mb-2">Convert this verb:</div>
                         <div className="text-white text-4xl font-bold">{currentQ.text1}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-teal-600 to-emerald-600')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -482,16 +617,16 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const isSynonym = gameId === 'synonym-stars';
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-green-300 text-sm mb-2">Find {isSynonym ? 'a word that means the same as' : 'the OPPOSITE of'}:</div>
                         <div className="text-white text-4xl font-bold">{currentQ.text1}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : `bg-gradient-to-r ${isSynonym ? 'from-yellow-500 to-orange-500' : 'from-red-500 to-orange-500'} text-white hover:scale-105`
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, `bg-gradient-to-r ${isSynonym ? 'from-yellow-500 to-orange-500' : 'from-red-500 to-orange-500'}`)}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -501,16 +636,19 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         // New Vocabulary Games
         if (['word-wizard', 'root-raider', 'idiom-island', 'homophone-hunt'].includes(gameId)) {
             return (
-                <VocabularyRenderer
-                    gameId={gameId}
-                    currentQ={currentQ}
-                    showHint={showHint}
-                    safeHint={safeHint}
-                    safeExplanation={safeExplanation}
-                    handleAnswer={handleAnswer}
-                    feedback={feedback}
-                    safeAnswer={safeAnswer}
-                />
+                <div className="relative">
+                    <HintButton />
+                    <VocabularyRenderer
+                        gameId={gameId}
+                        currentQ={currentQ}
+                        showHint={showHint}
+                        safeHint={safeHint}
+                        safeExplanation={safeExplanation}
+                        handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
+                        feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
+                        safeAnswer={safeAnswer}
+                    />
+                </div>
             );
         }
 
@@ -521,8 +659,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 <>
                 <StoryNebulaRenderer
                     currentQ={currentQ}
-                    handleAnswer={handleAnswer}
-                    feedback={feedback}
+                    handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
+                    feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
                     gameTheme={gameTheme}
                 />
                 </>
@@ -536,8 +674,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 <>
                 <InferenceInvestigatorRenderer
                     currentQ={currentQ}
-                    handleAnswer={handleAnswer}
-                    feedback={feedback}
+                    handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
+                    feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
                     gameTheme={gameTheme}
                 />
                 </>
@@ -551,7 +689,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const minute = parseInt(currentQ.num2 || '0');
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-blue-400 text-sm mb-2">{currentQ.operation === 'read' ? 'Read the Clock' : 'Calculate Duration'}</div>
                         {currentQ.operation === 'read' && (
                             <svg viewBox="0 0 100 100" className="w-32 h-32 mx-auto">
@@ -568,10 +707,9 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-blue-500 to-indigo-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -584,18 +722,18 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const isChange = currentQ.num2 === 'change';
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-green-400 text-sm mb-2">{isChange ? '💵 Make Change' : '🪙 Count the Coins'}</div>
                         {commonImage}
                         {!commonImage && <div className="text-white text-2xl font-bold mb-4">{currentQ.num1 || ''}</div>}
-                        {showHint && safeHint && <p className="text-gray-400 text-sm">💡 {safeHint}</p>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm animate-slideIn">💡 {safeHint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, safeAnswer)}
-                                className={`p-4 rounded-xl text-2xl font-bold transition-all cursor-pointer ${feedback ? (opt === safeAnswer ? 'bg-green-500 text-white' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-2xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-green-500 to-emerald-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -610,7 +748,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-violet-400 text-sm mb-4">🧩 Complete the pattern!</div>
                         {commonImage}
                         <div className="flex justify-center gap-3 mb-4 flex-wrap">
@@ -628,14 +767,13 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                                 </div>
                             ))}
                         </div>
-                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm animate-slideIn">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-4 rounded-xl text-xl font-bold transition-all cursor-pointer ${feedback ? (opt === currentQ.answer ? 'bg-green-500 text-white scale-105' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-violet-500 to-indigo-500 text-white hover:scale-105 hover:shadow-lg'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, currentQ.answer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-violet-500 to-indigo-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -647,7 +785,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-emerald-400 text-sm mb-3 text-center">🔍 Solve the puzzle!</div>
                         <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-4">
                             <div className="text-white text-lg leading-relaxed">{currentQ.text1}</div>
@@ -655,14 +794,13 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         {currentQ.text2 && (
                             <div className="text-teal-300 text-center text-lg font-medium">{currentQ.text2}</div>
                         )}
-                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3 text-center">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3 text-center animate-slideIn">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback ? (opt === currentQ.answer ? 'bg-green-500 text-white scale-105' : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, currentQ.answer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-emerald-500 to-teal-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -674,20 +812,22 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-amber-400 text-sm mb-4">🎯 Find the odd one out!</div>
                         {currentQ.text1 && (
                             <div className="text-gray-300 text-sm mb-2">{currentQ.text1}</div>
                         )}
-                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm animate-slideIn">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-4 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-5 rounded-2xl text-xl font-bold transition-all cursor-pointer border-2 ${feedback
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, currentQ.answer)}
+                                disabled={isAnswered}
+                                className={`p-5 rounded-2xl text-xl font-bold transition-all border-2 ${isAnswered
                                     ? (opt === currentQ.answer
                                         ? 'bg-green-500 text-white border-green-400 scale-105 ring-4 ring-green-400/50'
-                                        : 'bg-gray-700 text-gray-400 border-gray-600')
+                                        : (opt === answerState.selected ? 'bg-red-500 border-red-500 text-white' : 'bg-gray-700 text-gray-400 border-gray-600 opacity-50'))
                                     : 'bg-gradient-to-br from-amber-500 to-yellow-500 text-white border-amber-300/50 hover:scale-105 hover:shadow-xl'
                                     }`}
                                 style={{ animation: `slideIn 0.3s ease-out ${i * 0.1}s both` }}
@@ -703,18 +843,20 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-cyan-400 text-sm mb-4">📦 Put in correct order!</div>
                         <div className="text-white text-xl font-medium mb-4">{currentQ.text1}</div>
                         {currentQ.text2 && (
                             <div className="text-blue-300 text-sm">{currentQ.text2}</div>
                         )}
-                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm mt-3 animate-slideIn">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-1 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer flex items-center gap-3 ${feedback
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, currentQ.answer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all flex items-center gap-3 ${isAnswered
                                     ? (opt === currentQ.answer
                                         ? 'bg-green-500 text-white scale-102'
                                         : 'bg-gray-700 text-gray-400')
@@ -735,7 +877,8 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
-                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
                         <div className="text-fuchsia-400 text-sm mb-4">🔐 Crack the code!</div>
                         {currentQ.text2 && (
                             <div className="bg-purple-500/20 border border-purple-400/30 rounded-lg p-3 mb-4">
@@ -747,17 +890,13 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                             <div className="text-fuchsia-200 text-xs mb-2">Decode this:</div>
                             <div className="text-white text-2xl font-bold font-mono tracking-wider">{currentQ.text1}</div>
                         </div>
-                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm">💡 {currentQ.hint}</p>}
+                        {showHint && currentQ.hint && <p className="text-gray-400 text-sm animate-slideIn">💡 {currentQ.hint}</p>}
                     </div>
                     <div className="grid grid-cols-2 gap-3 relative z-20">
                         {options.map((opt, i) => (
-                            <button key={i} onClick={() => handleAnswer(opt, currentQ.answer)}
-                                className={`p-4 rounded-xl text-lg font-bold transition-all cursor-pointer ${feedback
-                                    ? (opt === currentQ.answer
-                                        ? 'bg-green-500 text-white scale-105'
-                                        : 'bg-gray-700 text-gray-400')
-                                    : 'bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white hover:scale-105'
-                                    }`}>{opt}</button>
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, currentQ.answer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-purple-500 to-fuchsia-500')}`}>{opt}</button>
                         ))}
                     </div>
                 </div>
@@ -773,7 +912,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
     return (
         <SpaceBackground variant={background}>
             <Header timer={timer} streak={streak} stars={stars} onBack={onBack} formatTime={(s) => `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`} difficulty={difficulty} progress={{ current: currentIndex + 1, total: totalQuestions }} />
-            <div className="flex flex-col items-center justify-center h-full pt-20 px-4">
+            <div className="flex flex-col items-center justify-center h-full pt-20 px-4 pb-20">
                 {!gameActive && !gameOver && (
                     <div className="text-center">
                         <h1 className="text-5xl font-bold text-white mb-2">{safeIcon} {safeTitle}</h1>
@@ -786,8 +925,54 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                     </div>
                 )}
                 {gameOver && <GameOverScreen stars={stars} streak={maxStreak} onRestart={startGame} onBack={onBack} onSaveScore={handleSaveScore} playerName={playerName} setPlayerName={setPlayerName} scoreSaved={scoreSaved} />}
-                {gameActive && renderQuestion()}
-                {feedback && <div className={`mt-4 text-center text-xl font-bold ${feedback.correct ? 'text-green-400' : 'text-red-400'}`}>{feedback.correct ? '✓ Correct!' : `✗ Answer: ${feedback.answer}`}</div>}
+
+                {gameActive && (
+                    <>
+                        {renderQuestion()}
+                        {isAnswered && (
+                            <div className={`mt-4 text-center text-xl font-bold ${answerState.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+                                {answerState.isCorrect ? '✓ Correct!' : `✗ Answer: ${answerState.correctEnv || safeAnswer}`}
+                            </div>
+                        )}
+
+                        {/* Navigation Bar */}
+                        <div className="fixed bottom-0 left-0 w-full bg-black/40 backdrop-blur-md border-t border-white/10 p-4 flex justify-between items-center z-50">
+                            <button
+                                onClick={() => navigateQuestion('prev')}
+                                disabled={currentIndex === 0}
+                                className="px-6 py-3 rounded-xl bg-white/10 text-white font-bold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-colors"
+                            >
+                                ← Prev
+                            </button>
+
+                            <div className="flex gap-1">
+                                {Array.from({ length: totalQuestions }).map((_, i) => (
+                                    <div
+                                        key={i}
+                                        className={`w-2 h-2 rounded-full ${
+                                            i === currentIndex ? 'bg-white scale-150' :
+                                            answers[i] ? (answers[i].isCorrect ? 'bg-green-500' : 'bg-red-500') : 'bg-white/20'
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => navigateQuestion('next')}
+                                className="px-6 py-3 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-colors"
+                            >
+                                {currentIndex === totalQuestions - 1 ? 'Finish' : 'Next →'}
+                            </button>
+                        </div>
+                    </>
+                )}
+
+                {safeExplanation && isAnswered && (
+                    <div className="mt-4 w-full max-w-lg bg-white/10 rounded-xl p-4 backdrop-blur animate-slideIn mb-20">
+                        <h3 className="text-yellow-400 font-bold mb-1">💡 Know More</h3>
+                        <p className="text-white text-sm">{safeExplanation}</p>
+                    </div>
+                )}
             </div>
         </SpaceBackground>
     );

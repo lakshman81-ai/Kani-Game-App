@@ -68,6 +68,38 @@ export const MATH_GAMES: GameDefinition[] = [
         difficulty: 'Medium',
         description: 'Learn shapes!'
     },
+    {
+        id: 'story-solver',
+        title: 'Story Solver',
+        icon: '📖',
+        color: 'from-violet-500 to-purple-500',
+        difficulty: 'Medium',
+        description: 'Word problems!'
+    },
+    {
+        id: 'estimation-express',
+        title: 'Estimation Express',
+        icon: '🎯',
+        color: 'from-amber-500 to-red-500',
+        difficulty: 'Medium',
+        description: 'Quick estimates!'
+    },
+    {
+        id: 'pattern-planet',
+        title: 'Pattern Planet',
+        icon: '🔮',
+        color: 'from-fuchsia-500 to-pink-500',
+        difficulty: 'Easy',
+        description: 'Find patterns!'
+    },
+    {
+        id: 'measurement-mission',
+        title: 'Measurement Mission',
+        icon: '📏',
+        color: 'from-sky-500 to-blue-500',
+        difficulty: 'Medium',
+        description: 'Measure it!'
+    },
 ];
 
 export const GRAMMAR_GAMES: GameDefinition[] = [

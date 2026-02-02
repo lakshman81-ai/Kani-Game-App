@@ -9,7 +9,7 @@ export const useGameLogic = (
     settings: Settings,
     onGameEnd: (game: string, name: string, stars: number, streak: number) => Promise<void>
 ) => {
-    const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy'].includes(gameId);
+    const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy', 'story-solver', 'estimation-express', 'pattern-planet', 'measurement-mission'].includes(gameId);
     const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense'].includes(gameId);
 
     const getSheetUrl = () => {
@@ -39,6 +39,10 @@ export const useGameLogic = (
     const [questionsQueue, setQuestionsQueue] = useState<Question[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [totalQuestions, setTotalQuestions] = useState(0);
+
+    // Persistence and Navigation State
+    const [answers, setAnswers] = useState<Record<number, { selected: string, isCorrect: boolean }>>({});
+    const [hintLogs, setHintLogs] = useState<Record<number, boolean>>({});
 
     const filterQuestions = useCallback(() => {
         return allQuestions.filter(q => !q.difficulty || q.difficulty === difficulty || difficulty === 'None');
@@ -71,6 +75,9 @@ export const useGameLogic = (
         setGameOver(false);
         setScoreSaved(false);
         setPlayerName('');
+        setAnswers({});
+        setHintLogs({});
+        setFeedback(null);
 
         // Prepare session questions
         const filtered = filterQuestions();
@@ -89,13 +96,17 @@ export const useGameLogic = (
         }
     };
 
-    const [isProcessing, setIsProcessing] = useState(false);
-
     const handleAnswer = (selected: string, correct?: string) => {
-        if (!gameActive || feedback || isProcessing) return;
+        // If already answered, do nothing
+        if (!gameActive || answers[currentIndex]) return;
 
-        setIsProcessing(true);
         const isCorrect = selected === correct || selected === String(correct);
+
+        // Save answer
+        setAnswers(prev => ({
+            ...prev,
+            [currentIndex]: { selected, isCorrect }
+        }));
 
         // Calculate points
         if (isCorrect) {
@@ -108,21 +119,30 @@ export const useGameLogic = (
             setFeedback({ correct: false, answer: correct, explanation: currentQ?.explanation });
         }
 
-        // Delay for feedback then move to next question
-        setTimeout(() => {
-            setFeedback(null);
-            setIsProcessing(false);
+        // No auto-advance. User must click Next.
+    };
 
-            const nextIndex = currentIndex + 1;
-            if (nextIndex < questionsQueue.length) {
-                setCurrentIndex(nextIndex);
-                setCurrentQ(questionsQueue[nextIndex]);
-            } else {
-                // Game Over
-                setGameActive(false);
-                setGameOver(true);
-            }
-        }, GAME_CONSTANTS.FEEDBACK_DURATION);
+    const navigateQuestion = (direction: 'next' | 'prev') => {
+        let newIndex = currentIndex;
+        if (direction === 'next') newIndex++;
+        else newIndex--;
+
+        if (newIndex >= 0 && newIndex < questionsQueue.length) {
+            setCurrentIndex(newIndex);
+            setCurrentQ(questionsQueue[newIndex]);
+            setFeedback(null); // Clear feedback when navigating
+        } else if (direction === 'next' && newIndex >= questionsQueue.length) {
+            // End Game
+            setGameActive(false);
+            setGameOver(true);
+        }
+    };
+
+    const toggleHint = () => {
+        if (!hintLogs[currentIndex]) {
+            setHintLogs(prev => ({ ...prev, [currentIndex]: true }));
+        }
+        return true;
     };
 
     const handleSaveScore = async () => {
@@ -143,8 +163,10 @@ export const useGameLogic = (
             feedback,
             playerName,
             scoreSaved,
-            currentIndex, // Expose for UI "1/10"
-            totalQuestions // Expose for UI "1/10"
+            currentIndex,
+            totalQuestions,
+            answers,
+            hintLogs
         },
         setters: {
             setPlayerName
@@ -152,7 +174,9 @@ export const useGameLogic = (
         actions: {
             startGame,
             handleAnswer,
-            handleSaveScore
+            handleSaveScore,
+            navigateQuestion,
+            toggleHint
         },
         data: {
             loading,

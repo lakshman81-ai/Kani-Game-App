@@ -108,6 +108,38 @@ export const GAME_THEMES = {
     borderColor: 'border-pink-500',
     glowColor: 'shadow-pink-500/50',
   },
+  'story-solver': {
+    gradient: 'from-violet-500 to-purple-500',
+    buttonBg: 'bg-gradient-to-r from-violet-500 to-purple-500',
+    cardBg: 'bg-violet-900/30',
+    accentColor: 'text-violet-300',
+    borderColor: 'border-violet-400',
+    glowColor: 'shadow-violet-500/50'
+  },
+  'estimation-express': {
+    gradient: 'from-amber-500 to-red-500',
+    buttonBg: 'bg-gradient-to-r from-amber-500 to-red-500',
+    cardBg: 'bg-amber-900/30',
+    accentColor: 'text-amber-300',
+    borderColor: 'border-amber-400',
+    glowColor: 'shadow-amber-500/50'
+  },
+  'pattern-planet': {
+    gradient: 'from-fuchsia-500 to-pink-500',
+    buttonBg: 'bg-gradient-to-r from-fuchsia-500 to-pink-500',
+    cardBg: 'bg-fuchsia-900/30',
+    accentColor: 'text-fuchsia-300',
+    borderColor: 'border-fuchsia-400',
+    glowColor: 'shadow-fuchsia-500/50'
+  },
+  'measurement-mission': {
+    gradient: 'from-sky-500 to-blue-500',
+    buttonBg: 'bg-gradient-to-r from-sky-500 to-blue-500',
+    cardBg: 'bg-sky-900/30',
+    accentColor: 'text-sky-300',
+    borderColor: 'border-sky-400',
+    glowColor: 'shadow-sky-500/50'
+  },
 
   // Grammar games
   'grammar-galaxy': {

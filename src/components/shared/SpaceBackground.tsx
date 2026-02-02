@@ -39,7 +39,7 @@ export const SpaceBackground: React.FC<SpaceBackgroundProps> = ({ children, vari
                         }} />
                 ))}
             </div>
-            <div className="relative z-10 h-full">{children}</div>
+            <div className="relative z-10 h-full overflow-y-auto">{children}</div>
         </div>
     );
 };
