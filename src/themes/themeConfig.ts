@@ -194,6 +194,16 @@ export const GAME_THEMES: Record<string, GameTheme> = {
     magnifyingGlass: '🔎',
     questionBg: 'bg-violet-800/60',
   },
+  'spyglass-explorer': {
+    gradient: 'from-teal-600 to-emerald-600',
+    buttonBg: 'bg-gradient-to-r from-teal-600 to-emerald-600',
+    cardBg: 'bg-teal-900/40',
+    accentColor: 'text-teal-300',
+    borderColor: 'border-teal-400',
+    glowColor: 'shadow-teal-500/50',
+    magnifyingGlass: '🕵️',
+    questionBg: 'bg-teal-800/60',
+  },
   // Skill games
   'pattern-forge': {
     gradient: 'from-violet-500 to-indigo-500',
@@ -256,6 +266,7 @@ export const ICONS = {
     'antonym-asteroids': '☄️',
     'story-nebula': '📖',
     'inference-investigator': '🔍',
+    'spyglass-explorer': '🕵️',
     'pattern-forge': '🧩',
     'logic-lab': '🧠',
     'odd-wizard': '🧙',

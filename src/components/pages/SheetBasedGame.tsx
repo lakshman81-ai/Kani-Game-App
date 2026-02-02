@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SpaceBackground } from '../shared/SpaceBackground';
 import { Header } from '../shared/Header';
 import { DifficultyBadge } from '../shared/DifficultyBadge';
@@ -6,6 +6,7 @@ import { LoadingSpinner } from '../shared/LoadingSpinner';
 import { GameOverScreen } from '../shared/GameOverScreen';
 import { StoryNebulaRenderer, InferenceInvestigatorRenderer } from '../../renderers/ComprehensionRenderer';
 import { VocabularyRenderer } from '../../renderers/VocabularyRenderer';
+import { SpyglassRenderer } from '../../renderers/SpyglassRenderer';
 import { useAppContext } from '../../contexts/AppContext';
 import { useGameLogic } from '../../hooks/useGameLogic';
 import { GAME_THEMES } from '../../themes/themeConfig';
@@ -42,6 +43,105 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
     if (!url || !url.startsWith('dynamic:')) return null;
     const parts = url.split(':');
     const type = parts[1];
+
+    if (type === 'scene') {
+        const sceneType = parts[2];
+        const size = 300; // Larger canvas for scenes
+
+        if (sceneType === 'park') {
+            return (
+                <svg width="100%" height="100%" viewBox="0 0 400 300" className="rounded-lg shadow-inner bg-sky-300">
+                    {/* Sky & Sun */}
+                    <circle cx="350" cy="50" r="30" fill="#FDB813" className="animate-pulse" />
+
+                    {/* Ground */}
+                    <rect x="0" y="200" width="400" height="100" fill="#4ADE80" />
+
+                    {/* Tree */}
+                    <rect x="50" y="150" width="30" height="100" fill="#78350F" />
+                    <circle cx="65" cy="140" r="40" fill="#15803D" />
+                    <circle cx="40" cy="160" r="30" fill="#166534" />
+                    <circle cx="90" cy="160" r="30" fill="#166534" />
+
+                    {/* Bench */}
+                    <rect x="150" y="210" width="80" height="10" fill="#92400E" />
+                    <rect x="160" y="220" width="10" height="20" fill="#78350F" />
+                    <rect x="210" y="220" width="10" height="20" fill="#78350F" />
+
+                    {/* Dogs - Simple shapes */}
+                    <g transform="translate(200, 240)">
+                        {/* Dog 1 */}
+                        <ellipse cx="0" cy="0" rx="15" ry="10" fill="#D97706" />
+                        <circle cx="-15" cy="-5" r="8" fill="#D97706" />
+                        <path d="M-10,5 L-12,15 M10,5 L12,15" stroke="#D97706" strokeWidth="4" />
+                        <path d="M-15,-5 L-25,0" stroke="#D97706" strokeWidth="4" /> {/* Tail */}
+                    </g>
+                    <g transform="translate(280, 250) scale(-1, 1)">
+                         {/* Dog 2 */}
+                        <ellipse cx="0" cy="0" rx="18" ry="12" fill="#57534E" />
+                        <circle cx="-18" cy="-6" r="9" fill="#57534E" />
+                        <path d="M-12,6 L-14,18 M12,6 L14,18" stroke="#57534E" strokeWidth="4" />
+                    </g>
+                </svg>
+            );
+        }
+
+        if (sceneType === 'beach') {
+             return (
+                <svg width="100%" height="100%" viewBox="0 0 400 300" className="rounded-lg shadow-inner bg-sky-300">
+                    {/* Sun */}
+                    <circle cx="50" cy="50" r="30" fill="#FDB813" />
+
+                    {/* Ocean */}
+                    <rect x="0" y="150" width="400" height="150" fill="#3B82F6" />
+
+                    {/* Sand */}
+                    <path d="M0,220 Q200,200 400,220 L400,300 L0,300 Z" fill="#FCD34D" />
+
+                    {/* Umbrella */}
+                    <path d="M150,230 L150,150" stroke="#DC2626" strokeWidth="5" />
+                    <path d="M100,150 Q150,100 200,150 Z" fill="#EF4444" />
+                    <path d="M100,150 Q125,125 150,150" fill="none" stroke="white" strokeWidth="2" />
+                    <path d="M150,150 Q175,125 200,150" fill="none" stroke="white" strokeWidth="2" />
+
+                    {/* Beach Ball - Red and Blue stripes */}
+                    <g transform="translate(250, 260)">
+                        <circle cx="0" cy="0" r="20" fill="white" />
+                        <path d="M0,-20 A20,20 0 0,1 0,20" fill="#EF4444" />
+                        <path d="M0,-20 A20,20 0 0,0 0,20" fill="#3B82F6" />
+                    </g>
+                </svg>
+             );
+        }
+
+        if (sceneType === 'classroom') {
+             return (
+                <svg width="100%" height="100%" viewBox="0 0 400 300" className="rounded-lg shadow-inner bg-orange-100">
+                    {/* Blackboard */}
+                    <rect x="50" y="40" width="300" height="120" fill="#1F2937" rx="5" />
+                    <rect x="60" y="150" width="280" height="5" fill="#9CA3AF" />
+
+                    {/* Floor */}
+                    <rect x="0" y="220" width="400" height="80" fill="#B45309" />
+
+                    {/* Desk */}
+                    <path d="M50,250 L80,200 L180,200 L150,250 Z" fill="#D97706" /> {/* Top */}
+                    <rect x="50" y="250" width="10" height="40" fill="#92400E" />
+                    <rect x="150" y="250" width="10" height="40" fill="#92400E" />
+                    <rect x="170" y="200" width="10" height="50" fill="#92400E" />
+
+                    {/* Red Book on Desk */}
+                    <rect x="100" y="210" width="40" height="30" fill="#EF4444" transform="rotate(-10 120 225)" />
+                    <rect x="105" y="215" width="30" height="20" fill="white" transform="rotate(-10 120 225)" opacity="0.8" />
+
+                    {/* Chair */}
+                    <rect x="250" y="220" width="60" height="10" fill="#4B5563" />
+                    <rect x="260" y="230" width="5" height="40" fill="#374151" />
+                    <rect x="300" y="230" width="5" height="40" fill="#374151" />
+                </svg>
+             );
+        }
+    }
 
     const renderPie = (num: number, den: number, size = 100) => {
         const center = size / 2;
@@ -283,6 +383,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
     const [readingPhase, setReadingPhase] = useState(false);
     const [showHintModal, setShowHintModal] = useState(false);
+    const [observationMode, setObservationMode] = useState(false);
 
     useEffect(() => {
         if (gameActive && gameId === 'story-nebula') {
@@ -291,6 +392,12 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             setReadingPhase(false);
         }
     }, [gameActive, gameId]);
+
+    useEffect(() => {
+        if (gameActive && gameId === 'spyglass-explorer') {
+            setObservationMode(true);
+        }
+    }, [gameActive, gameId, currentIndex]);
 
     // Derived state
     const isAnswered = !!answers[currentIndex];
@@ -339,6 +446,56 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 💡
             </button>
         ) : null;
+
+        // Spyglass Explorer
+        if (gameId === 'spyglass-explorer') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const effectiveDifficulty = (showHint && !observationMode) ? 'Easy' : difficulty;
+
+            return (
+                <div className="w-full max-w-4xl relative animate-slideIn flex flex-col items-center">
+                    <div className="mb-6 w-full flex flex-col items-center">
+                        <div className="text-center mb-4">
+                            <h3 className="text-2xl font-bold text-white mb-2">{currentQ.text1}</h3>
+                            <p className="text-teal-300 font-bold">
+                                {observationMode ? "👀 Observe the scene carefully!" : "❓ Recall the details!"}
+                            </p>
+                        </div>
+
+                        <SpyglassRenderer
+                            difficulty={effectiveDifficulty}
+                            isObservationPhase={observationMode}
+                        >
+                            {currentQ.image_url ? <DynamicImageRenderer url={currentQ.image_url} /> : null}
+                        </SpyglassRenderer>
+                    </div>
+
+                    {observationMode ? (
+                        <button
+                            onClick={() => setObservationMode(false)}
+                            className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-teal-500/30 animate-pulse cursor-pointer"
+                        >
+                            I'm Ready! 🕵️
+                        </button>
+                    ) : (
+                        <div className="w-full max-w-lg animate-slideIn">
+                            <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                                <HintButton />
+                                <div className="text-white text-2xl font-bold mb-4">{currentQ.text2}</div>
+                                {showHint && safeHint && <p className="text-gray-400 text-sm animate-slideIn">💡 {safeHint}</p>}
+                            </div>
+                            <div className="grid grid-cols-2 gap-3 relative z-20">
+                                {options.map((opt, i) => (
+                                    <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                        disabled={isAnswered}
+                                        className={`p-4 rounded-xl text-xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-teal-600 to-emerald-600')}`}>{opt}</button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
 
         // Math equations
         if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
