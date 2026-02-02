@@ -205,6 +205,14 @@ export const COMPREHENSION_GAMES: GameDefinition[] = [
         difficulty: 'Hard',
         description: 'Make inferences!'
     },
+    {
+        id: 'spyglass-explorer',
+        title: 'Spyglass Explorer',
+        icon: '🕵️',
+        color: 'from-teal-600 to-emerald-600',
+        difficulty: 'Medium',
+        description: 'Observe & Recall!'
+    },
 ];
 
 // Brain Training / Skill Games - Phase 1 & 2
@@ -336,7 +344,7 @@ export const DEFAULT_SETTINGS = {
     enabledGames: {},
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',
-    levelUpMode: true
+    levelUpMode: false
 };
 
 export default {
