@@ -124,7 +124,7 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                     <button onClick={onOpenLeaderboard}
                         className="flex items-center gap-3 bg-gradient-to-r from-amber-500 to-yellow-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-400">
                         <span className="text-2xl">🏆</span>
-                        <span>View Leaderboard</span>
+                        <span>My Mission Control</span>
                     </button>
                     <button onClick={onOpenQA}
                         className="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 rounded-full font-bold text-white hover:scale-105 transition-all shadow-lg cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400">

@@ -6,7 +6,7 @@ import { LoadingSpinner } from './components/shared/LoadingSpinner';
 
 // Lazy load page components for better performance
 const SettingsPage = React.lazy(() => import('./components/pages/SettingsPage').then(module => ({ default: module.SettingsPage })));
-const LeaderboardPage = React.lazy(() => import('./components/pages/LeaderboardPage').then(module => ({ default: module.LeaderboardPage })));
+const AnalyticsPage = React.lazy(() => import('./components/pages/AnalyticsPage').then(module => ({ default: module.AnalyticsPage })));
 const EnhancedQAPage = React.lazy(() => import('./components/pages/EnhancedQAPage').then(module => ({ default: module.EnhancedQAPage })));
 const SheetBasedGame = React.lazy(() => import('./components/pages/SheetBasedGame').then(module => ({ default: module.SheetBasedGame })));
 const DifficultySelector = React.lazy(() => import('./components/pages/DifficultySelector').then(module => ({ default: module.DifficultySelector })));
@@ -50,7 +50,7 @@ const LearningGalaxy: React.FC = () => {
     <Suspense fallback={<LoadingScreen />}>
       {(() => {
         if (showSettings) return <SettingsPage settings={settings} setSettings={updateSettings} onBack={() => setShowSettings(false)} />;
-        if (showLeaderboard) return <LeaderboardPage onBack={() => setShowLeaderboard(false)} leaderboard={leaderboard} />;
+        if (showLeaderboard) return <AnalyticsPage onBack={() => setShowLeaderboard(false)} leaderboard={leaderboard} />;
         if (showQA) return <EnhancedQAPage onBack={() => setShowQA(false)} leaderboard={leaderboard} />;
 
         if (currentGame && selectedDifficulty) {

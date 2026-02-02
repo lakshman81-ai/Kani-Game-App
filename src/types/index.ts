@@ -25,6 +25,7 @@ export interface Question {
     text2?: string;
     topic?: string;
     subtopic?: string;
+    category?: string;
     know_more?: string;
     explanation?: string; // Mapped from know_more
     image_url?: string;
@@ -98,4 +99,5 @@ export interface LeaderboardEntry {
     stars: number;
     streak: number;
     date: string;
+    hintsUsed?: number;
 }

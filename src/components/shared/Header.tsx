@@ -11,9 +11,10 @@ interface HeaderProps {
   formatTime: (s: number) => string;
   difficulty: Difficulty;
   progress?: { current: number; total: number };
+  hintCount?: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, formatTime, difficulty, progress }) => (
+export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, formatTime, difficulty, progress, hintCount }) => (
   <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
     <div className="flex items-center gap-4">
       <button onClick={onBack} aria-label="Back" className="w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white">←</button>
@@ -26,6 +27,14 @@ export const Header: React.FC<HeaderProps> = ({ timer, streak, stars, onBack, fo
           <div className="text-xl font-bold text-orange-400">{streak}</div>
           <div className="text-xs text-orange-300">STREAK</div>
         </div>
+        {hintCount !== undefined && (
+          <div className="ml-3 border-l border-gray-600 pl-3 text-center min-w-[60px]">
+            <div className="text-xl font-bold text-yellow-400">{hintCount}</div>
+            <div className="text-xs text-yellow-300 flex items-center justify-center gap-1">
+              <span>💡</span> HINT
+            </div>
+          </div>
+        )}
         {progress && (
           <div className="ml-3 border-l border-gray-600 pl-3 flex flex-col justify-center min-w-[120px]">
             <div className="flex justify-between text-xs text-emerald-300 mb-1">
