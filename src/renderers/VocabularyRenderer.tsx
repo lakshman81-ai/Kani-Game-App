@@ -33,7 +33,7 @@ export const VocabularyRenderer: React.FC<VocabularyRendererProps> = ({
 }) => {
     // Word Wizard - Context clues game
     if (gameId === 'word-wizard') {
-        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
+        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[]);
         return (
             <div className="w-full max-w-lg relative animate-slideIn">
                 <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
@@ -63,7 +63,7 @@ export const VocabularyRenderer: React.FC<VocabularyRendererProps> = ({
 
     // Root Raider - Greek/Latin roots
     if (gameId === 'root-raider') {
-        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
+        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[]);
         return (
             <div className="w-full max-w-lg relative animate-slideIn">
                 <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
@@ -89,7 +89,7 @@ export const VocabularyRenderer: React.FC<VocabularyRendererProps> = ({
 
     // Idiom Island - Idiom meanings
     if (gameId === 'idiom-island') {
-        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
+        const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[]);
         return (
             <div className="w-full max-w-lg relative animate-slideIn">
                 <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
@@ -116,14 +116,14 @@ export const VocabularyRenderer: React.FC<VocabularyRendererProps> = ({
     // Homophone Hunt - Sound-alike words
     if (gameId === 'homophone-hunt') {
         // Options shouldn't be shuffled for homophone hunt to keep them consistent if order matters,
-        // but prompt snippet said: const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
-        const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+        // but prompt snippet said: const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+        const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
         return (
             <div className="w-full max-w-lg relative animate-slideIn">
                 <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl">
                     <div className="text-pink-300 text-sm mb-3">👂 Choose the correct word!</div>
                     <div className="text-white text-xl leading-relaxed">
-                        {currentQ.text1.split('_____').map((part, i, arr) => (
+                        {(currentQ.text1 || '').split('_____').map((part, i, arr) => (
                             <span key={i}>
                                 {part}
                                 {i < arr.length - 1 && <span className="text-yellow-400 text-2xl animate-pulse mx-1">____</span>}

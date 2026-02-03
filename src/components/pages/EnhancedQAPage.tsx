@@ -5,7 +5,7 @@ import { EnglishQAInterface } from '../qa/EnglishQAInterface';
 import { ComprehensionQAInterface } from '../qa/ComprehensionQAInterface';
 import { THEME_COLORS } from '../../themes/themeConfig';
 
-import { LeaderboardEntry, GameDefinition } from '../../types';
+import { LeaderboardEntry, TopPerformer } from '../../types';
 
 // Shared SpaceBackground component
 interface SpaceBackgroundProps {
@@ -71,12 +71,6 @@ interface EnhancedQAPageProps {
 export const EnhancedQAPage: React.FC<EnhancedQAPageProps> = ({ onBack, leaderboard }) => {
   const [selectedTheme, setSelectedTheme] = React.useState('all');
 
-  // Calculate analytics
-  const totalGames = leaderboard.length;
-  const totalStars = leaderboard.reduce((sum, s) => sum + s.stars, 0);
-  const avgStars = totalGames > 0 ? Math.round(totalStars / totalGames) : 0;
-  const bestStreak = leaderboard.reduce((max, s) => Math.max(max, s.streak || 0), 0);
-
   // Filter by theme
   const filterByTheme = (theme: string): LeaderboardEntry[] => {
     if (theme === 'all') return leaderboard;
@@ -98,14 +92,6 @@ export const EnhancedQAPage: React.FC<EnhancedQAPageProps> = ({ onBack, leaderbo
 
   const filteredLeaderboard = filterByTheme(selectedTheme);
 
-  // Games played breakdown for filtered data
-  const mathGames = filteredLeaderboard.filter((s) =>
-    MATH_GAMES.find((g) => g.id === s.game)
-  ).length;
-  const englishGames = filteredLeaderboard.filter(
-    (s) => !MATH_GAMES.find((g) => g.id === s.game)
-  ).length;
-
   // Most played game in filtered data
   const gameCount: Record<string, number> = {};
   filteredLeaderboard.forEach((s) => {
@@ -118,7 +104,7 @@ export const EnhancedQAPage: React.FC<EnhancedQAPageProps> = ({ onBack, leaderbo
   const mostPlayedGameInfo = mostPlayedGameId
     ? ALL_GAMES.find((g) => g.id === mostPlayedGameId)
     : null;
-  const mostPlayedGame = mostPlayedGameInfo
+  const mostPlayedGame = mostPlayedGameInfo && mostPlayedGameId
     ? {
       ...mostPlayedGameInfo,
       playCount: gameCount[mostPlayedGameId],
@@ -142,7 +128,7 @@ export const EnhancedQAPage: React.FC<EnhancedQAPageProps> = ({ onBack, leaderbo
 
   // Recent activity
   const recentGames = [...filteredLeaderboard]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 10);
 
   const stats = {
@@ -208,7 +194,7 @@ export const EnhancedQAPage: React.FC<EnhancedQAPageProps> = ({ onBack, leaderbo
           ))}
         </div>
 
-        {totalGames === 0 ? (
+        {leaderboard.length === 0 ? (
           <div className="bg-gray-900/80 rounded-2xl p-8 backdrop-blur text-center max-w-md">
             <div className="text-6xl mb-4">📈</div>
             <p className="text-gray-400 text-lg">

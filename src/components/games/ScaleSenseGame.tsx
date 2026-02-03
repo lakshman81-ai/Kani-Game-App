@@ -14,7 +14,7 @@ export const ScaleSenseGame: React.FC<ScaleSenseGameProps> = ({ onBack, difficul
     const { addLeaderboardEntry } = useAppContext();
 
     const [gameState, setGameState] = useState<'start' | 'play' | 'result' | 'gameover'>('start');
-    const [round, setRound] = useState(1);
+    const [_round, setRound] = useState(1);
     const [stars, setStars] = useState(0);
     const [streak, setStreak] = useState(0);
     const [maxStreak, setMaxStreak] = useState(0);
@@ -25,7 +25,7 @@ export const ScaleSenseGame: React.FC<ScaleSenseGameProps> = ({ onBack, difficul
     // Level Data
     const [leftWeight, setLeftWeight] = useState(0);
     const [rightWeight, setRightWeight] = useState(0);
-    const [targetWeight, setTargetWeight] = useState(0); // If mode is "Calculate missing"
+    const [_targetWeight, _setTargetWeight] = useState(0); // If mode is "Calculate missing"
     const [options, setOptions] = useState<number[]>([]);
     const [feedback, setFeedback] = useState<'correct' | 'heavy' | 'light' | null>(null);
 

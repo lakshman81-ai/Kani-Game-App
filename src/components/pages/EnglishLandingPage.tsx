@@ -8,7 +8,7 @@ interface EnglishLandingPageProps {
     totalStars: number;
 }
 
-export const EnglishLandingPage: React.FC<EnglishLandingPageProps> = ({ onSelectCategory, onBack, totalStars }) => (
+export const EnglishLandingPage: React.FC<EnglishLandingPageProps> = ({ onSelectCategory, onBack }) => (
     <SpaceBackground variant="english">
         <div className="flex flex-col items-center justify-center h-full px-4">
             <button onClick={onBack} className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer">←</button>

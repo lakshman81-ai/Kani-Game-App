@@ -10,7 +10,7 @@ interface QAInterfaceProps {
 }
 
 // Comprehension-themed QA Interface with detective/mystery aesthetic
-export const ComprehensionQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers, recentGames }) => {
+export const ComprehensionQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers }) => {
   return (
     <div className="w-full max-w-4xl space-y-6 relative z-20">
       {/* Comprehension-specific header with detective theme */}

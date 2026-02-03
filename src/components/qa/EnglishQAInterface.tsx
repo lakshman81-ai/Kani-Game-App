@@ -10,7 +10,7 @@ interface QAInterfaceProps {
 }
 
 // English-themed QA Interface with book/library aesthetic
-export const EnglishQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers, recentGames }) => {
+export const EnglishQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers }) => {
   return (
     <div className="w-full max-w-4xl space-y-6 relative z-20">
       {/* English-specific header with book aesthetic */}

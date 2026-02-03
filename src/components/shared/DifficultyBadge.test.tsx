@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { DifficultyBadge } from './DifficultyBadge';
 import { describe, it, expect } from 'vitest';
-import React from 'react';
 
 describe('DifficultyBadge', () => {
     it('renders Easy with green background', () => {

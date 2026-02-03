@@ -23,7 +23,7 @@ export const DifficultySelector: React.FC<DifficultySelectorProps> = ({ game, on
                 {lockedDifficulty && <p className="text-purple-300 mb-4 text-sm">Difficulty locked to {lockedDifficulty} in settings</p>}
                 <div className="flex flex-col gap-4 w-full max-w-xs relative z-20">
                     {['Easy', 'Medium', 'Hard'].map(diff => {
-                        const isDisabled = lockedDifficulty && lockedDifficulty !== diff;
+                        const isDisabled = !!(lockedDifficulty && lockedDifficulty !== diff);
                         return (
                             <button
                                 key={diff}
