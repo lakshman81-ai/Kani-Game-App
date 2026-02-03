@@ -471,7 +471,6 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
                         gameTheme={gameTheme || GAME_THEMES['story-jammer']}
                         questionIndex={currentIndex}
-                        totalQuestions={totalQuestions}
                     />
                 </div>
             );

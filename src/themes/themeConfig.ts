@@ -238,16 +238,6 @@ export const GAME_THEMES: Record<string, GameTheme> = {
     magnifyingGlass: '🕵️',
     questionBg: 'bg-teal-800/60',
   },
-  'story-jammer': {
-    gradient: 'from-blue-600 to-indigo-600',
-    buttonBg: 'bg-gradient-to-r from-blue-600 to-indigo-600',
-    cardBg: 'bg-blue-900/40',
-    accentColor: 'text-blue-300',
-    borderColor: 'border-blue-400',
-    glowColor: 'shadow-blue-500/50',
-    storyTitleColor: 'text-yellow-300',
-    questionBg: 'bg-blue-800/60',
-  },
   // Skill games
   'pattern-forge': {
     gradient: 'from-violet-500 to-indigo-500',

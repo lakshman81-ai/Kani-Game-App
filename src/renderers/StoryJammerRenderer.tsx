@@ -7,7 +7,6 @@ interface StoryJammerRendererProps {
     feedback: Feedback | null;
     gameTheme: ThemeConfig;
     questionIndex: number; // To decide if we auto-expand story
-    totalQuestions: number;
 }
 
 export const StoryJammerRenderer: React.FC<StoryJammerRendererProps> = ({
@@ -15,8 +14,7 @@ export const StoryJammerRenderer: React.FC<StoryJammerRendererProps> = ({
     handleAnswer,
     feedback,
     gameTheme,
-    questionIndex,
-    totalQuestions
+    questionIndex
 }) => {
     // Local state for story collapse/expand
     const [isStoryExpanded, setIsStoryExpanded] = useState(true);
