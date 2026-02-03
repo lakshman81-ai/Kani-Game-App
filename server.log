@@ -1,0 +1,11 @@
+
+> learning-galaxy@5.0.0 dev
+> vite
+
+
+  VITE v5.4.21  ready in 459 ms
+
+  ➜  Local:   http://localhost:3000/Kani-Game-App/
+  ➜  Network: use --host to expose
+2:39:42 AM [vite] hmr update /src/contexts/AppContext.tsx, /src/index.css
+2:43:05 AM [vite] hmr update /src/contexts/AppContext.tsx, /src/index.css

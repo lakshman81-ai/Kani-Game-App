@@ -230,6 +230,12 @@ story-nebula,The Secret Key,"Lily found a rusty old key in her grandmother's att
 spyglass-explorer,The City Park,How many dogs are playing?,Two,Two,One,Three,Four,Easy,observation,Look closely at the animals.,Count the dogs!,dynamic:scene:park
 spyglass-explorer,Sunny Beach,What color is the beach ball?,Red and Blue,Red and Blue,Green and Yellow,Purple,Orange,Easy,observation,Check the stripes on the ball.,Look at the ball colors!,dynamic:scene:beach
 spyglass-explorer,Messy Classroom,Where is the red book?,On the desk,On the desk,Under the chair,On the shelf,In the bag,Hard,observation,It was near the pencils.,Check the desk surface!,dynamic:scene:classroom
+sentence-builder,cat | the | on | sat | mat | the,Arrange words,The cat sat on the mat.,The cat sat on the mat.,Cat the sat mat on.,The mat sat cat the.,Sat the cat on mat.,Easy,grammar
+contraction-commander,I am,Two words,I'm,I'm,Im,Iam,I'am,Easy,grammar
+contraction-commander,do not,Negative,don't,don't,dont,do'nt,donot,Easy,grammar
+article-adventure,apple is red.,Vowel sound,an,a,an,the,,Easy,grammar
+article-adventure,dog is barking.,Consonant,a,a,an,the,,Easy,grammar
+article-adventure,sun rises in the east.,Specific,the,a,an,the,,Easy,grammar
 grammar-galaxy,The dog _____ loudly.,Choose the correct verb,barked,barked,barking,barks,bark,Easy,grammar,Past tense action,Check subject-verb agreement.,,Verbs
 grammar-galaxy,She _____ to the store.,Choose the correct verb,walks,walks,walking,walk,walked,Easy,grammar,Present tense singular,Check subject-verb agreement.,,Verbs
 grammar-galaxy,They _____ football.,Choose the correct verb,play,plays,playing,play,played,Easy,grammar,Plural subject,Check subject-verb agreement.,,Verbs

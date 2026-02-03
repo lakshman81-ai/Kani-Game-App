@@ -154,6 +154,30 @@ export const GAME_THEMES: Record<string, GameTheme> = {
     borderColor: 'border-teal-500',
     glowColor: 'shadow-teal-500/50',
   },
+  'sentence-builder': {
+    gradient: 'from-cyan-500 to-teal-500',
+    buttonBg: 'bg-gradient-to-r from-cyan-500 to-teal-500',
+    cardBg: 'bg-cyan-900/30',
+    accentColor: 'text-cyan-300',
+    borderColor: 'border-cyan-400',
+    glowColor: 'shadow-cyan-500/50',
+  },
+  'contraction-commander': {
+    gradient: 'from-rose-500 to-pink-500',
+    buttonBg: 'bg-gradient-to-r from-rose-500 to-pink-500',
+    cardBg: 'bg-rose-900/30',
+    accentColor: 'text-rose-300',
+    borderColor: 'border-rose-400',
+    glowColor: 'shadow-rose-500/50',
+  },
+  'article-adventure': {
+    gradient: 'from-lime-500 to-green-500',
+    buttonBg: 'bg-gradient-to-r from-lime-500 to-green-500',
+    cardBg: 'bg-lime-900/30',
+    accentColor: 'text-lime-300',
+    borderColor: 'border-lime-400',
+    glowColor: 'shadow-lime-500/50',
+  },
 
   // Vocabulary games
   'synonym-stars': {

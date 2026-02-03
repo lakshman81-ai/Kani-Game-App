@@ -799,6 +799,78 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             );
         }
 
+        // Sentence Builder
+        if (gameId === 'sentence-builder') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const scrambledWords = currentQ.text1 ? currentQ.text1.split('|').map(w => w.trim()) : [];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-cyan-300 text-sm mb-4">🏗️ Put words in order!</div>
+                        <div className="flex flex-wrap justify-center gap-2 mb-4">
+                            {scrambledWords.map((word, i) => (
+                                <span key={i} className="bg-cyan-500/30 border border-cyan-400/50 px-3 py-2 rounded-lg text-white">{word}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-cyan-500 to-teal-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Contraction Commander
+        if (gameId === 'contraction-commander') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-rose-300 text-sm mb-3">✂️ What is the contraction for:</div>
+                        <div className="bg-rose-500/20 border-2 border-rose-400/50 rounded-xl p-4">
+                            <div className="text-white text-3xl font-bold">{currentQ.text1}</div>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 relative z-20">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-2xl font-bold ${getButtonStyle(opt, 'bg-gradient-to-r from-rose-500 to-pink-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Article Adventure
+        if (gameId === 'article-adventure') {
+            const articles = ['a', 'an', 'the'];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-lime-300 text-sm mb-4">📰 Choose the correct article!</div>
+                        <div className="text-white text-2xl">
+                            <span className="text-yellow-400 text-3xl font-bold animate-pulse">___</span> {currentQ.text1}
+                        </div>
+                    </div>
+                    <div className="flex justify-center gap-4 relative z-20">
+                        {articles.map((article) => (
+                            <button key={article} onClick={() => !isAnswered && handleAnswer(article, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`w-20 h-20 rounded-2xl text-3xl font-bold ${getButtonStyle(article, 'bg-gradient-to-b from-lime-400 to-green-500')}`}>{article}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
         // Synonyms & Antonyms
         if (gameId === 'synonym-stars' || gameId === 'antonym-asteroids') {
             const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
