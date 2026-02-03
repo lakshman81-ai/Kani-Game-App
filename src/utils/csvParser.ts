@@ -44,6 +44,11 @@ export const parseCSV = (csv: string): Question[] => {
             obj[h] = values[i] || '';
         });
 
+        // Map know_more to explanation if not present
+        if (!obj.explanation && obj.know_more) {
+            obj.explanation = obj.know_more;
+        }
+
         return obj as Question;
     });
 };

@@ -16,8 +16,8 @@ export const useGameLogic = (
         if (settings.useGoogleSheets) {
             return isMath ? settings.mathSheetUrl : isSkill ? (settings.skillSheetUrl || settings.englishSheetUrl) : settings.englishSheetUrl;
         }
-        // Local fallbacks
-        return isMath ? 'MATH_GOOGLE_SHEET_DATA.csv' : isSkill ? 'SKILL_GAMES_DATA.csv' : 'ENGLISH_GOOGLE_SHEET_DATA.csv';
+        // Local fallbacks: use individual game files
+        return `${import.meta.env.BASE_URL}games/${gameId}.csv`;
     };
 
     const sheetUrl = getSheetUrl();
@@ -83,20 +83,29 @@ export const useGameLogic = (
         const filtered = filterQuestions();
         let session: Question[] = [];
 
-        if (gameId === 'story-nebula') {
-            // Group by story title
+        if (gameId === 'story-nebula' || gameId === 'story-jammer') {
+            // Group by story title or ID
             const grouped: Record<string, Question[]> = {};
             filtered.forEach(q => {
-                const title = q.text1 || 'Untitled';
-                if (!grouped[title]) grouped[title] = [];
-                grouped[title].push(q);
+                const key = (gameId === 'story-jammer' ? q.story_id : q.text1) || 'Untitled';
+                if (!grouped[key]) grouped[key] = [];
+                grouped[key].push(q);
             });
 
-            const titles = Object.keys(grouped);
-            if (titles.length > 0) {
+            const keys = Object.keys(grouped);
+            if (keys.length > 0) {
                 // Pick one random story
-                const randomTitle = titles[Math.floor(Math.random() * titles.length)];
-                session = grouped[randomTitle];
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                session = grouped[randomKey];
+
+                // Sort by question_num if available for story-jammer
+                if (gameId === 'story-jammer') {
+                    session.sort((a, b) => {
+                        const numA = parseInt(a.question_num || '0');
+                        const numB = parseInt(b.question_num || '0');
+                        return numA - numB;
+                    });
+                }
             }
         } else {
             const shuffled = shuffleArray(filtered);
