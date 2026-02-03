@@ -14,7 +14,7 @@ export const MirrorMatchGame: React.FC<MirrorMatchGameProps> = ({ onBack, diffic
     const { addLeaderboardEntry } = useAppContext();
 
     const [gameState, setGameState] = useState<'start' | 'play' | 'result' | 'gameover'>('start');
-    const [round, setRound] = useState(1);
+    const [_round, setRound] = useState(1);
     const [stars, setStars] = useState(0);
     const [streak, setStreak] = useState(0);
     const [maxStreak, setMaxStreak] = useState(0);

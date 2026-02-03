@@ -59,7 +59,6 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
 
     if (type === 'scene') {
         const sceneType = parts[2];
-        const size = 300; // Larger canvas for scenes
 
         if (sceneType === 'park') {
             return (
@@ -462,7 +461,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Spyglass Explorer
         if (gameId === 'spyglass-explorer') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const effectiveDifficulty = (showHint && !observationMode) ? 'Easy' : difficulty;
 
             return (
@@ -512,7 +511,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Math equations
         if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center border border-white/10 shadow-2xl relative">
@@ -550,7 +549,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Story Solver - Word problems
         if (gameId === 'story-solver') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
@@ -577,7 +576,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Estimation Express - Quick estimates
         if (gameId === 'estimation-express') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -602,7 +601,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         // Pattern Planet - Visual/numerical patterns
         if (gameId === 'pattern-planet') {
             const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -638,7 +637,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Measurement Mission - Length, weight, capacity
         if (gameId === 'measurement-mission') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const measureIcons: Record<string, string> = {
                 length: '📏',
                 weight: '⚖️',
@@ -670,7 +669,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         // Sequences (planet-hopper)
         if (gameId === 'planet-hopper') {
             const seqParts = currentQ.num1 ? currentQ.num1.split(' ') : [];
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -699,7 +698,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Grammar
         if (gameId === 'grammar-galaxy') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
@@ -774,7 +773,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Tenses
         if (gameId === 'tense-traveler') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const tenseColors: Record<string, string> = { past: 'from-amber-600 to-orange-700', present: 'from-green-500 to-emerald-600', future: 'from-blue-500 to-indigo-600' };
             const tenseIcons: Record<string, string> = { past: '⏪', present: '▶️', future: '⏩' };
             return (
@@ -801,7 +800,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Sentence Builder
         if (gameId === 'sentence-builder') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const scrambledWords = currentQ.text1 ? currentQ.text1.split('|').map(w => w.trim()) : [];
             return (
                 <div className="w-full max-w-lg animate-slideIn">
@@ -827,7 +826,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Contraction Commander
         if (gameId === 'contraction-commander') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -873,7 +872,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Synonyms & Antonyms
         if (gameId === 'synonym-stars' || gameId === 'antonym-asteroids') {
-            const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean));
+            const options = shuffleArray([safeAnswer, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[]);
             const isSynonym = gameId === 'synonym-stars';
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
@@ -947,7 +946,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Time
         if (gameId === 'time-warp') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const hour = parseInt(currentQ.num1 || '3');
             const minute = parseInt(currentQ.num2 || '0');
             return (
@@ -981,7 +980,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Money
         if (gameId === 'money-master') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const isChange = currentQ.num2 === 'change';
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
@@ -1007,7 +1006,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Pattern Forge - Complete the pattern
         if (gameId === 'pattern-forge') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             const patternParts = currentQ.text1 ? currentQ.text1.split(' ') : [];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
@@ -1045,7 +1044,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Logic Lab - Deductive reasoning puzzles
         if (gameId === 'logic-lab') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
@@ -1072,7 +1071,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Odd Wizard - Find the item that doesn't belong
         if (gameId === 'odd-wizard') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -1103,7 +1102,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Sorting Station - Put items in order
         if (gameId === 'sorting-station') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -1137,7 +1136,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
         // Code Breaker - Decode secret messages
         if (gameId === 'code-breaker') {
-            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
@@ -1249,7 +1248,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
 
                         {!readingPhase && isAnswered && (
                             <div className={`mt-4 text-center text-xl font-bold ${answerState.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
-                                {answerState.isCorrect ? '✓ Correct!' : `✗ Answer: ${answerState.correctEnv || safeAnswer}`}
+                                {answerState.isCorrect ? '✓ Correct!' : `✗ Answer: ${safeAnswer}`}
                             </div>
                         )}
 

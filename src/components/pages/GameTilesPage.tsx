@@ -15,7 +15,7 @@ interface GameTilesPageProps {
     leaderboard?: LeaderboardEntry[];
 }
 
-export const GameTilesPage: React.FC<GameTilesPageProps> = ({ title, icon, games, onSelectGame, onBack, totalStars, variant, surpriseMode = false, leaderboard = [] }) => {
+export const GameTilesPage: React.FC<GameTilesPageProps> = ({ title, icon, games, onSelectGame, onBack, totalStars, variant, surpriseMode = false }) => {
     // Check if a game is unlocked
     const isUnlocked = (game: GameDefinition) => {
         if (!surpriseMode) return true; // If surprise mode is OFF, everything is unlocked.

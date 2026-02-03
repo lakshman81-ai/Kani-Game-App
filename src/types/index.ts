@@ -58,6 +58,7 @@ export interface Settings {
     generatorDifficulty: string;
     surpriseMode: boolean;
     useGoogleSheets?: boolean;
+    levelUpMode?: boolean;
 }
 
 export interface QAStats {

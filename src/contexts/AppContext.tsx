@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { Settings, LeaderboardEntry, GameDefinition, Difficulty } from '../types';
+import { Settings, LeaderboardEntry } from '../types';
 
 // Default settings
 const DEFAULT_SETTINGS: Settings = {

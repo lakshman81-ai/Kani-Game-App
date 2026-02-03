@@ -1,7 +1,7 @@
 // Game Definitions
 // Centralized configuration for all games
 
-import { GameDefinition } from '../types';
+import { GameDefinition, Difficulty } from '../types';
 
 export const MATH_GAMES: GameDefinition[] = [
     {
@@ -374,7 +374,8 @@ export const DEFAULT_SETTINGS = {
     },
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',
-    levelUpMode: false
+    levelUpMode: false,
+    surpriseMode: false
 };
 
 export default {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { GAME_THEMES } from '../themes/themeConfig';
 import { Question, Feedback, ThemeConfig } from '../types';
 
 interface RendererProps {
@@ -11,7 +10,7 @@ interface RendererProps {
 
 // Enhanced Story Nebula Renderer with better typography and layout
 export const StoryNebulaRenderer: React.FC<RendererProps> = ({ currentQ, handleAnswer, feedback, gameTheme }) => {
-  const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+  const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
 
   return (
     <div className="w-full max-w-3xl">
@@ -78,7 +77,7 @@ export const StoryNebulaRenderer: React.FC<RendererProps> = ({ currentQ, handleA
 
 // Enhanced Inference Investigator Renderer with detective theme
 export const InferenceInvestigatorRenderer: React.FC<RendererProps> = ({ currentQ, handleAnswer, feedback, gameTheme }) => {
-  const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean);
+  const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
 
   return (
     <div className="w-full max-w-3xl">

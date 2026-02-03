@@ -1,5 +1,4 @@
 import { StarIcon } from '../shared/StarIcon';
-import { GAME_THEMES } from '../../themes/themeConfig';
 import { QAStats, MostPlayedGame, TopPerformer, LeaderboardEntry } from '../../types';
 
 interface QAInterfaceProps {
@@ -10,7 +9,7 @@ interface QAInterfaceProps {
 }
 
 // Math-themed QA Interface with unique styling
-export const MathQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers, recentGames }) => {
+export const MathQAInterface: React.FC<QAInterfaceProps> = ({ stats, mostPlayedGame, topPerformers }) => {
   return (
     <div className="w-full max-w-4xl space-y-6 relative z-20">
       {/* Math-specific header with equations animation */}
