@@ -18,10 +18,16 @@ const DEFAULT_SETTINGS: Settings = {
     kidMode: false,
     leaderboardUrl: '',
     settingsSheetUrl: '',
-    enabledGames: {},
+    enabledGames: {
+        'fraction-frenzy': true,
+        'grammar-galaxy': true,
+        'tense-traveler': true,
+        'punctuation-pop': true,
+        'story-nebula': true
+    },
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',
-    surpriseMode: true,
+    surpriseMode: false,
     useGoogleSheets: false
 };
 

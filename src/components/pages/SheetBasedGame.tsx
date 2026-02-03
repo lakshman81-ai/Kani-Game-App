@@ -40,7 +40,20 @@ const SHAPES: Record<string, string> = {
 
 // Dynamic Image Renderer Component
 const DynamicImageRenderer = ({ url }: { url: string }) => {
-    if (!url || !url.startsWith('dynamic:')) return null;
+    if (!url) return null;
+
+    if (!url.startsWith('dynamic:')) {
+        return (
+            <div className="flex justify-center mb-4">
+                <img
+                    src={url}
+                    alt="Question Visual"
+                    className="max-w-full max-h-[300px] rounded-lg shadow-lg object-contain"
+                />
+            </div>
+        );
+    }
+
     const parts = url.split(':');
     const type = parts[1];
 
