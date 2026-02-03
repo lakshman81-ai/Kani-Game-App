@@ -233,24 +233,14 @@ money-master,73¢,,78¢,Total is 78¢.,Count Coins,Medium,count,83¢,78¢,Sum th
 money-master,60¢,Paid: $1.00,60¢,Change is 60¢.,Price: 40¢,Hard,change,65¢,70¢,100 - 40,,change,55¢
 money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
 money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
-money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
-money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
 money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
 money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
 money-master,25¢,Paid: $1.00,25¢,Change is 25¢.,Price: 75¢,Hard,change,30¢,35¢,100 - 75,,change,20¢
 money-master,75¢,Paid: $1.00,75¢,Change is 75¢.,Price: 25¢,Hard,change,80¢,85¢,100 - 25,,change,70¢
 money-master,10¢,Paid: $1.00,10¢,Change is 10¢.,Price: 90¢,Hard,change,15¢,20¢,100 - 90,,change,5¢
 money-master,45¢,Paid: $1.00,45¢,Change is 45¢.,Price: 55¢,Hard,change,50¢,55¢,100 - 55,,change,40¢
-money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
-money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
 money-master,70¢,Paid: $1.00,70¢,Change is 70¢.,Price: 30¢,Hard,change,75¢,80¢,100 - 30,,change,65¢
-money-master,5¢,Paid: $1.00,5¢,Change is 5¢.,Price: 95¢,Hard,change,10¢,15¢,100 - 95,,change,0¢
-money-master,55¢,Paid: $1.00,55¢,Change is 55¢.,Price: 45¢,Hard,change,60¢,65¢,100 - 45,,change,50¢
 money-master,40¢,Paid: $1.00,40¢,Change is 40¢.,Price: 60¢,Hard,change,45¢,50¢,100 - 60,,change,35¢
-money-master,30¢,Paid: $1.00,30¢,Change is 30¢.,Price: 70¢,Hard,change,35¢,40¢,100 - 70,,change,25¢
-money-master,15¢,Paid: $1.00,15¢,Change is 15¢.,Price: 85¢,Hard,change,20¢,25¢,100 - 85,,change,10¢
-money-master,25¢,Paid: $1.00,25¢,Change is 25¢.,Price: 75¢,Hard,change,30¢,35¢,100 - 75,,change,20¢
-
 story-solver,2,Tom has 14 toy cars. He arranges them in rows of 2. How many rows does he make?,7,Divide the total cars by the number in each row.,14,Medium,word_problem,7,3,Divide 14 by 2,,2,8
 story-solver,Yes,Sarah has 13 apples. She wants to give one to each of her 13 friends. Does she have enough?,Yes,Compare the number of apples to the number of friends.,13,Medium,word_problem,No,Don't Know,Is 13 bigger than 13?,,13,Maybe
 story-solver,61,There are 25 cookies in a jar. Mom puts 36 more cookies in. How many cookies are there now?,61,Add the new cookies to the ones already there.,25,Medium,word_problem,66,58,Add them up!,,36,57
@@ -432,7 +422,6 @@ measurement-mission,250,How many meters in 500 centimeters?,5,Measure carefully!
 measurement-mission,20,How many 500ml bottles fill a 5 liter jug?,10,Measure carefully!,,Medium,capacity,7,10,1 Liter = 2 x 500ml,,,5
 measurement-mission,300,How many grams in 3 kilograms?,3000,Measure carefully!,,Medium,weight,3000,1500,1 kg = 1000 g,,,30
 measurement-mission,4,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,2,8,1 Liter = 2 x 500ml,,,4
-measurement-mission,1.5,How many meters in 150 centimeters?,1.5,Measure carefully!,,Medium,length,75,15,100 cm = 1 m,,,1500
 measurement-mission,20,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2,100,100 cm = 1 m,,,2000
 measurement-mission,Yes,Is 30 minutes more than an hour?,No,Measure carefully!,,Medium,time,Maybe,No,60 minutes = 1 hour,,,Equal
 measurement-mission,8,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,2,4,1 Liter = 2 x 500ml,,,4
@@ -450,7 +439,8 @@ measurement-mission,15,How many meters in 150 centimeters?,1.5,Measure carefully
 measurement-mission,10000,How many meters in 1000 centimeters?,10,Measure carefully!,,Medium,length,500,10,100 cm = 1 m,,,100
 measurement-mission,6,How many 500ml bottles fill a 4 liter jug?,8,Measure carefully!,,Medium,capacity,16,8,1 Liter = 2 x 500ml,,,4
 measurement-mission,8,How many 500ml bottles fill a 2 liter jug?,4,Measure carefully!,,Medium,capacity,4,2,1 Liter = 2 x 500ml,,,4
-measurement-mission,2,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2000,100,100 cm = 1 m,,,20fraction-frenzy,1/8,What fraction is shaded?,1/5,The numerator (top) is 1 and denominator (bottom) is 5.,1,Medium,identify,3/9,1/5,Count the shaded parts vs total parts.,dynamic:fraction:1:5,5,5/8,Fraction
+measurement-mission,2,How many meters in 200 centimeters?,2,Measure carefully!,,Medium,length,2000,100,100 cm = 1 m,,,20
+fraction-frenzy,1/8,What fraction is shaded?,1/5,The numerator (top) is 1 and denominator (bottom) is 5.,1,Medium,identify,3/9,1/5,Count the shaded parts vs total parts.,dynamic:fraction:1:5,5,5/8,Fraction
 fraction-frenzy,3/10,What fraction is shaded?,1/5,The numerator (top) is 1 and denominator (bottom) is 5.,1,Medium,identify,5/10,4/9,Count the shaded parts vs total parts.,dynamic:fraction:1:5,5,1/5,Fraction
 fraction-frenzy,3/5,What fraction is shaded?,3/8,The numerator (top) is 3 and denominator (bottom) is 8.,3,Medium,identify,4/8,3/8,Count the shaded parts vs total parts.,dynamic:fraction:3:8,8,2/9,Fraction
 fraction-frenzy,1/2,What fraction is shaded?,1/2,The numerator (top) is 1 and denominator (bottom) is 2.,1,Easy,identify,2/9,1/10,Count the shaded parts vs total parts.,dynamic:fraction:1:2,2,3/10,Fraction
@@ -489,7 +479,6 @@ fraction-frenzy,>,Compare the fractions,<,1/4 is smaller than 2/3,1/4,Medium,com
 fraction-frenzy,?,Compare the fractions,=,1/6 is equal to 1/6,1/6,Medium,compare,<,>,Which pie has more shaded area?,dynamic:compare:1:6:1:6,1/6,=,Fraction
 fraction-frenzy,>,Compare the fractions,<,1/2 is smaller than 3/4,1/2,Medium,compare,<,=,Which pie has more shaded area?,dynamic:compare:1:2:3:4,3/4,?,Fraction
 fraction-frenzy,=,Compare the fractions,<,3/8 is smaller than 2/3,3/8,Medium,compare,<,>,Which pie has more shaded area?,dynamic:compare:3:8:2:3,2/3,?,Fraction
-fraction-frenzy,>,Compare the fractions,>,1/2 is bigger than 2/8,1/2,Medium,compare,=,?,Which pie has more shaded area?,dynamic:compare:1:2:2:8,2/8,<,Fraction
 fraction-frenzy,7/10,Add the fractions: 1/5 + 2/5,3/5,"When denominators are same, just add numerators.",1/5,Medium,add,3/5,2/3,Add the top numbers.,dynamic:add:1:5:2:5,2/5,1/5,Fraction
 fraction-frenzy,3/4,Add the fractions: 2/5 + 1/5,3/5,"When denominators are same, just add numerators.",2/5,Medium,add,3/5,6/7,Add the top numbers.,dynamic:add:2:5:1:5,1/5,3/9,Fraction
 fraction-frenzy,1/6,Add the fractions: 2/4 + 2/4,4/4,"When denominators are same, just add numerators.",2/4,Medium,add,2/4,4/6,Add the top numbers.,dynamic:add:2:4:2:4,2/4,4/4,Fraction

@@ -53,6 +53,11 @@ const DynamicImageRenderer = ({ url }: { url: string }) => {
             </div>
         );
     }
+                    className="max-w-full max-h-[300px] rounded-lg shadow-lg object-contain"
+                />
+            </div>
+        );
+    }
 
     const parts = url.split(':');
     const type = parts[1];
