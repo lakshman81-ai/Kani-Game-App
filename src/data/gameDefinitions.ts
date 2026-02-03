@@ -135,6 +135,30 @@ export const GRAMMAR_GAMES: GameDefinition[] = [
         difficulty: 'Medium',
         description: 'Verb tenses!'
     },
+    {
+        id: 'sentence-builder',
+        title: 'Sentence Builder',
+        icon: '🏗️',
+        color: 'from-cyan-500 to-teal-500',
+        difficulty: 'Medium',
+        description: 'Build sentences!'
+    },
+    {
+        id: 'contraction-commander',
+        title: 'Contraction Commander',
+        icon: '✂️',
+        color: 'from-rose-500 to-pink-500',
+        difficulty: 'Easy',
+        description: 'Shorten words!'
+    },
+    {
+        id: 'article-adventure',
+        title: 'Article Adventure',
+        icon: '📰',
+        color: 'from-lime-500 to-green-500',
+        difficulty: 'Easy',
+        description: 'A, an, or the?'
+    }
 ];
 
 export const VOCABULARY_GAMES: GameDefinition[] = [
