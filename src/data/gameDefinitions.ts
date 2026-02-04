@@ -346,6 +346,39 @@ export const SKILL_GAMES: GameDefinition[] = [
         color: 'from-amber-500 to-orange-500',
         difficulty: 'Medium',
         description: 'Balance the scale!'
+    },
+    // Phase 5 - Analytical Skills Games
+    {
+        id: 'cause-effect',
+        title: 'Cause & Effect',
+        icon: '⚡',
+        color: 'from-yellow-500 to-orange-500',
+        difficulty: 'Medium',
+        description: 'Why did it happen?'
+    },
+    {
+        id: 'analogy-arena',
+        title: 'Analogy Arena',
+        icon: '🔗',
+        color: 'from-indigo-500 to-violet-500',
+        difficulty: 'Medium',
+        description: 'Find the pattern!'
+    },
+    {
+        id: 'sequence-story',
+        title: 'Sequence Story',
+        icon: '📝',
+        color: 'from-teal-500 to-cyan-500',
+        difficulty: 'Easy',
+        description: 'What comes next?'
+    },
+    {
+        id: 'classify-quest',
+        title: 'Classify Quest',
+        icon: '📊',
+        color: 'from-rose-500 to-red-500',
+        difficulty: 'Easy',
+        description: 'Sort them out!'
     }
 ];
 

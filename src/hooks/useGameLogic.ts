@@ -10,7 +10,7 @@ export const useGameLogic = (
     onGameEnd: (game: string, name: string, stars: number, streak: number, hintsUsed: number) => Promise<void>
 ) => {
     const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy', 'story-solver', 'estimation-express', 'pattern-planet', 'measurement-mission'].includes(gameId);
-    const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense'].includes(gameId);
+    const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense', 'cause-effect', 'analogy-arena', 'sequence-story', 'classify-quest'].includes(gameId);
 
     const getSheetUrl = () => {
         if (settings.useGoogleSheets) {
