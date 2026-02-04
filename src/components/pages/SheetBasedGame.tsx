@@ -7,6 +7,7 @@ import { GameOverScreen } from '../shared/GameOverScreen';
 import { StoryNebulaRenderer, InferenceInvestigatorRenderer } from '../../renderers/ComprehensionRenderer';
 import { VocabularyRenderer } from '../../renderers/VocabularyRenderer';
 import { SpyglassRenderer } from '../../renderers/SpyglassRenderer';
+import { StoryJammerRenderer } from '../../renderers/StoryJammerRenderer';
 import { useAppContext } from '../../contexts/AppContext';
 import { useGameLogic } from '../../hooks/useGameLogic';
 import { GAME_THEMES } from '../../themes/themeConfig';
@@ -444,7 +445,7 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
         // Hint Button
         const handleHintClick = () => {
             toggleHint();
-            if (gameId === 'story-nebula') {
+            if (gameId === 'story-nebula' || gameId === 'story-jammer') {
                 setShowHintModal(true);
             }
         };
@@ -458,6 +459,22 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                 💡
             </button>
         ) : null;
+
+        // Story Jammer
+        if (gameId === 'story-jammer') {
+            return (
+                <div className="relative">
+                    <HintButton />
+                    <StoryJammerRenderer
+                        currentQ={currentQ}
+                        handleAnswer={(opt) => !isAnswered && handleAnswer(opt, safeAnswer)}
+                        feedback={isAnswered ? { correct: answerState.isCorrect, answer: safeAnswer } : null}
+                        gameTheme={gameTheme || GAME_THEMES['story-jammer']}
+                        questionIndex={currentIndex}
+                    />
+                </div>
+            );
+        }
 
         // Spyglass Explorer
         if (gameId === 'spyglass-explorer') {

@@ -237,6 +237,14 @@ export const COMPREHENSION_GAMES: GameDefinition[] = [
         difficulty: 'Medium',
         description: 'Observe & Recall!'
     },
+    {
+        id: 'story-jammer',
+        title: 'Story Jammer',
+        icon: '📚',
+        color: 'from-blue-600 to-indigo-600',
+        difficulty: 'Medium',
+        description: 'Advanced Comprehension!'
+    },
 ];
 
 // Brain Training / Skill Games - Phase 1 & 2
@@ -370,7 +378,8 @@ export const DEFAULT_SETTINGS = {
         'grammar-galaxy': true,
         'tense-traveler': true,
         'punctuation-pop': true,
-        'story-nebula': true
+        'story-nebula': true,
+        'story-jammer': true
     },
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',

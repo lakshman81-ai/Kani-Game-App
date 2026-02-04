@@ -55,6 +55,16 @@ export interface GameTheme {
 
 // Game-specific color schemes with unique styling per game
 export const GAME_THEMES: Record<string, GameTheme> = {
+  'story-jammer': {
+    gradient: 'from-blue-600 to-indigo-600',
+    buttonBg: 'bg-gradient-to-r from-blue-600 to-indigo-600',
+    cardBg: 'bg-blue-900/40',
+    accentColor: 'text-blue-300',
+    borderColor: 'border-blue-400',
+    glowColor: 'shadow-blue-500/50',
+    storyTitleColor: 'text-yellow-300',
+    questionBg: 'bg-blue-800/60',
+  },
   // Math games
   'space-math': {
     gradient: 'from-orange-500 to-yellow-500',
@@ -394,3 +404,4 @@ export default {
   TYPOGRAPHY,
   ANIMATIONS,
 };
+// Force update

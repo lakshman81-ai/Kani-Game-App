@@ -23,7 +23,8 @@ const DEFAULT_SETTINGS: Settings = {
         'grammar-galaxy': true,
         'tense-traveler': true,
         'punctuation-pop': true,
-        'story-nebula': true
+        'story-nebula': true,
+        'story-jammer': true
     },
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',

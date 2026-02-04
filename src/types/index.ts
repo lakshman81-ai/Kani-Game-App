@@ -29,6 +29,12 @@ export interface Question {
     know_more?: string;
     explanation?: string; // Mapped from know_more
     image_url?: string;
+    // New fields for story-jammer
+    story_id?: string;
+    passage?: string;
+    question_num?: string;
+    question_type?: string;
+    level?: string;
 }
 
 export interface Feedback {
