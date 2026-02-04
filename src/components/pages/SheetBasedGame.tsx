@@ -1182,6 +1182,105 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             );
         }
 
+        // Cause & Effect
+        if (gameId === 'cause-effect') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-yellow-300 text-sm mb-3">⚡ What is the {currentQ.operation === 'cause' ? 'CAUSE' : 'EFFECT'}?</div>
+                        <div className="bg-yellow-500/20 rounded-xl p-4 mb-4">
+                            <div className="text-white text-xl">{currentQ.text1}</div>
+                        </div>
+                        {currentQ.text2 && <div className="text-gray-400 text-center mt-3">{currentQ.text2}</div>}
+                    </div>
+                    <div className="grid grid-cols-1 gap-3">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-yellow-500 to-orange-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Analogy Arena
+        if (gameId === 'analogy-arena') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-indigo-300 text-sm mb-4">🔗 Complete the analogy:</div>
+                        <div className="text-white text-2xl font-bold">
+                            {currentQ.text1} is to {currentQ.text2}
+                        </div>
+                        <div className="text-indigo-300 text-xl my-2">as</div>
+                        <div className="text-white text-2xl font-bold">
+                            {currentQ.num1} is to <span className="text-yellow-400 animate-pulse">?</span>
+                        </div>
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-3 animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-xl font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-indigo-500 to-violet-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Sequence Story
+        if (gameId === 'sequence-story') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-teal-300 text-sm mb-3">📝 What happens next?</div>
+                        <div className="text-white text-lg leading-relaxed">{currentQ.text1}</div>
+                        {currentQ.text2 && <div className="text-yellow-300 mt-3 font-medium text-center">{currentQ.text2}</div>}
+                        {showHint && safeHint && <p className="text-gray-400 text-sm mt-3 text-center animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-1 gap-3">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all text-left ${getButtonStyle(opt, 'bg-gradient-to-r from-teal-500 to-cyan-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        // Classify Quest
+        if (gameId === 'classify-quest') {
+            const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+            return (
+                <div className="w-full max-w-lg animate-slideIn">
+                    <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center border border-white/10 shadow-2xl relative">
+                        <HintButton />
+                        <div className="text-rose-300 text-sm mb-3">📊 Which category does this belong to?</div>
+                        <div className="bg-rose-500/20 rounded-xl p-4 mb-4">
+                            <div className="text-white text-3xl font-bold">{currentQ.text1}</div>
+                        </div>
+                        {showHint && safeHint && <p className="text-gray-400 text-sm animate-slideIn">💡 {safeHint}</p>}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                        {options.map((opt, i) => (
+                            <button key={i} onClick={() => !isAnswered && handleAnswer(opt, safeAnswer)}
+                                disabled={isAnswered}
+                                className={`p-4 rounded-xl text-lg font-bold transition-all ${getButtonStyle(opt, 'bg-gradient-to-r from-rose-500 to-red-500')}`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
         return <p className="text-white">Question type not supported</p>;
     };
 

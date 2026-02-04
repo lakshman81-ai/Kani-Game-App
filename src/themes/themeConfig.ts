@@ -279,6 +279,39 @@ export const GAME_THEMES: Record<string, GameTheme> = {
     borderColor: 'border-purple-500',
     glowColor: 'shadow-purple-500/50',
   },
+  // Phase 5 Games
+  'cause-effect': {
+    gradient: 'from-yellow-500 to-orange-500',
+    buttonBg: 'bg-gradient-to-r from-yellow-500 to-orange-500',
+    cardBg: 'bg-yellow-900/30',
+    accentColor: 'text-yellow-300',
+    borderColor: 'border-yellow-400',
+    glowColor: 'shadow-yellow-500/50',
+  },
+  'analogy-arena': {
+    gradient: 'from-indigo-500 to-violet-500',
+    buttonBg: 'bg-gradient-to-r from-indigo-500 to-violet-500',
+    cardBg: 'bg-indigo-900/30',
+    accentColor: 'text-indigo-300',
+    borderColor: 'border-indigo-400',
+    glowColor: 'shadow-indigo-500/50',
+  },
+  'sequence-story': {
+    gradient: 'from-teal-500 to-cyan-500',
+    buttonBg: 'bg-gradient-to-r from-teal-500 to-cyan-500',
+    cardBg: 'bg-teal-900/30',
+    accentColor: 'text-teal-300',
+    borderColor: 'border-teal-400',
+    glowColor: 'shadow-teal-500/50',
+  },
+  'classify-quest': {
+    gradient: 'from-rose-500 to-red-500',
+    buttonBg: 'bg-gradient-to-r from-rose-500 to-red-500',
+    cardBg: 'bg-rose-900/30',
+    accentColor: 'text-rose-300',
+    borderColor: 'border-rose-400',
+    glowColor: 'shadow-rose-500/50',
+  },
 };
 
 // Icon library
