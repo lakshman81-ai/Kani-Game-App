@@ -1,6 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { useAppContext } from './contexts/AppContext';
-import { ALL_GAMES, MATH_GAMES, GRAMMAR_GAMES, VOCABULARY_GAMES, COMPREHENSION_GAMES, SKILL_GAMES } from './data/gameDefinitions';
+import { ALL_GAMES, MATH_GAMES, GRAMMAR_GAMES, VOCABULARY_GAMES, COMPREHENSION_GAMES, SKILL_GAMES, EXAM_GAMES } from './data/gameDefinitions';
 import { Difficulty, GameDefinition } from './types';
 import { LoadingSpinner } from './components/shared/LoadingSpinner';
 
@@ -68,6 +68,7 @@ const LearningGalaxy: React.FC = () => {
             : GRAMMAR_GAMES.find(g => g.id === currentGame) ? 'grammar'
               : VOCABULARY_GAMES.find(g => g.id === currentGame) ? 'vocabulary'
                 : SKILL_GAMES.find(g => g.id === currentGame) ? 'skill'
+                  : EXAM_GAMES.find(g => g.id === currentGame) ? 'exam'
                   : 'comprehension';
           return <SheetBasedGame onBack={handleBackToHome} difficulty={selectedDifficulty || 'None'} settings={settings} gameId={currentGame} title={gameInfo?.title} icon={gameInfo?.icon} color={gameInfo?.color} variant={variant} />;
         }
@@ -121,6 +122,7 @@ const LearningGalaxy: React.FC = () => {
         if (currentSubject === 'english') return <EnglishLandingPage onSelectCategory={setEnglishCategory} onBack={handleBackToHome} totalStars={totalStars} />;
         if (currentSubject === 'math') return <GameTilesPage title="Math Galaxy" icon="🔢" games={MATH_GAMES} onSelectGame={handleGameSelect} onBack={handleBackToHome} totalStars={totalStars} variant="math" surpriseMode={settings.surpriseMode} leaderboard={leaderboard} />;
         if (currentSubject === 'braintraining') return <BrainTrainingPage onBack={handleBackToHome} onSelectGame={handleBrainTrainingGameSelect} onSelectDifficulty={handleBrainTrainingDifficultySelect} settings={settings} />;
+        if (currentSubject === 'exam') return <GameTilesPage title="Exam Center" icon="📝" games={EXAM_GAMES} onSelectGame={handleGameSelect} onBack={handleBackToHome} totalStars={totalStars} variant="exam" surpriseMode={settings.surpriseMode} leaderboard={leaderboard} />;
 
         return <MainLandingPage onSelectSubject={setCurrentSubject} totalStars={totalStars} onOpenLeaderboard={() => setShowLeaderboard(true)} onOpenQA={() => setShowQA(true)} onOpenSettings={() => setShowSettings(true)} leaderboard={leaderboard} />;
       })()}
