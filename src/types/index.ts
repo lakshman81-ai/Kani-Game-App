@@ -47,6 +47,7 @@ export interface Settings {
     mathSheetUrl: string;
     englishSheetUrl: string;
     skillSheetUrl: string;
+    examSheetUrl?: string; // Optional for backward compatibility but initialized in default
     topicSheetUrl: string;
     selectedTopics: string;
     selectedSubtopics: string;

@@ -526,9 +526,13 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
             );
         }
 
-        // Math equations
-        if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy'].includes(gameId)) {
+        // Math equations (Adding fraction-exam here)
+        if (['space-math', 'alien-invasion', 'bubble-pop', 'fraction-frenzy', 'geometry-galaxy', 'fraction-exam'].includes(gameId)) {
             const options = [currentQ.option1, currentQ.option2, currentQ.option3, currentQ.option4].filter(Boolean) as string[];
+            const showEquation = gameId !== 'geometry-galaxy' &&
+                                 (!commonImage || currentQ.operation === 'fill-blank') &&
+                                 !(gameId === 'fraction-exam' && currentQ.text1 && currentQ.operation === 'identify');
+
             return (
                 <div className="w-full max-w-lg relative animate-slideIn">
                     <div className="bg-gray-900/80 rounded-2xl p-6 backdrop-blur mb-6 text-center flex flex-col items-center border border-white/10 shadow-2xl relative">
@@ -537,19 +541,23 @@ export const SheetBasedGame: React.FC<SheetBasedGameProps> = ({ onBack, difficul
                         {!commonImage && gameId === 'geometry-galaxy' && currentQ.operation === 'identify' && (
                             <div className="text-8xl mb-4">{SHAPES[(currentQ.text1 || '').toLowerCase()] || '?'}</div>
                         )}
-                        {gameId !== 'geometry-galaxy' && (!commonImage || currentQ.operation === 'fill-blank') && (
+                        {showEquation && (
                             <div className="text-white text-4xl font-bold mb-2">
                                 {currentQ.operation === 'fill-blank' ? (
                                     <span>{currentQ.num1} = {currentQ.num2}</span>
                                 ) : (
                                     <>
                                         {currentQ.num1} {currentQ.operation} {currentQ.num2} {currentQ.operation && '= ?'}
-                                        {gameId === 'fraction-frenzy' && currentQ.operation === 'identify' && currentQ.num1 && !currentQ.num2 && <span>{currentQ.num1}</span>}
+                                        {(gameId === 'fraction-frenzy' || gameId === 'fraction-exam') && currentQ.operation === 'identify' && currentQ.num1 && !currentQ.num2 && <span>{currentQ.num1}</span>}
                                     </>
                                 )}
                             </div>
                         )}
                         {gameId === 'geometry-galaxy' && currentQ.operation === 'sides' && <div className="text-white text-2xl mb-4">How many sides does a {currentQ.text1} have?</div>}
+
+                        {currentQ.text1 && !commonImage && gameId !== 'geometry-galaxy' && (
+                            <div className="text-white text-xl font-bold mb-2">{currentQ.text1}</div>
+                        )}
 
                         {showHint && safeHint && <p className="text-gray-400 text-sm mt-2 animate-slideIn">💡 {safeHint}</p>}
                     </div>

@@ -3,7 +3,7 @@ import { SpaceBackground } from '../shared/SpaceBackground';
 import { Settings, Difficulty } from '../../types';
 import { DEFAULT_SETTINGS } from '../../data/gameDefinitions';
 import { useTheme, THEMES } from '../../contexts/ThemeContext';
-import { MATH_GAMES, GRAMMAR_GAMES, SKILL_GAMES } from '../../data/gameDefinitions';
+import { MATH_GAMES, GRAMMAR_GAMES, SKILL_GAMES, EXAM_GAMES } from '../../data/gameDefinitions';
 
 interface SettingsPageProps {
     settings: Settings;
@@ -50,6 +50,8 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
     const [testingUrl, setTestingUrl] = useState<string | null>(null);
 
     const SETTINGS_PASSWORD = import.meta.env.VITE_SETTINGS_PASSWORD || 'Superdad';
+    // Static version stamp for this build
+    const versionStamp = `ver.26-05-24 time 15:30`;
 
     const handleUnlock = () => {
         if (password === SETTINGS_PASSWORD) {
@@ -123,11 +125,12 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
         { category: 'Math Games', games: MATH_GAMES, url: localSettings.mathSheetUrl },
         { category: 'Grammar Games', games: GRAMMAR_GAMES, url: localSettings.englishSheetUrl },
         { category: 'Skill Games', games: SKILL_GAMES, url: localSettings.skillSheetUrl },
+        { category: 'Exam Games', games: EXAM_GAMES, url: localSettings.examSheetUrl || 'fraction-exam.csv' },
     ];
 
     return (
         <SpaceBackground>
-            <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto">
+            <div className="flex flex-col items-center h-full px-4 py-8 overflow-y-auto relative">
                 <button onClick={onBack} aria-label="Back" className="absolute top-4 left-4 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center text-white hover:bg-gray-700 z-20 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white">←</button>
                 <h1 className="text-4xl font-bold text-white mb-8 pt-8">⚙️ Settings</h1>
 
@@ -229,6 +232,25 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                                         className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-colors cursor-pointer text-sm disabled:opacity-50"
                                     >
                                         {testingUrl === 'Skill URL' ? '...' : 'Test'}
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-white font-bold mb-2 text-sm">📝 Exam Games Data URL</label>
+                                <div className="flex gap-2">
+                                    <input
+                                        type={showUrls ? 'text' : 'password'}
+                                        value={localSettings.examSheetUrl || ''}
+                                        onChange={(e) => setLocalSettings({ ...localSettings, examSheetUrl: e.target.value })}
+                                        className="flex-1 px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-500 focus:outline-none text-sm"
+                                        placeholder="Optional: URL to CSV"
+                                    />
+                                    <button
+                                        onClick={() => testUrl(localSettings.examSheetUrl || '', 'Exam URL')}
+                                        disabled={testingUrl === 'Exam URL'}
+                                        className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-colors cursor-pointer text-sm disabled:opacity-50"
+                                    >
+                                        {testingUrl === 'Exam URL' ? '...' : 'Test'}
                                     </button>
                                 </div>
                             </div>
@@ -454,6 +476,11 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ settings, setSetting
                             {saving ? 'Saving...' : '💾 Save'}
                         </button>
                     </div>
+                </div>
+
+                {/* Version Stamp */}
+                <div className="absolute bottom-2 right-4 text-[10px] text-gray-500 font-mono opacity-50">
+                    {versionStamp}
                 </div>
             </div>
         </SpaceBackground>

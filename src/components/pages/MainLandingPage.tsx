@@ -1,7 +1,7 @@
 import React from 'react';
 import { SpaceBackground } from '../shared/SpaceBackground';
 import { LeaderboardEntry } from '../../types';
-import { MATH_GAMES, GRAMMAR_GAMES, VOCABULARY_GAMES, COMPREHENSION_GAMES, SKILL_GAMES } from '../../data/gameDefinitions';
+import { MATH_GAMES, GRAMMAR_GAMES, VOCABULARY_GAMES, COMPREHENSION_GAMES, SKILL_GAMES, EXAM_GAMES } from '../../data/gameDefinitions';
 
 interface MainLandingPageProps {
     onSelectSubject: (subject: string) => void;
@@ -83,7 +83,7 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                 </div>
 
                 {/* Subject Cards - Responsive grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-md sm:max-w-3xl relative z-20 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full max-w-md sm:max-w-4xl relative z-20 mb-6">
                     <button onClick={() => onSelectSubject('math')}
                         className="bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-purple-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-400">
                         <div className="flex items-center justify-between">
@@ -92,7 +92,6 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">Math</h2>
                                 <p className="text-purple-200 text-sm">{MATH_GAMES.length} fun games!</p>
                             </div>
-                            <div className="text-4xl opacity-50 group-hover:opacity-100 transition-opacity">→</div>
                         </div>
                     </button>
                     <button onClick={() => onSelectSubject('english')}
@@ -103,18 +102,26 @@ export const MainLandingPage: React.FC<MainLandingPageProps> = ({ onSelectSubjec
                                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">English</h2>
                                 <p className="text-blue-200 text-sm">{GRAMMAR_GAMES.length + VOCABULARY_GAMES.length + COMPREHENSION_GAMES.length} fun games!</p>
                             </div>
-                            <div className="text-4xl opacity-50 group-hover:opacity-100 transition-opacity">→</div>
                         </div>
                     </button>
                     <button onClick={() => onSelectSubject('braintraining')}
-                        className="bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-pink-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-pink-400 sm:col-span-2 lg:col-span-1">
+                        className="bg-gradient-to-br from-pink-500 via-fuchsia-500 to-purple-600 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-pink-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-pink-400">
                         <div className="flex items-center justify-between">
                             <div>
                                 <div className="text-5xl sm:text-6xl mb-2 group-hover:scale-110 transition-transform" style={{ animation: 'float 2s ease-in-out infinite' }}>🧠</div>
                                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">Brain Training</h2>
                                 <p className="text-pink-200 text-sm">{SKILL_GAMES.length} skill games!</p>
                             </div>
-                            <div className="text-4xl opacity-50 group-hover:opacity-100 transition-opacity">→</div>
+                        </div>
+                    </button>
+                    <button onClick={() => onSelectSubject('exam')}
+                        className="bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-700 p-6 sm:p-8 rounded-3xl shadow-2xl hover:scale-105 transition-all text-left cursor-pointer border-2 border-blue-400/30 group focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <div className="text-5xl sm:text-6xl mb-2 group-hover:scale-110 transition-transform">📝</div>
+                                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1">Exam</h2>
+                                <p className="text-blue-200 text-sm">{EXAM_GAMES.length} tests!</p>
+                            </div>
                         </div>
                     </button>
                 </div>

@@ -9,7 +9,7 @@ export const useGameLogic = (
     settings: Settings,
     onGameEnd: (game: string, name: string, stars: number, streak: number, hintsUsed: number) => Promise<void>
 ) => {
-    const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy', 'story-solver', 'estimation-express', 'pattern-planet', 'measurement-mission'].includes(gameId);
+    const isMath = ['space-math', 'alien-invasion', 'bubble-pop', 'planet-hopper', 'fraction-frenzy', 'time-warp', 'money-master', 'geometry-galaxy', 'story-solver', 'estimation-express', 'pattern-planet', 'measurement-mission', 'fraction-exam'].includes(gameId);
     const isSkill = ['pattern-forge', 'logic-lab', 'odd-wizard', 'sorting-station', 'code-breaker', 'memory-matrix', 'sequence-sprint', 'path-planner', 'data-detective', 'venn-voyager', 'mirror-match', 'scale-sense', 'cause-effect', 'analogy-arena', 'sequence-story', 'classify-quest'].includes(gameId);
 
     const getSheetUrl = () => {
@@ -109,7 +109,14 @@ export const useGameLogic = (
             }
         } else {
             const shuffled = shuffleArray(filtered);
-            session = shuffled.slice(0, 10); // Take top 10
+            session = shuffled.slice(0, 25); // Take top 25 for Exam, or standard 10
+            // Assuming standard 10 for now unless explicit requirement for 25 in one go.
+            // Requirement says "25 questions" in the file, but game session length usually 10.
+            // Let's stick to standard 10 per session to match other games, or user can clarify if they want all 25 in one go.
+            // Given "Exam" context, maybe 25 is better? But let's stick to 10 for consistency unless forced.
+            // Wait, request said "create 25 questions". It didn't explicitly say "session length 25".
+            // I'll keep it 10 for now.
+             session = shuffled.slice(0, 10);
         }
 
         setQuestionsQueue(session);

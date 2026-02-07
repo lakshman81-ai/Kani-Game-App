@@ -312,6 +312,15 @@ export const GAME_THEMES: Record<string, GameTheme> = {
     borderColor: 'border-rose-400',
     glowColor: 'shadow-rose-500/50',
   },
+  // Exam Games
+  'fraction-exam': {
+    gradient: 'from-blue-600 to-indigo-700',
+    buttonBg: 'bg-gradient-to-r from-blue-600 to-indigo-700',
+    cardBg: 'bg-blue-900/30',
+    accentColor: 'text-blue-300',
+    borderColor: 'border-blue-500',
+    glowColor: 'shadow-blue-500/50',
+  },
 };
 
 // Icon library
@@ -339,6 +348,7 @@ export const ICONS = {
     'odd-wizard': '🧙',
     'sorting-station': '🗄️',
     'code-breaker': '🔐',
+    'fraction-exam': '📝',
   },
   wordClass: {
     noun: '📦',
@@ -437,4 +447,3 @@ export default {
   TYPOGRAPHY,
   ANIMATIONS,
 };
-// Force update

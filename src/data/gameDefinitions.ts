@@ -382,18 +382,32 @@ export const SKILL_GAMES: GameDefinition[] = [
     }
 ];
 
+// Exam Games
+export const EXAM_GAMES: GameDefinition[] = [
+    {
+        id: 'fraction-exam',
+        title: 'Fraction Exam',
+        icon: '📝',
+        color: 'from-blue-600 to-indigo-700',
+        difficulty: 'Medium',
+        description: 'Test your knowledge!'
+    }
+];
+
 export const ALL_GAMES: GameDefinition[] = [
     ...MATH_GAMES,
     ...GRAMMAR_GAMES,
     ...VOCABULARY_GAMES,
     ...COMPREHENSION_GAMES,
-    ...SKILL_GAMES
+    ...SKILL_GAMES,
+    ...EXAM_GAMES
 ];
 
 export const DEFAULT_SETTINGS = {
     mathSheetUrl: 'MATH_GOOGLE_SHEET_DATA.csv',
     englishSheetUrl: 'ENGLISH_GOOGLE_SHEET_DATA.csv',
     skillSheetUrl: 'SKILL_GAMES_DATA.csv',
+    examSheetUrl: 'fraction-exam.csv',
     topicSheetUrl: '',
     selectedTopics: '',
     selectedSubtopics: '',
@@ -412,7 +426,8 @@ export const DEFAULT_SETTINGS = {
         'tense-traveler': true,
         'punctuation-pop': true,
         'story-nebula': true,
-        'story-jammer': true
+        'story-jammer': true,
+        'fraction-exam': true
     },
     generatorGrade: 'Grade 3',
     generatorDifficulty: 'Easy',
@@ -426,6 +441,7 @@ export default {
     VOCABULARY_GAMES,
     COMPREHENSION_GAMES,
     SKILL_GAMES,
+    EXAM_GAMES,
     ALL_GAMES,
     DEFAULT_SETTINGS,
 };

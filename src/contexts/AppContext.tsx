@@ -1,36 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { Settings, LeaderboardEntry } from '../types';
-
-// Default settings
-const DEFAULT_SETTINGS: Settings = {
-    mathSheetUrl: 'MATH_GOOGLE_SHEET_DATA.csv',
-    englishSheetUrl: 'ENGLISH_GOOGLE_SHEET_DATA.csv',
-    skillSheetUrl: 'SKILL_GAMES_DATA.csv',
-    topicSheetUrl: '',
-    selectedTopics: '',
-    selectedSubtopics: '',
-    selectedMathWorksheet: '1',
-    selectedEnglishWorksheet: '1',
-    defaultDifficulty: 'None',
-    difficultyFilterEnabled: false,
-    soundEnabled: true,
-    randomize: false,
-    kidMode: false,
-    leaderboardUrl: '',
-    settingsSheetUrl: '',
-    enabledGames: {
-        'fraction-frenzy': true,
-        'grammar-galaxy': true,
-        'tense-traveler': true,
-        'punctuation-pop': true,
-        'story-nebula': true,
-        'story-jammer': true
-    },
-    generatorGrade: 'Grade 3',
-    generatorDifficulty: 'Easy',
-    surpriseMode: false,
-    useGoogleSheets: false
-};
+import { DEFAULT_SETTINGS } from '../data/gameDefinitions';
 
 // Storage helper
 const storage = {
@@ -72,7 +42,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
                 const settingsData = await storage.get('learning-galaxy-settings');
                 if (settingsData) {
                     const value = typeof settingsData === 'string' ? settingsData : settingsData.value;
-                    setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(value) });
+                    const parsed = JSON.parse(value);
+                    // Merge with DEFAULT_SETTINGS to ensure new keys (like examSheetUrl) are present
+                    setSettings({ ...DEFAULT_SETTINGS, ...parsed });
                 }
 
                 // Load Leaderboard
