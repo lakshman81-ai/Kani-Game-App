@@ -109,14 +109,10 @@ export const useGameLogic = (
             }
         } else {
             const shuffled = shuffleArray(filtered);
-            session = shuffled.slice(0, 25); // Take top 25 for Exam, or standard 10
-            // Assuming standard 10 for now unless explicit requirement for 25 in one go.
-            // Requirement says "25 questions" in the file, but game session length usually 10.
-            // Let's stick to standard 10 per session to match other games, or user can clarify if they want all 25 in one go.
-            // Given "Exam" context, maybe 25 is better? But let's stick to 10 for consistency unless forced.
-            // Wait, request said "create 25 questions". It didn't explicitly say "session length 25".
-            // I'll keep it 10 for now.
-             session = shuffled.slice(0, 10);
+            // Check if game is an Exam type (currently just fraction-exam)
+            const isExam = ['fraction-exam'].includes(gameId);
+            const questionLimit = isExam ? 25 : 10;
+            session = shuffled.slice(0, questionLimit);
         }
 
         setQuestionsQueue(session);
